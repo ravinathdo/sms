@@ -31,5 +31,11 @@ Class Login_Controller extends CI_Controller {
             echo 'FALSE';
         }
     }
+    
+     public function logout(){
+        $this->session->unset_userdata('userbean');
+        $this->session->unset_userdata('logged_in');
+        $this->load->view('users_view/login');
+    }
 
 }
