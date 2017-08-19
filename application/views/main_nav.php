@@ -13,30 +13,37 @@
                 <!-- /input-group -->
             </li>
 
+ 
 
-            
-         
 
-            <?php if($this->session->userdata('userbean')){
+
+            <?php
+            if ($this->session->userdata('userbean')) {
                 $userbean = $this->session->userdata('userbean');
-                echo $userbean->email;
-            }else{
-                echo 'session out';
-            }?>
-            
-            
-            
-            <?php if($userbean->role == 'user') { ?>
-                
-            <li>
-                <a href="<?php echo base_url('#'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-            </li>
-                
-                
-            <?php } else { ?>
-                
-                
-            
+            } else {
+                header("Location:" . site_url('Login_Controller/logout'));
+            }
+            ?>
+
+
+
+<?php if ($userbean->role == 'user') { ?>
+              <!--user Menu Items-->
+                <li>
+                    <a href="<?php echo base_url('#'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+<?php } else if ($userbean->role == 'admin') { ?>
+                  <!--admin Menu Items-->
+
+
+
+            <?php } else 
+                if ($userbean->role == ' business_analyst') { ?>
+                <!--business_analyst Menu Items-->
+
+<?php } ?>
+
+
             <li>
                 <a href="#"><i class="fa fa-calculator"></i> Transaction Cost Calculate<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -58,9 +65,9 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            
-            
-            
+
+
+
             <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Student<span class="fa arrow"></span></a>
@@ -277,18 +284,16 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-                
-                
-                
-            <?php } ?>
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

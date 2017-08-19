@@ -10,7 +10,8 @@
         <?php if($this->session->userdata('userbean')){
             $userbean = $this->session->userdata('userbean');
         }else{
-            
+            //if invalid session user get redirect to login
+            header("Location:". site_url('Login_Controller/logout')); 
         } 
         
         ?>
@@ -221,7 +222,7 @@
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="<?php echo site_url('Login_Controller/logout')?>"><i class="fa fa-sign-out fa-fw"></i> Logoutx</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
