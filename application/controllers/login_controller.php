@@ -8,12 +8,16 @@
 
 Class Login_Controller extends CI_Controller {
 
+    public function showLogin() {
+        $this->load->view('users_view/login');
+    }
+
     public function login() {
         $this->load->helper('form');
         $this->load->model('Login_Model');
         $data = array(
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password')
+            'password' => sha1($this->input->post('password'))
         );
         $doLogin = $this->Login_Model->doLogin($data);
         if ($doLogin) {
@@ -28,11 +32,16 @@ Class Login_Controller extends CI_Controller {
             $this->session->set_userdata($newdata);
             $this->load->view('users_view/loginsucess');
         } else {
-            echo 'FALSE';
+            $data = array(
+                'msg' => 'Invalid username or password',
+                'heading' => 'My Heading',
+                'message' => 'My Message'
+            );
+            $this->load->view('users_view/login', $data);
         }
     }
-    
-     public function logout(){
+
+    public function logout() {
         $this->session->unset_userdata('userbean');
         $this->session->unset_userdata('logged_in');
         $this->load->view('users_view/login');

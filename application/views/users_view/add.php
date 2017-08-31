@@ -91,7 +91,7 @@
     </div>
     <!-- /#wrapper -->
 
-      <?php $this->load->view('basejs');?>
+      <?php // $this->load->view('basejs');?>
 </body>
 
 </html>

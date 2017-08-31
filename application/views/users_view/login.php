@@ -70,7 +70,11 @@
                                                 </p>
                                                 <p>
                                                     <a href="#">Forget Password</a>
+                                                    
                                                 </p>
+                                                <p class="bg-danger"><?php if(isset($msg)){
+                                                    echo $msg;
+                                                } ?></p>
                                             </div>
                                             <?php echo form_close(); ?>
 
@@ -83,7 +87,7 @@
                                         <div class="panel-body">
                                             <div  align="center">
                                                 <p>
-                                                    Don't have an account? <a href="#">Sign up</a>
+                                                    Don't have an account? <a href="<?php echo site_url('Registration_Controller/signUp')?>">Sign Up</a>
                                                 </p>
                                             </div>
                                         </div>
