@@ -57,9 +57,8 @@
                               <th>Name</th>
                               <th>Mobile</th>
                               <th>Requested Date</th>
-                              <th>Statues</th>
                               <th>Approved Date</th>
-                              <th>Action</th>
+                              <th width="20%">Action</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -73,15 +72,23 @@
                                           <td><?=$rows->fname;?> <?=$rows->mname;?> <?=$rows->lname;?></td>
                                           <td><?=$rows->mobile;?></td>
                                           <td><?=$rows->reqdate;?></td>
-                                          <td><?=$rows->status;?></td>
                                           <td><?=$rows->approvedate;?></td>
                                           <td>
                                             <div class="btn-group">
-                                              <a class="btn btn-primary" href="<?=base_url('Users/edit/'.$rows->userid.'');?>" title="Edit">Edit <i class="fa fa-pencil-square-o"></i></a>
+                                              <a style="font-size: x-small"  class="btn btn-primary" href="<?=base_url('Users/edit/'.$rows->userid.'');?>" title="Edit">Edit <i class="fa fa-pencil-square-o"></i></a>
                                            </div>
 
                                            <div class="btn-group">
-                                             <a class="btn btn-primary" href="<?=base_url('Users/approval/'.$rows->userid.'');?>" title="Approval">Approved <i class="fa fa-pencil-square-o"></i></a>
+                                             <?php
+                                             if($rows->status == 0){
+                                             ?>  
+                                             <a  onclick="return confirmNow()" style="font-size: x-small"  class="btn btn-success" href="<?=base_url('Users/approval/'.$rows->userid.'');?>" title="Approval">Approve <i class="fa fa-pencil-square-o"></i></a>
+                                             <?php } ?>
+                                             <?php
+                                             if($rows->status == 1){
+                                             ?>  
+                                             <a onclick="return confirmNow()" style="font-size: x-small" class="btn btn-warning" href="<?=base_url('Users/deactivate/'.$rows->userid.'');?>" title="Approval">Deactivate<i class="fa fa-pencil-square-o"></i></a>
+                                             <?php } ?>
                                           </div>
                                          </td>
                                           </tr>
@@ -120,4 +127,17 @@
       <?php $this->load->view('basejs');?>
 </body>
 
+
+<script>
+
+function confirmNow(){
+    if(confirm('Are you sure')){
+        return true;
+    }else{
+        return false;
+        
+    }
+}
+
+</script>
 </html>

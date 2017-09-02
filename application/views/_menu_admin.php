@@ -25,6 +25,7 @@
                     <ul class="nav nav-second-level">                
                         <li>
                             <a href="<?= base_url('Users'); ?>">List of Users</a>
+                            <a href="<?= base_url('Users'); ?>">New User Creation</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

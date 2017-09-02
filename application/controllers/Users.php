@@ -4,9 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
 
 	public function index(){
-
 			$this->load->model('Users_m');
-			$data['user'] = 	$this->Users_m->getAll();
+			$data['user'] = $this->Users_m->getAll();
 			$this->load->view('users_view/index',$data);
 	}
 	public function add(){
@@ -44,19 +43,32 @@ class Users extends CI_Controller {
 		$this->load->model('Users_m');
 		$rec = $this->Users_m->get($id); //get user table data
 		if ($rec) {
-
 			$data = array(
-				'status'=>'Active',
-				'approvedate'=> date('Y-m-d'),
-				'username' => 'sdsdsf', //should be email address
-				'password' => '123' //encript
+				'status'=> 1 ,
+				'approvedate'=> date('Y-m-d')
 			);
 			$this->db->set($data);
 			$this->db->where('userid',$id);
 			$this->db->update('user'); //update table
 
 		}
+		redirect('Users');
+}
 
+	//----------deactivate
+	public function deactivate($id){
+
+		$this->load->model('Users_m');
+		$rec = $this->Users_m->get($id); //get user table data
+		if ($rec) {
+			$data = array(
+				'status'=> 0
+			);
+			$this->db->set($data);
+			$this->db->where('userid',$id);
+			$this->db->update('user'); //update table
+
+		}
 		redirect('Users');
 }
 
@@ -69,6 +81,8 @@ public function login(){
 	$this->load->view('Users_view/login');
 	//var_dump($this->db->last_query());
 }
+
+
 
 public function userLogin()
 {
