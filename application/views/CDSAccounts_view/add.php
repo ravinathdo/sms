@@ -14,6 +14,13 @@
 
 </head>
 
+<?php if($this->session->userdata('userbean')){
+            $userbean = $this->session->userdata('userbean');
+        }else{
+            //if invalid session user get redirect to login
+            header("Location:". site_url('Login_Controller/logout')); 
+        } 
+        ?>
 <body>
 
     <div id="wrapper">
@@ -43,14 +50,14 @@
                             <div class="panel-body">
                               <form class="" action="" method="post">
                                 <?php echo validation_errors();?>
-
+                                  <input type="hidden" name="userid" value="<?php echo $userbean->userid ;?>" />
                                 <div class="form-group">
                                   <label>Stock Brocker</label>
                                   <div class="">
-                                    <select class="form-control" name="brokercomid">
+                                      <select class="form-control" name="brokercomid" required="">
                                       <option value="">Select</option>
                                       <?php foreach ($brokercom as $bro){ ?>
-                                      <option value="<?=$bro->brokercomid;?>"  <?=set_select('brokercomid',$bro->brokercomid, $bro->brokercomid == $CDSAccounts->brokercomid ? TRUE : FALSE  ); ?>><?=$bro->name;?></option>
+                                      <option  value="<?=$bro->brokercomid;?>"  <?=set_select('brokercomid',$bro->brokercomid, $bro->brokercomid == $CDSAccounts->brokercomid ? TRUE : FALSE  ); ?>><?=$bro->name;?></option>
                                         <?php  } ?>
                                     </select>
                                   </div>
@@ -58,7 +65,7 @@
 
                                 <div class="form-group">
                                     <label>CDS Account No</label>
-                                      <input name="cdsaccno" type="text" class="form-control" value="<?=set_value('cdsaccno', $CDSAccounts->cdsaccno);?>" />
+                                      <input required="" name="cdsaccno" type="text" class="form-control" value="<?=set_value('cdsaccno', $CDSAccounts->cdsaccno);?>" />
                                 </div>
 
                                 <div class="form-group">
@@ -91,7 +98,7 @@
 
                                   <div class="form-group">
                                      <label>First Name</label>
-                                     <input name="adviserfname" type="text" class="form-control" value="<?=set_value('adviserfname', $CDSAccounts->adviserfname)?>" >
+                                     <input required="" name="adviserfname" type="text" class="form-control" value="<?=set_value('adviserfname', $CDSAccounts->adviserfname)?>" >
                                    </div>
 
                                    <div class="form-group">

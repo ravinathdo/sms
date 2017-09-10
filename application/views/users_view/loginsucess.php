@@ -21,7 +21,7 @@
   <!-- Navigation -->
   <div>
     <?php $this->load->view('main_header');?>
-  <div>
+  </div>
   <!--/Navigation-->
 
         <!-- Page Content -->

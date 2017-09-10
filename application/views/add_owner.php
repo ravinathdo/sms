@@ -8,7 +8,6 @@
     <form class="" action="passdata" method="post">
         Owner name  <input type="text" name="ownername" value=""><br>
         Owner Mobile  <input type="text" name="ownermobile" value=""><br>
-
         <input type="submit" name="submit" value="Save">
     </form>
   </body>

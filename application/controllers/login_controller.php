@@ -15,18 +15,29 @@ Class Login_Controller extends CI_Controller {
     public function login() {
         $this->load->helper('form');
         $this->load->model('Login_Model');
+        $this->load->model('CDSAccounts_m'); // get CDS account list for user
+        
+       
+        
         $data = array(
             'username' => $this->input->post('username'),
             'password' => sha1($this->input->post('password'))
         );
         $doLogin = $this->Login_Model->doLogin($data);
+        
+        
+        
         if ($doLogin) {
             //  var_export($doLogin);
 //          echo $doLogin[0]->email;
 
+            $cdsAccList = $this->CDSAccounts_m->getUserCDSAccounts($doLogin[0]->userid);
+             
+             
             $newdata = array(
                 'userbean' => $doLogin[0],
-                'logged_in' => TRUE
+                'logged_in' => TRUE,
+                'cdsacclist' => $cdsAccList
             );
 //            }
             $this->session->set_userdata($newdata);

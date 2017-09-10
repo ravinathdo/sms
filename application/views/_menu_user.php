@@ -48,7 +48,11 @@
                 <ul class="nav nav-second-level">
                     <li>
                       <!--  <a href="<?= base_url('mybrokercom/mybrokercompany'); ?>">My Stock Brokers</a> -->
-                        <a href="<?= base_url('Brokers/mybrokercom'); ?>">My Stockbroker Companies</a>
+                        <a href="<?= base_url('Brokers/mybrokercom'); ?>">All Stockbroker Companies</a>
+                    </li>
+                    <li>
+                      <!--  <a href="<?= base_url('mybrokercom/mybrokercompany'); ?>">My Stock Brokers</a> -->
+                        <a href="<?= base_url('CDSAccounts/getUserCDSAccounts'); ?>">My Stockbroker Companies</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

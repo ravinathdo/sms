@@ -7,14 +7,14 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">Integrated Securities Portfolio Management System 
-        <?php if($this->session->userdata('userbean')){
-            $userbean = $this->session->userdata('userbean');
-        }else{
-            //if invalid session user get redirect to login
-            header("Location:". site_url('Login_Controller/logout')); 
-        } 
-        
-        ?>
+            <?php
+            if ($this->session->userdata('userbean')) {
+                $userbean = $this->session->userdata('userbean');
+            } else {
+                //if invalid session user get redirect to login
+                header("Location:" . site_url('Login_Controller/logout'));
+            }
+            ?>
         </a>
     </div>
     <!-- /.navbar-header -->
@@ -22,51 +22,62 @@
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
-                <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-envelope fa-fw"></i> Profile <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-messages">
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
+
+                <?php
+                $ssn_cdsAccList = $this->session->userdata('cdsacclist');
+
+                if ($ssn_cdsAccList != FALSE) {
+
+                    foreach ($ssn_cdsAccList as $rows) {
+                        ?>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong><?= $rows->name; ?></strong>
+                                    <span class="pull-right text-muted">
+                                        <em><?= $rows->cdsaccno; ?></em> 
+                                    </span>
+                                </div>
+                                <div>
+                                    <table border="0" class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2"><?= $rows->opendate; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><?= $rows->adviserfname; ?></td>
+                                                <td><?= $rows->tel_mob; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><?= $rows->adviserlname; ?></td>
+                                                <td><?= $rows->tel_direct; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><?= $rows->email; ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <?php
+                    }
+                }
+                ?>
+
                 <li class="divider"></li>
                 <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>Read All Messages</strong>
+                    <a class="text-center" href="<?php echo site_url('CDSAccounts/getUserCDSAccounts') ?>">
+                        <strong>Detail View</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
+
             </ul>
             <!-- /.dropdown-messages -->
         </li>
@@ -214,7 +225,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>  Welcome <?php echo $userbean->fname; ?>
                 ( <?php echo $userbean->role; ?> ) 
-                 <i class="fa fa-caret-down"></i>
+                <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -222,7 +233,7 @@
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="<?php echo site_url('Login_Controller/logout')?>"><i class="fa fa-sign-out fa-fw"></i> Logoutx</a>
+                <li><a href="<?php echo site_url('Login_Controller/logout') ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -231,5 +242,5 @@
     </ul>
     <!-- /.navbar-top-links -->
 
-      <?php $this->load->view('main_nav');?>
+    <?php $this->load->view('main_nav'); ?>
 </nav>
