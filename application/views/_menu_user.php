@@ -52,7 +52,7 @@
                     </li>
                     <li>
                       <!--  <a href="<?= base_url('mybrokercom/mybrokercompany'); ?>">My Stock Brokers</a> -->
-                        <a href="<?= base_url('CDSAccounts/getUserCDSAccounts'); ?>">My Stockbroker Companies</a>
+                        <a href="<?= base_url('CDSAccounts/myBrokerCompanies'); ?>">My Stockbroker Companies</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -61,7 +61,7 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> CDS Accounts <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<?= base_url('CDSAccounts'); ?>">CDS List</a>
+                        <a href="<?= base_url('CDSAccounts/myCDSAccount'); ?>">CDS List</a>
                     </li>
                     <li>
                         <a href="<?= base_url('CDSAccounts/add'); ?>">Add</a>

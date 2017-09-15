@@ -192,6 +192,25 @@ class CDSAccounts_m extends CI_Model {
         }
     }
 
+    public function getBrokercomNotInMy($userid) {
+        /*
+          SELECT * FROM brokercompany WHERE brokercomid
+          NOT IN (SELECT brokercomid FROM cdsaccount WHERE userid =10 )
+         */
+        $this->db->select('*');
+        $this->db->from('brokercompany');
+        $where = ' brokercomid
+ NOT IN (SELECT brokercomid FROM cdsaccount WHERE userid = ' . $userid . ' ) ';
+        $this->db->where($where);
+
+        $query = $this->db->get()->result();
+        if ($query) {
+            return $query;
+        } else {
+            return FALSE;
+        }
+    }
+
     //end of model code
 
     public function getcdsdetils($id) {
@@ -235,6 +254,62 @@ class CDSAccounts_m extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    /**
+     * Get user Broker Company List
+     * @param type $userid
+     * @return boolean
+     */
+    public function getMyBrokerCompanies($userid) {
+//        echo '$userid:'.$userid;
+        /*
+          SELECT brokercompany.* FROM brokercompany
+          INNER JOIN cdsaccount
+          ON cdsaccount.brokercomid = brokercompany.brokercomid
+          WHERE cdsaccount.userid =10
+         *          */
+        $this->db->select('brokercompany.*');
+        $this->db->from('brokercompany');
+        $this->db->join('cdsaccount', 'cdsaccount.brokercomid = brokercompany.brokercomid');
+        $where = 'cdsaccount.userid = ' . $userid;
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * 
+     * @param type $param
+     */
+    public function getBrokerAdditional($cdsaccid) {
+        //SELECT * FROM user_stockbroker_details
+        $this->db->select('*');
+        $this->db->from('user_stockbroker_details');
+        $where = 'cdsaccid = ' . $cdsaccid;
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * 
+     * @param type $param
+     */
+    public function setBrokerAdditional($data) {
+        $this->db->set($data);
+        $this->db->insert('user_stockbroker_details');
+        $id = $this->db->insert_id();
     }
 
 }

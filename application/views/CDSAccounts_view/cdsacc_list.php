@@ -38,7 +38,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">My CDS Account List</h1>
+                            <h1 class="page-header">My Brokers Company List</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -58,29 +58,33 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Brocker Company Name</th>
+                                                    <th>Broker Company Name</th>
                                                     <th>CDS No</th>
-                                                    <th>Date</th>
-                                                    <th>Adviser Details</th>
+                                                    <th>Address</th>
+                                                    <th>Contact No</th>
+                                                    <th>Fax</th>
+                                                    <th>Email</th>
+                                                    <th>Website</th>
+                                                    <th>Contact Person</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                if ($cdsAccList != FALSE) {
-                                                    foreach ($cdsAccList as $rows) {
+                                                if ($myBrokerList != FALSE) {
+                                                    foreach ($myBrokerList as $rows) {
                                                         ?>
                                                         <tr>
-                                                            <td><?= $rows->cdsaccid; ?></td>
-                                                            <td><?= $rows->userid; ?></td>
-                                                            <td><?= $rows->cdsaccno; ?></td>
-                                                            <td><?= $rows->opendate; ?></td>
-                                                            <td><?= $rows->adviserfname; ?> 
-                                                                <?= $rows->adviserlname; ?>
-                                                                <br>
-                                                                <a href="#"><?= $rows->tel_mob; ?>[<?= $rows->email; ?>]</a>
-                                                            </td>
+                                                            <td><?= $rows->brokercomid; ?></td>
+                                                            <td><?= $rows->name; ?></td>
+                                                            <td><?= $rows->symbol; ?></td>
+                                                            <td><?= $rows->address1. ' ' .$rows->address2
+                                                                    . ' ' .$rows->address3. ' ' .$rows->address4. ' ' .$rows->address5; ?></td>
+                                                            <td><?= $rows->tel1. ' ' .$rows->tel2. ' ' .$rows->tel3; ?> </td>
+                                                            <td><?= $rows->fax; ?> </td>
+                                                            <td><?= $rows->email; ?> </td>
+                                                            <td><?= $rows->website; ?> </td>
+                                                            <td><?= $rows->contactperson; ?> </td>
                                                         </tr>
-
                                                         <?php
                                                     }
                                                 }

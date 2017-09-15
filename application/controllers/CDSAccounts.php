@@ -19,16 +19,23 @@ class CDSAccounts extends CI_Controller {
 //Edit
     public function edit($id = NULL) {
         $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+
         $data['cdsac'] = $this->CDSAccounts_m->getAll();
 
-        //get data from Stock Broker
-        $data['brokercom'] = $this->CDSAccounts_m->getBrokercom();
+        //get data from Stock Broker not already egsist
+        if ($id) {
+            $data['brokercom'] = $this->CDSAccounts_m->getBrokercom();
+        } else {
+            $data['brokercom'] = $this->CDSAccounts_m->getBrokercomNotInMy($userbean->userid);
+        }
         //end
 
 
         if ($id) {
             $data['CDSAccounts'] = $this->CDSAccounts_m->getcdsdetils($id);
         } else {
+            //stdClass Instance
             $data['CDSAccounts'] = $this->CDSAccounts_m->get_new(); //create empty fields
         }
 
@@ -48,7 +55,7 @@ class CDSAccounts extends CI_Controller {
             //redirect('CDSAccounts/');
             //Save to stockbroker table
 
-            redirect('CDSAccounts/');
+            redirect('CDSAccounts/myCDSAccount');
         }
 
         $this->load->view('CDSAccounts_view/add', $data);
@@ -74,6 +81,84 @@ class CDSAccounts extends CI_Controller {
 //        $data['cdsac'] = $this->CDSAccounts_m->getAll();
 
         $this->load->view('CDSAccounts_view/cdsacc_list', $data);
+    }
+
+    public function myBrokerCompanies() {
+        $this->load->model('CDSAccounts_m');
+        //get session user 
+        //$this->session->set_userdata($newdata);
+        $userbean = $this->session->userdata('userbean');
+        $data['myBrokerList'] = $this->CDSAccounts_m->getMyBrokerCompanies($userbean->userid);
+        //$data['cdsac'] = $this->CDSAccounts_m->getAll();
+        $this->load->view('CDSAccounts_view/cdsacc_list', $data);
+    }
+
+    /**
+     * USERS CDS Accounts
+     */
+    public function myCDSAccount() {
+        $this->load->model('CDSAccounts_m');
+        //get session user 
+        $userbean = $this->session->userdata('userbean');
+        $data['cdsAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
+        $this->load->view('CDSAccounts_view/userCDS', $data);
+    }
+
+    /**
+     * USER 
+     * @param type $cdsaccid
+     */
+    public function showBrokerAdditional($id) {
+        $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($id);
+        $data['cdsaccid'] = $id;
+        $this->load->view('CDSAccounts_view/additional', $data);
+    }
+
+    /**
+     * USER 
+     */
+    public function setBrokerAdditional() {
+//        echo 'setBrokerAdditional';
+        $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+
+        $this->input->post('detaillabel');
+        $this->input->post('value');
+        
+       $arrInput =  $this->CDSAccounts_m->array_from_post(array('lable', 'value','cdsaccid'));
+       $arrInput['userid'] = $userbean->userid;
+       $cdsaccid = $arrInput['cdsaccid'];  //cdsaccount.cdsaccid
+//       $lable=$this->input->post('lable');
+//        $data = array(
+//            'userid' => $lable,
+//            'cdsaccid' => $lable,
+//            'lable' => $lable,
+//            'value' => $lable
+//        );
+//        
+//
+       
+//       var_export($arrInput);
+       $this->CDSAccounts_m->setBrokerAdditional($arrInput);
+
+        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($cdsaccid);
+        $data['cdsaccid'] = $cdsaccid;
+        $this->load->view('CDSAccounts_view/additional', $data);
+//        $this->load->view('CDSAccounts_view/additional');
+    }
+
+    /**
+     * USER 
+     * @param type $cdsaccid
+     */
+    public function removeBrokerAdditional($id) {
+        echo 'setBrokerAdditional';
+        $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($id);
+        $this->load->view('CDSAccounts_view/additional', $data);
     }
 
 }
