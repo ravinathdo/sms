@@ -77,7 +77,7 @@
                                                 <tr>
                                                     <td><?= $row->lable ?></td>
                                                     <td><?= $row->value ?></td>
-                                                    <td><a class="btn btn-warning" href="<?=base_url('CDSAccounts/removeBrokerAdditional/'.$row->id.'');?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a></td>
+                                                    <td><a class="btn btn-warning" href="<?=base_url('CDSAccounts/removeBrokerAdditional/'.$row->id.'/'.$cdsaccid);?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a></td>
                                                 </tr>
                                                 <?php
                                             }

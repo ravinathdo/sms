@@ -155,11 +155,13 @@ class CDSAccounts extends CI_Controller {
      * USER 
      * @param type $cdsaccid
      */
-    public function removeBrokerAdditional($id) {
+    public function removeBrokerAdditional($id,$cdsaccid) {
         echo 'setBrokerAdditional';
         $this->load->model('CDSAccounts_m');
         $userbean = $this->session->userdata('userbean');
-        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($id);
+        $this->CDSAccounts_m->removeBrokerAdditional($id);
+        $data['cdsaccid'] = $cdsaccid;
+        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($cdsaccid);
         $this->load->view('CDSAccounts_view/additional', $data);
     }
 

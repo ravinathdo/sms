@@ -311,6 +311,10 @@ class CDSAccounts_m extends CI_Model {
         $id = $this->db->insert_id();
     }
 
+    
+    public function removeBrokerAdditional($param) {
+        $this->db->delete('user_stockbroker_details', array('id' => $param));
+    }
 }
 
 ?>

@@ -44,12 +44,12 @@
                             <!-- /.row -->
                             <div class="row" ng-app="smsApp" ng-controller="smsCtrl" ng-init="loadCal()">
 
-                                {{1 + 5}} {{name}}
+                             
+                                    <?php echo form_open('Securities_Controller/add') ?>
 
                                 <div class="col-lg-6">
 
 
-                                    <?php echo form_open('Securities_Controller/add') ?>
                                     <?php echo validation_errors(); ?>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">CDS Acc</label>
@@ -102,12 +102,12 @@
                                         <label for="exampleInputPassword1">Amount</label>
                                         <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()" >
                                     </div>
-                                    <button type="submit" class="btn btn-default">Submit</button>
-                                    <?php echo form_close() ?>
+                                   
 
                                 </div>
+                                  
                                 <div class="col-lg-6">
-                                    <input type="text" ng-bind="{{totalamount = qty * amount}}" ng-model="totalamount" />
+                                    <input type="hidden" ng-bind="{{totalamount = qty * amount}}" ng-model="totalamount" />
                                     <h2>Total {{totalamount}}</h2>
                                     <table class="table table-bordered">
                                         <thead>
@@ -138,8 +138,11 @@
                                     </table>
                                     <h2>Subtotal : {{subMinMilion + subMaxMilion | currency :"Rs ": 2}}</h2>
                                     <br>
+                                     <button type="submit" class="btn btn-primary">Submit</button>
 
                                 </div>
+                           
+                              <?php echo form_close() ?>
                             </div>
                             <!-- /.container-fluid -->
                         </div>

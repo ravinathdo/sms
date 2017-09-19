@@ -76,7 +76,7 @@
             <a href="<?= base_url('Securities_Controller/'); ?>">Board Securities</a>
         </li>
         <li>
-            <a href="<?= base_url('Securities_Controller/add'); ?>">Add</a>
+            <a href="<?= base_url('Securities_Controller/listsecurities'); ?>">List My Securities </a>
         </li>
     </ul>
     <!-- /.nav-second-level -->
