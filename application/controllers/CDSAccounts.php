@@ -33,9 +33,11 @@ class CDSAccounts extends CI_Controller {
 
 
         if ($id) {
+            echo 'y';
             $data['CDSAccounts'] = $this->CDSAccounts_m->getcdsdetils($id);
         } else {
             //stdClass Instance
+            echo 'x';
             $data['CDSAccounts'] = $this->CDSAccounts_m->get_new(); //create empty fields
         }
 
@@ -43,7 +45,7 @@ class CDSAccounts extends CI_Controller {
         $this->form_validation->set_rules($rules);
 
         if ($this->form_validation->run() == TRUE) {
-
+    
             $formadv = $this->CDSAccounts_m->array_from_post(array('adviserfname', 'adviserlname', 'tel_mob', 'tel_direct', 'email'));
             $adviserid = $this->CDSAccounts_m->advisersave($formadv, $id);
 

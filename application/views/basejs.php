@@ -26,6 +26,9 @@
 <script src="<?=base_url('js/datetimepicker/bootstrap-datetimepicker.min.js');?>"></script>
 <!--------------->
 
+<!--angularjs-->
+<script src="<?=base_url('js/angular.min.js');?>"></script>
+
 <!-- Custom Theme JavaScript -->
 <script src="<?=base_url('js/sb-admin-2.js');?>"></script>
 

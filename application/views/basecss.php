@@ -32,6 +32,8 @@
 <!----------------->
 
 
+
+
 <style media="screen">
 .currency {
 padding-left:12px;
