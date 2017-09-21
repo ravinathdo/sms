@@ -44,8 +44,8 @@
                             <!-- /.row -->
                             <div class="row" ng-app="smsApp" ng-controller="smsCtrl" ng-init="loadCal()">
 
-                             
-                                    <?php echo form_open('Securities_Controller/add') ?>
+
+                                <?php echo form_open('Securities_Controller/add') ?>
 
                                 <div class="col-lg-6">
 
@@ -75,7 +75,12 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Sub Type</label>
-                                        <table class="table table-bordered">
+                                        <select name="secsub"  class="form-control">
+                                            <option>--select--</option>
+                                            <option ng-repeat="x in compsubtype" value="{{x.subtypeid}}">{{x.subtype}} -  {{x.subtypename}} </option>
+                                        </select>
+                                        
+<!--                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>Subtype</th>
@@ -90,7 +95,8 @@
                                                     <td>{{x.subtype}}</td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>-->
+                                        
                                         {{msg}}
                                     </div>
 
@@ -102,10 +108,10 @@
                                         <label for="exampleInputPassword1">Amount</label>
                                         <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()" >
                                     </div>
-                                   
+
 
                                 </div>
-                                  
+
                                 <div class="col-lg-6">
                                     <input type="hidden" ng-bind="{{totalamount = qty * amount}}" ng-model="totalamount" />
                                     <h2>Total {{totalamount}}</h2>
@@ -132,17 +138,17 @@
                                                 <td></td>
                                                 <td>Total: {{ getMinMilionTotal() | currency :"Rs ": 2}}</td>
                                                 <td></td>
-                                                <td>Total: {{ getMaxMilionTotal()  }}</td>
+                                                <td>Total: {{ getMaxMilionTotal()}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <h2>Subtotal : {{subMinMilion + subMaxMilion | currency :"Rs ": 2}}</h2>
+                                    <h2>Subtotal : {{marginValue + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
                                     <br>
-                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
 
                                 </div>
-                           
-                              <?php echo form_close() ?>
+
+                                <?php echo form_close() ?>
                             </div>
                             <!-- /.container-fluid -->
                         </div>
@@ -155,128 +161,132 @@
                     </body>
 
                     <script>
-                                var app = angular.module("smsApp", []);
-                                app.controller("smsCtrl", function ($scope, $http) {
-                                $scope.name = "Jhon Doe";
-                                        $scope.qty = 0;
-                                        $scope.amount = 0;
-                                        $scope.totalcal = 0;
-                                        $scope.totalamount = 0;
-                                        $scope.minMilionpart = 0
-                                        $scope.maxMilionpart = 0
+                        var app = angular.module("smsApp", []);
+                        app.controller("smsCtrl", function ($scope, $http) {
+                        $scope.name = "Jhon Doe";
+                        $scope.qty = 0;
+                        $scope.amount = 0;
+                        $scope.totalcal = 0;
+                        $scope.totalamount = 0;
+                        $scope.marginValue = 100;
+                        
 
 
-                                        $scope.subMinMilion = 0;
-                                        $scope.subMaxMilion = 0;
-                                        var calDataArr = []; // cal data holding array with calculated values
+                                $scope.subMinMilion = 0;
+                        $scope.subMaxMilion = 0;
+                        var calDataArr = []; // cal data holding array with calculated values
 
-                                        $scope.getCompSecSubtype = function () {
-                                        console.log('kk');
-                                                console.log($scope.comid);
-                                                //clear data
+                        $scope.getCompSecSubtype = function () {
+                        console.log('kk');
+                        console.log($scope.comid);
+                        //clear data
 
-                                                //make http request
-                                                $http({
-                                                url: "Securities_Controller/getCompSecSubtype/" + $scope.comid,
-                                                        method: "GET",
+                        //make http request
+                        $http({
+                        url: "Securities_Controller/getCompSecSubtype/" + $scope.comid,
+                                method: "GET",
 //                                    params: {cdsacc: $scope.cdsacc}
-                                                }).then(function (response) {
-                                        console.log('res');
-                                                if (!response.data) {
-                                        $scope.msg = "Subtype not found";
-                                        }
-                                        console.log(response.data);
-                                                $scope.compsubtype = response.data;
-                                        });
-                                        }
+                        }).then(function (response) {
+                        console.log('res');
+                        if (!response.data) {
+                        $scope.msg = "Subtype not found";
+                        }
+                        console.log(response.data);
+                        $scope.compsubtype = response.data;
+                        });
+                        }
 
 
 
 
-                                $scope.loadCal = function () {
-                                $http({
-                                url: "Securities_Controller/getCal/",
-                                        method: "GET",
-                                }).then(function (response) {
-                                console.log('res');
-                                        console.log(response.data);
-                                        $scope.calData = response.data;
-                                        //data filling into object 
-                                        angular.forEach($scope.calData, function (item) {
-                                        calDataArr.push({
-                                        "calid": item.calid,
-                                                "transactionname": item.transactionname,
-                                                "transcostupto50": item.transcostupto50,
-                                                "transcostover50": item.transcostover50,
-                                                "units": item.units
-                                        });
-                                        });
-                                        //modified object fill into scope
-                                        $scope.calDataArr = calDataArr;
-                                });
-                                }
+                        $scope.loadCal = function () {
+                        $http({
+                        url: "Securities_Controller/getCal/",
+                                method: "GET",
+                        }).then(function (response) {
+                        console.log('res');
+                        console.log(response.data);
+                        $scope.calData = response.data;
+                        //data filling into object 
+                        angular.forEach($scope.calData, function (item) {
+                        calDataArr.push({
+                        "calid": item.calid,
+                                "transactionname": item.transactionname,
+                                "transcostupto50": item.transcostupto50,
+                                "transcostover50": item.transcostover50,
+                                "units": item.units
+                        });
+                        });
+                        //modified object fill into scope
+                        $scope.calDataArr = calDataArr;
+                        });
+                        }
 
 
 
 
 
-                                $scope.getMinMilionTotal = function () {
-                                var total = 0;
-                                        for (var i = 0; i < $scope.calDataArr.length; i++) {
-                                var ca = $scope.calDataArr[i];
-                                        total += (ca.transcostupto50 * $scope.minMilionpart);
-                                }
+                        $scope.getMinMilionTotal = function () {
+                        var total = 0;
+                        for (var i = 0; i < $scope.calDataArr.length; i++) {
+                        var ca = $scope.calDataArr[i];
+                        total += (ca.transcostupto50 * $scope.minMilionpart);
+                        }
 
 //                                angular.forEach($scope.calDataArr, function (value, key) {
 //                                    console.log(key + ': ' + value);
 //                                });
-                                $scope.subMinMilion = total;
-                                        return total;
-                                }
+                        $scope.subMinMilion = total;
+                        return total;
+                        }
 
-                                $scope.getMaxMilionTotal = function () {
-                                var total = 0;
-                                        for (var i = 0; i < $scope.calDataArr.length; i++) {
-                                var ca = $scope.calDataArr[i];
-                                        total += (ca.transcostover50 * $scope.maxMilionpart);
-                                }
+                        $scope.getMaxMilionTotal = function () {
+                        var total = 0;
+                        for (var i = 0; i < $scope.calDataArr.length; i++) {
+                        var ca = $scope.calDataArr[i];
+                        total += (ca.transcostover50 * $scope.maxMilionpart);
+                        }
 //                                angular.forEach($scope.calDataArr, function (value, key) {
 //                                    console.log(key + ': ' + value);
 //                                });
-                                $scope.subMaxMilion = total;
-                                        return total;
-                                }
+                        $scope.subMaxMilion = total;
+                        return total;
+                        }
 
 
 
 
-                                $scope.getMilionValues = function () {
-                                console.log('getMilionValues');
-                                        var marginValue = 100;
-                                        var ttl = $scope.qty * $scope.amount;
-                                        console.log('ttl:' + ttl);
-                                        if (ttl <= marginValue) {
-                                $scope.minMilionpart = ttl;
-                                } else {
-                                var noofm = ttl / marginValue;
-                                        console.log('ttl / marginvalue :' + noofm);
-                                        //get fist part and last part
-                                        noofm = parseInt(noofm);
-                                        var valFirstPart = noofm * marginValue;
-                                        var valLastPart = ttl - valFirstPart;
-                                        $scope.minMilionpart = valFirstPart;
-                                        $scope.maxMilionpart = valLastPart;
-                                }
-                                console.log('------------------');
-                                        console.log('minMilionpart:' + $scope.minMilionpart);
-                                        console.log('maxMilionpart:' + $scope.maxMilionpart);
-                                        console.log('------------------');
-                                }
+                        $scope.getMilionValues = function () {
+                        $scope.minMilionpart = 0;
+                        $scope.maxMilionpart = 0;
+                        console.log('getMilionValues');
+                        //$scope.marginValue = 100
+                        var ttl = $scope.qty * $scope.amount;
+                        console.log('ttl:' + ttl);
+                        if (ttl <= $scope.marginValue ) {
+                        $scope.minMilionpart = ttl;
+                        } else {
+                        var noofm = ttl - $scope.marginValue;
+                        console.log('ttl - marginvalue :' + noofm);
+                        //get fist part and last part
+
+//                                        noofm = parseInt(noofm);
+//                                        var valFirstPart = noofm * marginValue;
+//                                        var valLastPart = ttl - valFirstPart;
+
+                        $scope.minMilionpart = $scope.marginValue;
+                        $scope.maxMilionpart = noofm;
+                        }
+                        console.log('------------------');
+                        console.log('minMilionpart:' + $scope.minMilionpart);
+                        console.log('maxMilionpart:' + $scope.maxMilionpart);
+                        console.log('------------------');
+                        }
 
 
 
 
-                                });
+                        });
                     </script>
 
                     </html>
