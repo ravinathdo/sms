@@ -114,7 +114,7 @@
 
                                 <div class="col-lg-6">
                                     <input type="hidden" ng-bind="{{totalamount = qty * amount}}" ng-model="totalamount" />
-                                    <h2>Total {{totalamount}}</h2>
+                                    <h2>Total Amount : {{totalamount}}</h2>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -129,20 +129,20 @@
                                             <tr ng-repeat="x in calData">
                                                 <td>{{x.transactionname}} </td>
                                                 <td>{{x.transcostupto50}}</td>
-                                                <td style="color: green">{{x.transcostupto50 * minMilionpart| currency :"Rs ": 2}}</td>
+                                                <td style="color: green">{{(x.transcostupto50 / 100 ) * minMilionpart  | currency :"Rs ": 2}}</td>
                                                 <td>{{x.transcostover50}}</td>
-                                                <td style="color: red">{{x.transcostover50 * maxMilionpart| currency :"Rs ": 2}}</td>
+                                                <td style="color: red">{{(x.transcostover50 * maxMilionpart / 100)  | currency :"Rs ": 2}}</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td></td>
                                                 <td>Total: {{ getMinMilionTotal() | currency :"Rs ": 2}}</td>
                                                 <td></td>
-                                                <td>Total: {{ getMaxMilionTotal()}}</td>
+                                                <td>Total: {{ getMaxMilionTotal() | currency :"Rs ": 2}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <h2>Subtotal : {{marginValue + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
+                                    <h2>Net Amount : {{marginValue + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -230,7 +230,7 @@
                         var total = 0;
                         for (var i = 0; i < $scope.calDataArr.length; i++) {
                         var ca = $scope.calDataArr[i];
-                        total += (ca.transcostupto50 * $scope.minMilionpart);
+                        total += (ca.transcostupto50 * $scope.minMilionpart) / 100;
                         }
 
 //                                angular.forEach($scope.calDataArr, function (value, key) {
@@ -244,7 +244,7 @@
                         var total = 0;
                         for (var i = 0; i < $scope.calDataArr.length; i++) {
                         var ca = $scope.calDataArr[i];
-                        total += (ca.transcostover50 * $scope.maxMilionpart);
+                        total += (ca.transcostover50 * $scope.maxMilionpart) / 100;
                         }
 //                                angular.forEach($scope.calDataArr, function (value, key) {
 //                                    console.log(key + ': ' + value);
