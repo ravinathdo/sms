@@ -45,10 +45,13 @@ class Security_Model extends CI_Model {
     //the standered class for security 
     function get_new() {
         $Security = new stdClass();
+        $Security->effectdate = '';
         $Security->cdsaccid = '';
         $Security->comid = '';
+        $Security->subtypeid = '';
         $Security->qty = '';
         $Security->amount = '';
+        $Security->total= '';
         return $Security;
     }
 
@@ -104,6 +107,30 @@ class Security_Model extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    public function getCalHistory($effectdate) {
+        $this->db->select('*');
+        $this->db->from('cal_history');
+        $where = " effectdate <=  '" . $effectdate ."' ";
+        $this->db->where($where);
+        $this->db->order_by("effectdate", "asc");
+        $this->db->limit('5');
+        
+        $query =  $this->db->get();
+        
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    
+    
+    public function setUserSecurities($data) {
+        $this->db->insert('user_securities', $data);
     }
 
 }

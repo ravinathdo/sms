@@ -51,12 +51,23 @@
 
 
                                     <?php echo validation_errors(); ?>
+
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Effect Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
+                                    </div>  
+
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">CDS Acc</label>
                                         <select name="cdsaccid"  class="form-control" ng-model="cdsacc" >
                                             <option  value="" >--select--</option>
                                             <?php foreach ($CDSAccList as $row) { ?>
-                                                <option  value="<?= $row->cdsaccid; ?>"  <?= set_select('cdsaccid', $row->cdsaccid, $row->cdsaccid == $security->cdsaccid ? TRUE : FALSE ); ?>><?= $row->name; ?></option>
+                                                <option  value="<?= $row->cdsaccid; ?>"  <?= set_select('cdsaccid', $row->cdsaccid, $row->cdsaccid == $security->cdsaccid ? TRUE : FALSE ); ?>><?= $row->name; ?> - <?= $row->cdsaccno; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -75,28 +86,28 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Sub Type</label>
-                                        <select name="secsub"  class="form-control">
+                                        <select name="subtypeid"  class="form-control">
                                             <option>--select--</option>
                                             <option ng-repeat="x in compsubtype" value="{{x.subtypeid}}">{{x.subtype}} -  {{x.subtypename}} </option>
                                         </select>
-                                        
+
 <!--                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Subtype</th>
-                                                    <th>subtype</th>
-                                                    <th>qty</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="x in compsubtype">
-                                                    <td>{{x.subtypeid}} <input type="radio" name="secsub" value="{{x.subtypeid}}" /></td>
-                                                    <td>{{x.subtypename}}</td>
-                                                    <td>{{x.subtype}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>-->
-                                        
+    <thead>
+        <tr>
+            <th>Subtype</th>
+            <th>subtype</th>
+            <th>qty</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="x in compsubtype">
+            <td>{{x.subtypeid}} <input type="radio" name="secsub" value="{{x.subtypeid}}" /></td>
+            <td>{{x.subtypename}}</td>
+            <td>{{x.subtype}}</td>
+        </tr>
+    </tbody>
+</table>-->
+
                                         {{msg}}
                                     </div>
 
@@ -114,7 +125,17 @@
 
                                 <div class="col-lg-6">
                                     <input type="hidden" ng-bind="{{totalamount = qty * amount}}" ng-model="totalamount" />
-                                    <h2>Total Amount : {{totalamount}}</h2>
+
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputAmount">Total Amount :</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Total</div>
+                                                <input type="text" readonly="" class="form-control" name="total" placeholder="Total Amount" value="{{totalamount}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -127,10 +148,10 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in calData">
-                                                <td>{{x.transactionname}} </td>
-                                                <td>{{x.transcostupto50}}</td>
-                                                <td style="color: green">{{(x.transcostupto50 / 100 ) * minMilionpart  | currency :"Rs ": 2}}</td>
-                                                <td>{{x.transcostover50}}</td>
+                                                <td>{{x.transactionname}}</td>
+                                                <td>{{x.transcostupto50}} <input type="text" name="UPTO_{{x.calid}}"  value="{{x.transcostupto50}}"/> </td>
+                                                <td style="color: green">{{(x.transcostupto50 / 100) * minMilionpart  | currency :"Rs ": 2}}</td>
+                                                <td>{{x.transcostover50}} <input type="text" name="OVER_{{x.calid}}"  value="{{x.transcostover50}}"/></td>
                                                 <td style="color: red">{{(x.transcostover50 * maxMilionpart / 100)  | currency :"Rs ": 2}}</td>
                                             </tr>
                                             <tr>
@@ -142,7 +163,10 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <h2>Net Amount : {{marginValue + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
+                                    
+                                    <input type="hidden" value="{{totalamount + subMinMilion + subMaxMilion}}" name="netamount"/>
+
+                                    <h2>Net Amount : {{totalamount + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -169,10 +193,7 @@
                         $scope.totalcal = 0;
                         $scope.totalamount = 0;
                         $scope.marginValue = 100;
-                        
-
-
-                                $scope.subMinMilion = 0;
+                        $scope.subMinMilion = 0;
                         $scope.subMaxMilion = 0;
                         var calDataArr = []; // cal data holding array with calculated values
 
@@ -225,6 +246,32 @@
 
 
 
+                        $scope.loadCalHistory = function () {
+                        console.log('>loadCalHistory:' + $scope.calHisDate);
+                        $http({
+                        url: "Securities_Controller/getCalHistory/" + $scope.calHisDate,
+                                method: "GET",
+                        }).then(function (response) {
+                        console.log('res');
+                        console.log(response.data);
+                        $scope.calData = response.data;
+                        //data filling into object 
+                        angular.forEach($scope.calData, function (item) {
+                        calDataArr.push({
+                        "calid": item.calid,
+                                "transactionname": item.transactionname,
+                                "transcostupto50": item.transcostupto50,
+                                "transcostover50": item.transcostover50,
+                                "units": item.units
+                        });
+                        });
+                        //modified object fill into scope
+                        $scope.calDataArr = calDataArr;
+                        });
+                        }
+
+
+
 
                         $scope.getMinMilionTotal = function () {
                         var total = 0;
@@ -263,7 +310,7 @@
                         //$scope.marginValue = 100
                         var ttl = $scope.qty * $scope.amount;
                         console.log('ttl:' + ttl);
-                        if (ttl <= $scope.marginValue ) {
+                        if (ttl <= $scope.marginValue) {
                         $scope.minMilionpart = ttl;
                         } else {
                         var noofm = ttl - $scope.marginValue;
