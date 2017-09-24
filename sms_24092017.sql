@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.55 
-MySQL - 5.5.54 : Database - sms
+MySQL - 5.1.37-community : Database - sms
 *********************************************************************
 */
 
@@ -717,12 +717,14 @@ CREATE TABLE `user_securities` (
   `OVER_4` double DEFAULT NULL,
   `OVER_5` double DEFAULT NULL,
   `netamount` decimal(10,2) DEFAULT NULL,
+  `userid` int(5) DEFAULT NULL,
+  `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_securities` */
 
-insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`) values (1,'2017-09-15',7,1,5,5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'2017-09-15',7,1,5,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL),(3,'2017-09-15',7,1,1,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`) values (1,'2017-09-15',7,1,5,5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'2017-09-15',7,1,5,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'2017-09-15',7,1,1,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'2017-09-24',7,1,5,3,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,NULL),(5,'',7,1,5,4,55,'220.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'221.86',10,'2017-09-24 07:49:53'),(6,'2015-09-25',7,1,5,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49'),(7,'2017-09-24',7,1,1,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12');
 
 /*Table structure for table `user_share` */
 
