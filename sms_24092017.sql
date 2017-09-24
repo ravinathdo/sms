@@ -173,6 +173,24 @@ CREATE TABLE `cal` (
 
 insert  into `cal`(`calid`,`transactionname`,`transcostupto50`,`transcostover50`,`units`) values (1,'Brrokerage Fee',0.64,0.2,0.02),(2,'CSE Fee',0.084,0.0525,0.01),(3,'CDS Fee',0.024,0.015,0.02),(4,'SEC Cess',0.072,0.045,0.02),(5,'SLT',0.3,0.3,0);
 
+/*Table structure for table `cal_history` */
+
+DROP TABLE IF EXISTS `cal_history`;
+
+CREATE TABLE `cal_history` (
+  `calid` int(11) NOT NULL AUTO_INCREMENT,
+  `effectdate` varchar(20) DEFAULT NULL,
+  `transactionname` varchar(50) NOT NULL,
+  `transcostupto50` double NOT NULL,
+  `transcostover50` double NOT NULL,
+  `units` double NOT NULL,
+  PRIMARY KEY (`calid`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cal_history` */
+
+insert  into `cal_history`(`calid`,`effectdate`,`transactionname`,`transcostupto50`,`transcostover50`,`units`) values (1,'2017-09-17','Brrokerage Fee',0.74,0.3,0.02),(2,'2017-09-17','CSE Fee',0.094,0.0625,0.01),(3,'2017-09-17','CDS Fee',0.034,0.025,0.02),(4,'2017-09-17','SEC Cess',0.082,0.055,0.02),(5,'2017-09-17','SLT',0.4,0.4,0),(6,'2017-09-10','Brrokerage Fee',0.84,0.4,0.02),(7,'2017-09-10','CSE Fee',0.104,0.0725,0.01),(8,'2017-09-10','CDS Fee',0.044,0.035,0.02),(9,'2017-09-10','SEC Cess',0.092,0.065,0.02),(10,'2017-09-10','SLT',0.5,0.4,0),(13,'2017-09-12','Brrokerage Fee',0.84,0.4,0.02),(14,'2017-09-12','CSE Fee',0.104,0.0725,0.01),(15,'2017-09-12','CDS Fee',0.044,0.035,0.02),(16,'2017-09-12','SEC Cess',0.092,0.065,0.02),(17,'2017-09-12','SLT',0.5,0.4,0);
+
 /*Table structure for table `cdsaccount` */
 
 DROP TABLE IF EXISTS `cdsaccount`;
@@ -675,6 +693,37 @@ CREATE TABLE `user_modules` (
 
 insert  into `user_modules`(`id`,`user_id`,`module_id`) values (2,2,1),(87,1,11),(86,1,10),(85,1,9),(84,1,7),(83,1,6),(82,1,5),(81,1,4),(80,1,3),(79,1,2),(78,1,1);
 
+/*Table structure for table `user_securities` */
+
+DROP TABLE IF EXISTS `user_securities`;
+
+CREATE TABLE `user_securities` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `effectdate` varchar(20) DEFAULT NULL,
+  `cdsaccid` int(5) DEFAULT NULL,
+  `comid` int(5) DEFAULT NULL,
+  `subtypeid` int(5) DEFAULT NULL,
+  `qty` int(5) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
+  `UPTO_1` double DEFAULT NULL,
+  `UPTO_2` double DEFAULT NULL,
+  `UPTO_3` double DEFAULT NULL,
+  `UPTO_4` double DEFAULT NULL,
+  `UPTO_5` double DEFAULT NULL,
+  `OVER_1` double DEFAULT NULL,
+  `OVER_2` double DEFAULT NULL,
+  `OVER_3` double DEFAULT NULL,
+  `OVER_4` double DEFAULT NULL,
+  `OVER_5` double DEFAULT NULL,
+  `netamount` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `user_securities` */
+
+insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`) values (1,'2017-09-15',7,1,5,5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'2017-09-15',7,1,5,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL),(3,'2017-09-15',7,1,1,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `user_share` */
 
 DROP TABLE IF EXISTS `user_share`;
@@ -718,7 +767,7 @@ CREATE TABLE `user_stockbroker_details` (
   `lable` varchar(100) DEFAULT NULL,
   `value` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_stockbroker_details` */
 

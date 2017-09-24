@@ -114,7 +114,7 @@ class Security_Model extends CI_Model {
         $this->db->from('cal_history');
         $where = " effectdate <=  '" . $effectdate ."' ";
         $this->db->where($where);
-        $this->db->order_by("effectdate", "asc");
+        $this->db->order_by("effectdate", "desc");
         $this->db->limit('5');
         
         $query =  $this->db->get();
@@ -133,4 +133,20 @@ class Security_Model extends CI_Model {
         $this->db->insert('user_securities', $data);
     }
 
+    public function getUserSecuritiesList($param) {
+        $this->db->select('user_securities.*, cdsaccount.cdsaccno');
+        $this->db->from('user_securities');
+        $this->db->join('cdsaccount','cdsaccount.cdsaccid=user_securities.cdsaccid');
+        $where = ' user_securities.userid = '.$param;
+        $this->db->where($where);
+        $this->db->order_by("user_securities.id", "desc");
+        $query =  $this->db->get();
+        
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+    }
 }

@@ -149,9 +149,9 @@
                                         <tbody>
                                             <tr ng-repeat="x in calData">
                                                 <td>{{x.transactionname}}</td>
-                                                <td>{{x.transcostupto50}} <input type="text" name="UPTO_{{x.calid}}"  value="{{x.transcostupto50}}"/> </td>
+                                                <td>{{x.transcostupto50}} <input type="hidden" name="UPTO_{{x.calid}}"  value="{{x.transcostupto50}}"/> </td>
                                                 <td style="color: green">{{(x.transcostupto50 / 100) * minMilionpart  | currency :"Rs ": 2}}</td>
-                                                <td>{{x.transcostover50}} <input type="text" name="OVER_{{x.calid}}"  value="{{x.transcostover50}}"/></td>
+                                                <td>{{x.transcostover50}} <input type="hidden" name="OVER_{{x.calid}}"  value="{{x.transcostover50}}"/></td>
                                                 <td style="color: red">{{(x.transcostover50 * maxMilionpart / 100)  | currency :"Rs ": 2}}</td>
                                             </tr>
                                             <tr>

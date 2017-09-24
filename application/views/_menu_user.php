@@ -1,4 +1,7 @@
 <!--user Menu Items-->
+<?php
+ $userbean = $this->session->userdata('userbean');
+?>
 <li>
     <a href="#"><i class="fa fa-calculator"></i> Transaction Cost Calculate<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
@@ -76,7 +79,7 @@
             <a href="<?= base_url('Securities_Controller/'); ?>">Board Securities</a>
         </li>
         <li>
-            <a href="<?= base_url('Securities_Controller/listsecurities'); ?>">List My Securities </a>
+            <a href="<?= base_url('Securities_Controller/listUserSecurities/'.$userbean->userid); ?>">List My Securities </a>
         </li>
     </ul>
     <!-- /.nav-second-level -->

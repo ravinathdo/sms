@@ -52,13 +52,16 @@ class Securities_Controller extends CI_Controller {
             echo 'validation pass<br>';
 //            var_export($data['security']);
             $data_form = $this->Security_Model->array_from_post(array('effectdate', 'cdsaccid', 'comid', 'subtypeid', 'qty', 'amount', 'total',
-                'UPTO_1','UPTO_2','UPTO_3','UPTO_4','UPTO_5',
-                'OVER_1','OVER_2','OVER_3','OVER_4','OVER_5'));
+                'UPTO_1', 'UPTO_2', 'UPTO_3', 'UPTO_4', 'UPTO_5',
+                'OVER_1', 'OVER_2', 'OVER_3', 'OVER_4', 'OVER_5', 'netamount'));
             var_export($data_form);
+            $data_form['userid'] = $userbean->userid;
             $this->Security_Model->setUserSecurities($data_form);
             echo '<br>Data inserted';
         }
-        $this->load->view('securites_view/index', $data);
+        //$this->load->view('securites_view/index', $data);
+
+        redirect('/securities_controller/listUserSecurities/' . $userbean->userid);
     }
 
     public function getSubtype($cdsacc) {
@@ -108,11 +111,11 @@ class Securities_Controller extends CI_Controller {
                         ->set_output(json_encode($resultData));
     }
 
-    public function setUserSecurities($param) {
+    public function listUserSecurities($param) {
         $this->load->model('securities/Security_Model');
         //get data from post 
-        //get cal_history from effectdate
-        //insert into user_securities
+        $data['userSecList'] = $this->Security_Model->getUserSecuritiesList($param);
+        $this->load->view('securites_view/user_securities', $data);
     }
 
 }
