@@ -54,7 +54,7 @@ class Securities_Controller extends CI_Controller {
             $data_form = $this->Security_Model->array_from_post(array('effectdate', 'cdsaccid', 'comid', 'subtypeid', 'qty', 'amount', 'total',
                 'UPTO_1', 'UPTO_2', 'UPTO_3', 'UPTO_4', 'UPTO_5',
                 'OVER_1', 'OVER_2', 'OVER_3', 'OVER_4', 'OVER_5', 'netamount'));
-            var_export($data_form);
+//            var_export($data_form);
             $data_form['userid'] = $userbean->userid;
             $this->Security_Model->setUserSecurities($data_form);
             echo '<br>Data inserted';
@@ -116,6 +116,37 @@ class Securities_Controller extends CI_Controller {
         //get data from post 
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesList($param);
         $this->load->view('securites_view/user_securities', $data);
+    }
+
+    public function loadGelUserSecurity($secid) {
+        $this->load->model('securities/Security_Model');
+        //get data from post 
+        $Security = $this->Security_Model->get_new();
+        $dataLst = $this->Security_Model->getUserSecurity($secid);
+        foreach ($dataLst as $rows) {
+            $Security->cdsaccid = $rows->cdsaccid;
+            $Security->comid = $rows->comid;
+            $Security->subtypeid = $rows->subtypeid;
+            $Security->qty = $rows->qty;
+            $Security->amount = $rows->amount;
+            $Security->total = $rows->total;
+        }
+        var_export($Security);
+
+        $data['security'] = $Security;
+        $this->load->view('securites_view/sell_user_securities', $data);
+    }
+
+    
+    public function sellUserSecurities() {
+        $this->load->model('securities/Security_Model');
+        //get data from post 
+         $data_form = $this->Security_Model->array_from_post(array('secid', 'qty', 'amount', 'total',
+                'UPTO_1', 'UPTO_2', 'UPTO_3', 'UPTO_4', 'UPTO_5',
+                'OVER_1', 'OVER_2', 'OVER_3', 'OVER_4', 'OVER_5', 'netamount'));
+         
+        $data['security'] = $Security;
+        $this->load->view('securites_view/listUserSecurities');
     }
 
 }

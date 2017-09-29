@@ -149,4 +149,21 @@ class Security_Model extends CI_Model {
             return FALSE;
         }
     }
+    
+    
+    public function getUserSecurity($secid) {
+        $this->db->select('user_securities.*');
+        $this->db->from('user_securities');
+        $where = ' id = '.$secid;
+        $this->db->where($where);
+        $query =  $this->db->get();
+        
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+        
+    }
 }

@@ -61,6 +61,7 @@
                                                 <th>Total</th>
                                                 <th></th>
                                                 <th>Net Amount</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,6 +109,9 @@
 
                                                         </td>
                                                         <td><?= $rows->netamount; ?></td>
+                                                        <td><?php if($rows->status == 'BOUGHT'){ ?>
+                                                            <a href="<?php echo site_url('Securities_Controller/loadGelUserSecurity/'.$rows->id)?> "> SELL </a>
+                                                                 <?php } ?></td>
                                                     </tr> 
                                                     <?php
                                                 }
