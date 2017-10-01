@@ -45,7 +45,7 @@
                             <div class="row" ng-app="smsApp" ng-controller="smsCtrl" ng-init="loadCal()">
 
 
-                                <?php echo form_open('Securities_Controller/add') ?>
+                                <?php echo form_open('Securities_Controller/sellUserSecurities') ?>
 
                                 <div class="col-lg-6">
 
