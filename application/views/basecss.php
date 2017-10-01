@@ -19,6 +19,8 @@
 
 <!-- Custom Fonts -->
 <link href="<?=base_url('css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+<!--slider-->
+<link href="<?=base_url('css/bootstrap-slider.css');?>" rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

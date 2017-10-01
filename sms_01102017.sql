@@ -185,7 +185,7 @@ CREATE TABLE `cal_history` (
   `transcostover50` double NOT NULL,
   `units` double NOT NULL,
   PRIMARY KEY (`calid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cal_history` */
 
@@ -704,6 +704,7 @@ CREATE TABLE `user_securities` (
   `comid` int(5) DEFAULT NULL,
   `subtypeid` int(5) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
+  `qty_init` int(5) DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
   `UPTO_1` double DEFAULT NULL,
@@ -720,46 +721,13 @@ CREATE TABLE `user_securities` (
   `userid` int(5) DEFAULT NULL,
   `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(10) DEFAULT 'BOUGHT' COMMENT 'BOUGHT|SOLD',
+  `lastupdated` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_securities` */
 
-insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`) values (1,'2017-09-15',7,1,5,5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT'),(2,'2017-09-15',7,1,5,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT'),(3,'2017-09-15',7,1,1,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT'),(4,'2017-09-24',7,1,5,3,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,NULL,'BOUGHT'),(5,'',7,1,5,4,55,'220.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'221.86',10,'2017-09-24 07:49:53','BOUGHT'),(6,'2015-09-25',7,1,5,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','SOLD'),(7,'2017-09-24',7,1,1,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT'),(8,'',7,1,1,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 00:04:18','BOUGHT');
-
-/*Table structure for table `user_securities_history` */
-
-DROP TABLE IF EXISTS `user_securities_history`;
-
-CREATE TABLE `user_securities_history` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `effectdate` varchar(20) DEFAULT NULL,
-  `cdsaccid` int(5) DEFAULT NULL,
-  `comid` int(5) DEFAULT NULL,
-  `subtypeid` int(5) DEFAULT NULL,
-  `qty` int(5) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  `UPTO_1` double DEFAULT NULL,
-  `UPTO_2` double DEFAULT NULL,
-  `UPTO_3` double DEFAULT NULL,
-  `UPTO_4` double DEFAULT NULL,
-  `UPTO_5` double DEFAULT NULL,
-  `OVER_1` double DEFAULT NULL,
-  `OVER_2` double DEFAULT NULL,
-  `OVER_3` double DEFAULT NULL,
-  `OVER_4` double DEFAULT NULL,
-  `OVER_5` double DEFAULT NULL,
-  `netamount` decimal(10,2) DEFAULT NULL,
-  `userid` int(5) DEFAULT NULL,
-  `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(10) DEFAULT 'BOUGHT' COMMENT 'BOUGHT|SOLD',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-/*Data for the table `user_securities_history` */
-
-insert  into `user_securities_history`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`) values (1,'2017-09-15',7,1,5,5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:59:42','BOUGHT'),(2,'2017-09-15',7,1,5,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:59:42','BOUGHT'),(3,'2017-09-15',7,1,1,5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:59:42','BOUGHT'),(4,'2017-09-24',7,1,5,3,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,'2017-09-29 23:59:42','BOUGHT'),(5,'',7,1,5,4,55,'220.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'221.86',10,'2017-09-24 07:49:53','BOUGHT'),(6,'2015-09-25',7,1,5,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','SOLD'),(7,'2017-09-24',7,1,1,3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT');
+insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`qty_init`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`,`lastupdated`) values (1,'2017-09-15',7,2,5,5,NULL,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(2,'2017-09-15',7,1,5,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(3,'2017-09-15',7,1,1,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(4,'2017-09-24',7,1,5,3,NULL,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,NULL,'BOUGHT',NULL),(5,'',7,1,5,1,NULL,55,'220.00',0.64,0.084,0.024,0.072,0.15,0.2,0.0525,0.015,0.045,0.15,'221.86',10,'2017-09-24 07:49:53','BOUGHT','2017-10-01'),(6,'2015-09-25',7,1,5,0,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','BOUGHT','2017-10-01'),(7,'2017-09-24',7,1,1,3,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT',NULL),(8,'',7,2,1,0,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 00:04:18','SOLD','2017-10-01'),(10,'2017-09-15',7,1,1,0,5,1500,'7500.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'7546.45',10,'2017-10-01 11:51:26','SOLD','2017-10-01');
 
 /*Table structure for table `user_securities_sold` */
 
@@ -785,13 +753,12 @@ CREATE TABLE `user_securities_sold` (
   `netamount` decimal(10,2) DEFAULT NULL,
   `userid` int(5) DEFAULT NULL,
   `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(10) DEFAULT 'BOUGHT' COMMENT 'BOUGHT|SOLD',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_securities_sold` */
 
-insert  into `user_securities_sold`(`id`,`secid`,`effectdate`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`) values (1,NULL,'2017-09-15',5,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:54:16','BOUGHT'),(2,NULL,'2017-09-15',5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:54:16','BOUGHT'),(3,NULL,'2017-09-15',5,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-09-29 23:54:16','BOUGHT'),(4,NULL,'2017-09-24',3,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,'2017-09-29 23:54:16','BOUGHT'),(5,NULL,'',4,55,'220.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'221.86',10,'2017-09-24 07:49:53','BOUGHT'),(6,NULL,'2015-09-25',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','SOLD'),(7,NULL,'2017-09-24',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT');
+insert  into `user_securities_sold`(`id`,`secid`,`effectdate`,`qty`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`) values (1,6,'',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:08:03'),(2,6,'2017-09-15',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:24:42'),(3,6,'',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:26:21'),(4,6,'2017-09-15',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:30:11'),(5,6,'2017-09-15',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:31:41'),(6,6,'2017-09-15',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:32:55'),(7,6,'2017-09-15',3,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'11.87',10,'2017-10-01 11:46:39'),(8,10,'2017-09-15',4,1500,'6000.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'5962.74',10,'2017-10-01 11:52:32'),(9,10,'2017-09-15',1,150,'150.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'146.51',10,'2017-10-01 11:53:44'),(10,5,'',3,60,'180.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'178.39',10,'2017-10-01 13:08:00'),(11,8,'2017-09-15',2,12,'24.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'23.35',10,'2017-10-01 13:12:42'),(12,8,'2017-09-15',3,12,'36.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'35.60',10,'2017-10-01 13:16:23');
 
 /*Table structure for table `user_share` */
 

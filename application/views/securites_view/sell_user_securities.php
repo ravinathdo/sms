@@ -12,6 +12,17 @@
         <title>SB Admin 2 - Bootstrap Admin Theme</title>
         <?php $this->load->view('basecss'); ?>
 
+
+
+
+
+        <style type="text/css">
+            #ex1Slider .slider-selection {
+                background: #BABABA;
+            }
+        </style>
+
+
     </head>
 
     <?php
@@ -45,6 +56,7 @@
                             <div class="row" ng-app="smsApp" ng-controller="smsCtrl" ng-init="loadCal()">
 
 
+
                                 <?php echo form_open('Securities_Controller/sellUserSecurities') ?>
 
                                 <div class="col-lg-6">
@@ -62,26 +74,29 @@
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
                                     </div>  
 
-<!--                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">CDS</label>
-                                        CDS
-                                    </div>
+                                    <!--                                    <div class="form-group">
+                                                                            <label for="exampleInputPassword1">CDS</label>
+                                                                            CDS
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputPassword1">Company</label>
+                                                                            Company
+                                                                        </div>
+                                    
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputPassword1">Sub Type</label>
+                                                                            Sub Type
+                                                                        </div>-->
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Company</label>
-                                        Company
-                                    </div>
+                                        <input type="hidden" name="secid" value="<?= $security->secid ?>" />
+                                        <input type="hidden" name="maxqty" value="<?= $security->qty ?>" />
+                                        <label for="exampleInputPassword1">Selling Quantity (Max <?= $security->qty ?>) </label>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Sub Type</label>
-                                        Sub Type
-                                    </div>-->
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">qty</label>
-                                        <input type="text" name="qty" ng-model="qty" class="form-control"  value="<?= $security->qty ?>" ng-blur="getMilionValues()" >
+                                        <input id="ex1" ng-blur="getMilionValues()" ng-change="getMilionValues()" name="qty" ng-model="qty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<?= $security->qty ?>" data-slider-step="1" data-slider-value="<?= $security->qty ?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Amount</label>
-                                        <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= $security->amount ?>" ng-blur="getMilionValues()" >
+                                        <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= $security->amount ?>" ng-blur="getMilionValues()" ng-keyup="getMilionValues()" >
                                     </div>
                                 </div>
 
@@ -160,7 +175,7 @@
                         var calDataArr = []; // cal data holding array with calculated values
 
 
-$scope.getCompSecSubtype = function () {
+                        $scope.getCompSecSubtype = function () {
                         console.log('kk');
                         console.log($scope.comid);
                         //clear data
@@ -179,15 +194,15 @@ $scope.getCompSecSubtype = function () {
                         $scope.compsubtype = response.data;
                         });
                         }
-                        
-                        
-                        
+
+
+
 
                         $scope.loadCal = function () {
                         console.log('calling loadcal');
                         $http({
 //                        url: "Securities_Controller/getCal/",
-                        url: "<?php echo site_url('Securities_Controller/getCal/')?>",
+                        url: "<?php echo site_url('Securities_Controller/getCal/') ?>",
                                 method: "GET",
                         }).then(function (response) {
                         console.log('res');
@@ -206,10 +221,7 @@ $scope.getCompSecSubtype = function () {
                         //modified object fill into scope
                         console.log(calDataArr);
                         $scope.calDataArr = calDataArr;
-                        
-                        
                         getMilionValues();
-                        
                         });
                         }
 
@@ -219,7 +231,7 @@ $scope.getCompSecSubtype = function () {
                         $scope.loadCalHistory = function () {
                         console.log('>loadCalHistory:' + $scope.calHisDate);
                         $http({
-                        url: "Securities_Controller/getCalHistory/" + $scope.calHisDate,
+                        url: "<?php echo site_url('Securities_Controller/getCalHistory/') ?>" + "/" + $scope.calHisDate,
                                 method: "GET",
                         }).then(function (response) {
                         console.log('res');
@@ -303,6 +315,15 @@ $scope.getCompSecSubtype = function () {
 
 
 
+                        });
+                    </script>
+
+
+                    <script>
+                        $('#ex1').slider({
+                        formatter: function(value) {
+                        return 'Current value: ' + value;
+                        }
                         });
                     </script>
 

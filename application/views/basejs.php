@@ -32,6 +32,9 @@
 <!-- Custom Theme JavaScript -->
 <script src="<?=base_url('js/sb-admin-2.js');?>"></script>
 
+<!--slider-->
+<script src="<?=base_url('js/bootstrap-slider.js');?>"></script>
+
     <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker({

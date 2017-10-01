@@ -45,10 +45,10 @@
                             <div class="row">
                                 <div class="col-lg-12">
 
-                                   
+
 
                                     <!--company filter-->
-                                    <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity') ?>">
+                                    <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity')?>">
                                         <div class="form-group">
                                             <?php echo validation_errors(); ?>
                                             <label for="exampleInputName2">Company Name </label>
@@ -65,14 +65,14 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-success">Filter </button>
+                                        <button type="submit" class="btn btn-default">Filter </button>
                                     </form>
                                     <!--//company filter-->
 
 
 
 
-                                    <!--<div class="table-responsive dataTable_wrapper">-->
+                                   <!--<div class="table-responsive dataTable_wrapper">-->
                                     <table class="table table-striped table-bordered table-hover" id="dataTables">
                                         <thead>
                                             <tr>
@@ -96,7 +96,7 @@
                                                     <tr <?php if ($rows->status == 'BOUGHT') { ?>
 
                                                         <?php } else { ?>
-                                                            style="background-color: #f2dede"
+                                                            style="background-color: #ff9693"
 
                                                         <?php } ?>  >
                                                         <td><?= $rows->effectdate; ?></td>
@@ -108,7 +108,7 @@
 
                                                         </td>
                                                         <td><?= $rows->cdsaccno; ?></td>
-                                                        <td><?= $rows->qty; ?> / <?= $rows->qty_init; ?></td>
+                                                        <td><?= $rows->qty; ?> from <?= $rows->qty_init; ?></td>
                                                         <td><?= $rows->amount; ?></td>
                                                         <td><?= $rows->total; ?></td>
                                                         <td><?= $rows->netamount - $rows->total; ?>
