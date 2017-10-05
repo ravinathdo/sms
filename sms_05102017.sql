@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.55 
-MySQL - 5.5.54 : Database - sms
+MySQL - 5.5.5-10.1.21-MariaDB : Database - sms
 *********************************************************************
 */
 
@@ -625,6 +625,38 @@ CREATE TABLE `students` (
 
 insert  into `students`(`id`,`fname`,`lname`,`date_of_birth`,`mobile`,`address`,`gender`,`added_time`) values (1,'Nimesh','Perera','0000-00-00','678000900','Colombo 2','','2016-04-30 13:03:16'),(2,'Sampath','Dushan','0000-00-00','09988999','Malabe','','2016-04-30 13:39:18'),(3,'Kasun','Dinesh','0000-00-00','8734857893','Kurunagala','','2016-04-30 13:40:52'),(4,'Damith','Nuwan','0000-00-00','0992348','Malabe','','2016-05-07 09:21:04'),(5,'Sampath','Anuradha','0000-00-00','07889888','23D Dawi Rd','','2016-05-07 09:22:43'),(6,'Sampath','Perera','0000-00-00','078662234','Malabe','','2016-06-04 11:28:40'),(7,'Ruwan','Silva','0000-00-00','34','dfkj','','2016-08-02 20:42:53');
 
+/*Table structure for table `summary_bought_sold_funds` */
+
+DROP TABLE IF EXISTS `summary_bought_sold_funds`;
+
+CREATE TABLE `summary_bought_sold_funds` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `effectdate` varchar(25) DEFAULT NULL,
+  `comid` int(5) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL COMMENT 'Deposit|Buy|Sell',
+  `qty` int(5) DEFAULT NULL,
+  `trade_price` decimal(10,2) DEFAULT NULL,
+  `gross_value` decimal(10,2) DEFAULT NULL,
+  `tax` decimal(10,2) DEFAULT NULL,
+  `tax_value` decimal(10,2) DEFAULT NULL,
+  `deposit_withdraw` decimal(10,2) DEFAULT NULL,
+  `buy` decimal(10,2) DEFAULT NULL,
+  `sell` decimal(10,2) DEFAULT NULL,
+  `balance` decimal(10,2) DEFAULT NULL,
+  `cost_per_share` varchar(10) DEFAULT NULL,
+  `profit_loss_per_share` varchar(10) DEFAULT NULL,
+  `profit_loss_amount` varchar(10) DEFAULT NULL COMMENT 'Profit / (Loss) Amount',
+  `profit_loss` varchar(10) DEFAULT NULL COMMENT 'Profit / (Loss) %',
+  `holding_period` varchar(10) DEFAULT NULL COMMENT 'Holding Period (as at today)',
+  `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `userid` int(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `summary_bought_sold_funds` */
+
+insert  into `summary_bought_sold_funds`(`id`,`effectdate`,`comid`,`description`,`qty`,`trade_price`,`gross_value`,`tax`,`tax_value`,`deposit_withdraw`,`buy`,`sell`,`balance`,`cost_per_share`,`profit_loss_per_share`,`profit_loss_amount`,`profit_loss`,`holding_period`,`datecreated`,`userid`) values (1,'2017-01-01',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-10-05 09:11:55',NULL),(2,'2017-05-23',1,'BUY',5,'17.00','85.00','1.12','0.95',NULL,'85.95',NULL,'1500.00','18.33',NULL,NULL,NULL,NULL,'2017-10-05 09:34:53',10);
+
 /*Table structure for table `transaction` */
 
 DROP TABLE IF EXISTS `transaction`;
@@ -723,11 +755,11 @@ CREATE TABLE `user_securities` (
   `status` varchar(10) DEFAULT 'BOUGHT' COMMENT 'BOUGHT|SOLD',
   `lastupdated` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_securities` */
 
-insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`qty_init`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`,`lastupdated`) values (1,'2017-09-15',7,2,5,5,NULL,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(2,'2017-09-15',7,1,5,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(3,'2017-09-15',7,1,1,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(4,'2017-09-24',7,1,5,3,NULL,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,NULL,'BOUGHT',NULL),(5,'',7,1,5,1,NULL,55,'220.00',0.64,0.084,0.024,0.072,0.15,0.2,0.0525,0.015,0.045,0.15,'221.86',10,'2017-09-24 07:49:53','BOUGHT','2017-10-01'),(6,'2015-09-25',7,1,5,0,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','BOUGHT','2017-10-01'),(7,'2017-09-24',7,1,1,3,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT',NULL),(8,'',7,2,1,0,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 00:04:18','SOLD','2017-10-01'),(10,'2017-09-15',7,1,1,0,5,1500,'7500.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'7546.45',10,'2017-10-01 11:51:26','SOLD','2017-10-01');
+insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`qty_init`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`,`lastupdated`) values (1,'2017-09-15',7,2,5,5,NULL,10,'50.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(2,'2017-09-15',7,1,5,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(3,'2017-09-15',7,1,1,5,NULL,10,'50.00',0.64,0.084,0.024,0.072,0.3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BOUGHT',NULL),(4,'2017-09-24',7,1,5,3,NULL,23,'69.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,NULL,NULL,NULL,'BOUGHT',NULL),(5,'',7,1,5,1,NULL,55,'220.00',0.64,0.084,0.024,0.072,0.15,0.2,0.0525,0.015,0.045,0.15,'221.86',10,'2017-09-24 07:49:53','BOUGHT','2017-10-01'),(6,'2015-09-25',7,1,5,0,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:04:49','BOUGHT','2017-10-01'),(7,'2017-09-24',7,1,1,3,NULL,4,'12.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'12.13',10,'2017-09-24 08:06:12','BOUGHT',NULL),(8,'',7,2,1,0,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 00:04:18','SOLD','2017-10-01'),(10,'2017-09-15',7,1,1,0,5,1500,'7500.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'7546.45',10,'2017-10-01 11:51:26','SOLD','2017-10-01'),(11,'2017-01-01',7,1,1,5,5,18,'90.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'91.01',10,'2017-10-05 09:11:55','BOUGHT',NULL),(12,'2017-05-23',7,1,1,5,5,17,'85.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'85.95',10,'2017-10-05 09:34:53','BOUGHT',NULL);
 
 /*Table structure for table `user_securities_sold` */
 
