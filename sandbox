@@ -5,3 +5,40 @@ https://www.rollapp.com
 http://seiyria.com/bootstrap-slider/
 
 
+
+
+ <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+
+ <tbody>
+                <?php
+                if ($cdsAccList != FALSE) {
+                    foreach ($cdsAccList as $rows) {
+                        ?>
+                        <tr>
+                            <td><?= $rows->cdsaccid; ?></td>
+                            <td><?= $rows->userid; ?></td>
+                            <td><?= $rows->cdsaccno; ?></td>
+                            <td><?= $rows->opendate; ?></td>
+                        </tr>
+
+                    <?php
+                    }
+                }
+                ?>
+        </tbody>

@@ -72,14 +72,25 @@
     </ul>
     <!-- /.nav-second-level -->
 </li>
+
 <li>
-    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Manage Securities <span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Manage Securities <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="<?= base_url('Securities_Controller/'); ?>">Board Securities</a>
+            <a href="<?= base_url('Securities_Controller/'); ?>">Buy Securities</a>
         </li>
         <li>
-            <a href="<?= base_url('Securities_Controller/listUserSecurities/'.$userbean->userid); ?>">List My Securities </a>
+            <a href="<?= base_url('Securities_Controller/listUserSecurities/'.$userbean->userid); ?>">Sell Securities</a>
+        </li>
+        <li>
+            <a href="#">List of my Securities (Portfolio)</a>
+        </li>
+        <li>
+            <a href="#">Funds (Deposit / Withdraw) </a>
+        </li>
+      
+        <li>
+            <a href="<?= base_url('Securities_Controller/listSummaryView/'.$userbean->userid); ?>">Summary View </a>
         </li>
     </ul>
     <!-- /.nav-second-level -->

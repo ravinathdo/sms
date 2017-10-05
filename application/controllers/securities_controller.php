@@ -57,9 +57,31 @@ class Securities_Controller extends CI_Controller {
 //            var_export($data_form);
             $data_form['userid'] = $userbean->userid;
             $data_form['qty_init'] = $this->input->post('qty');
-            
+
             $this->Security_Model->setUserSecurities($data_form);
             echo '<br>Data inserted';
+
+
+
+            //set data into "summary_bought_sold_funds"
+            $tax_amount = $data_form['netamount'] - $data_form['total'];
+            //broker balance update
+            $broker_balance = 1500;
+            //clollect data 
+            $data_summ = array('effectdate' => $data_form['effectdate'],
+                'comid' => $data_form['comid'],
+                'description' => 'BUY',
+                'qty' => $data_form['qty_init'],
+                'trade_price' => $data_form['amount'],
+                'gross_value' => $data_form['total'],
+                'tax' => 1.12,
+                'tax_value' => $tax_amount,
+                'buy' => $data_form['netamount'],
+                'balance' => $broker_balance,
+                'cost_per_share' => 18.33,
+                'userid' => $userbean->userid
+            );
+            $this->Security_Model->setSummary_bought_sold_funds($data_summ);
         }
         //$this->load->view('securites_view/index', $data);
 
@@ -177,10 +199,10 @@ class Securities_Controller extends CI_Controller {
         //collect and prepare update data
         $secid = $this->input->post('secid');
         $maxqty = $this->input->post('maxqty');
-        echo '---------max QTY:'.$maxqty;
+        echo '---------max QTY:' . $maxqty;
         $qtybal = $maxqty - $data_form['qty'];
         //update array for user_sec
-        $data_form_2  =  array("qty"=>$qtybal);
+        $data_form_2 = array("qty" => $qtybal);
         $data_form_2['lastupdated'] = date("Y-m-d");
         if ($qtybal == 0) {
             $data_form_2['status'] = 'SOLD';
@@ -188,10 +210,41 @@ class Securities_Controller extends CI_Controller {
 
         $data_form['userid'] = $userbean->userid;
 //        echo var_export($data_form);
-        $this->Security_Model->setUserCompSelling($data_form, $secid ,$data_form_2);
+        $this->Security_Model->setUserCompSelling($data_form, $secid, $data_form_2);
         //update original security 
+        
+       
+        
+        /*
+           //set data into "summary_bought_sold_funds"
+            $tax_amount = $data_form['netamount'] - $data_form['total'];
+            //broker balance update
+            $broker_balance = 1500;
+            //clollect data 
+            $data_summ = array('effectdate' => $data_form['effectdate'],
+                'comid' => $data_form['comid'],
+                'description' => 'SELL',
+                'qty' => $data_form['qty'],
+                'trade_price' => $data_form['amount'],
+                'gross_value' => $data_form['total'],
+                'tax' => 1.12,
+                'tax_value' => $tax_amount,
+                'sel' => $data_form['netamount'],
+                'balance' => $broker_balance,
+                'cost_per_share' => 18.33,
+                'userid' => $userbean->userid
+            );
+            $this->Security_Model->setSummary_bought_sold_funds($data_summ);
+        */
+        
         $data['msg'] = '<p class="bg-success">Transaction completed Successfully</p>';
-        $this->load->view('securites_view/message_page',$data);
+        $this->load->view('securites_view/message_page', $data);
+    }
+
+    public function listSummaryView($userid) {
+        $this->load->model('securities/Security_Model');
+        $data['userSummaryList'] = $this->Security_Model->listUserSummaryView($userid);
+        $this->load->view('securites_view/summury_view', $data);
     }
 
 }

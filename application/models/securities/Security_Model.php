@@ -214,12 +214,12 @@ class Security_Model extends CI_Model {
         }
     }
 
-    public function setUserCompSelling($data,$secid ,$updatedata) {
+    public function setUserCompSelling($data, $secid, $updatedata) {
         $this->db->insert('user_securities_sold', $data);
-         $this->setUpdateUserSecurity($updatedata,$secid);
+        $this->setUpdateUserSecurity($updatedata, $secid);
     }
 
-    public function setUpdateUserSecurity($updatedata,$secid ) {
+    public function setUpdateUserSecurity($updatedata, $secid) {
 //        $data = array(
 //            'title' => $title,
 //            'name' => $name,
@@ -227,6 +227,26 @@ class Security_Model extends CI_Model {
 //        );
         $this->db->where('id', $secid);
         $this->db->update('user_securities', $updatedata);
+    }
+
+    public function setSummary_bought_sold_funds($data) {
+        $this->db->insert('summary_bought_sold_funds', $data);
+    }
+
+    public function listUserSummaryView($userid) {
+        $this->db->select('summary_bought_sold_funds.*,company.com_name');
+        $this->db->from('summary_bought_sold_funds');
+        $this->db->join('company', 'summary_bought_sold_funds.comid = company.comid');
+        $where = "summary_bought_sold_funds.userid = " . $userid;
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
     }
 
 }
