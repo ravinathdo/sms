@@ -67,8 +67,7 @@
                                                     <th>Profit / (loss) per share</th>
                                                     <th>profit / (loss) amount</th>
                                                     <th>profit / (loss)</th>
-                                                    <th>profit / (loss) (as at today)</th>
-                                                    <th>Holding Period </th>
+                                                    <th>Holding Period (as at today)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -76,7 +75,14 @@
                                                 if ($userSummaryList != FALSE) {
                                                     foreach ($userSummaryList as $rows) {
                                                         ?>
-                                                        <tr>
+                                                <tr  
+                                                            <?php
+                                                            if($rows->description == 'BUY'){
+                                                              ?> style="color: green"  <?php  
+                                                            }
+                                                            ?>
+                                                            
+                                                            >
                                                             <td><?= $rows->effectdate; ?></td>
                                                             <td><?= $rows->com_name; ?></td>
                                                             <td><?= $rows->description; ?></td>

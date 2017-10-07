@@ -74,25 +74,28 @@
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
                                     </div>  
 
-                                    <!--                                    <div class="form-group">
-                                                                            <label for="exampleInputPassword1">CDS</label>
-                                                                            CDS
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputPassword1">Company</label>
-                                                                            Company
-                                                                        </div>
-                                    
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputPassword1">Sub Type</label>
-                                                                            Sub Type
-                                                                        </div>-->
+                                   
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Company Name</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $security->com_name ?>">
+                                        <input type="hidden" name="comid" value="<?= $security->comid ?>" />
+                                    </div>
+
+                                    <!--                         <div class="form-group">
+                                                                <label for="exampleInputPassword1">Company</label>
+                                                                Company
+                                                            </div>
+                        
+                                                            <div class="form-group">
+                                                                <label for="exampleInputPassword1">Sub Type</label>
+                                                                Sub Type
+                                                            </div>-->
                                     <div class="form-group">
                                         <input type="hidden" name="secid" value="<?= $security->secid ?>" />
                                         <input type="hidden" name="maxqty" value="<?= $security->qty ?>" />
                                         <label for="exampleInputPassword1">Selling Quantity (Max <?= $security->qty ?>) </label>
 
-                                        <input id="ex1" ng-blur="getMilionValues()" ng-change="getMilionValues()" name="qty" ng-model="qty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<?= $security->qty ?>" data-slider-step="1" data-slider-value="<?= $security->qty ?>"/>
+                                        <input id="ex1" ng-blur="getMilionValues()" ng-change="getMilionValues()" name="qty" ng-model="qty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<?= $security->qty ?>" data-slider-step="1" data-slider-value="0"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Amount</label>

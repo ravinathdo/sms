@@ -49,6 +49,7 @@ class Security_Model extends CI_Model {
         $Security->effectdate = '';
         $Security->cdsaccid = '';
         $Security->comid = '';
+        $Security->com_name = '';
         $Security->subtypeid = '';
         $Security->qty = '';
         $Security->amount = '';
@@ -176,9 +177,10 @@ class Security_Model extends CI_Model {
     }
 
     public function getUserSecurity($secid) {
-        $this->db->select('user_securities.*');
+        $this->db->select('user_securities.*,company.comid,company.com_name');
         $this->db->from('user_securities');
-        $where = ' id = ' . $secid;
+        $this->db->join('company', 'user_securities.comid = company.comid');
+        $where = ' user_securities.id = ' . $secid;
         $this->db->where($where);
         $query = $this->db->get();
 

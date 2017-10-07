@@ -42,3 +42,10 @@ http://seiyria.com/bootstrap-slider/
                 }
                 ?>
         </tbody>
+
+
+
+ <div class="panel panel-primary">
+                        <div class="panel-heading">Ticket</div>
+                        <div class="panel-body"></div>
+                    </div>

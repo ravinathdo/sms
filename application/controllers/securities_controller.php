@@ -180,6 +180,7 @@ class Securities_Controller extends CI_Controller {
             $Security->qty = $rows->qty;
             $Security->amount = $rows->amount;
             $Security->total = $rows->total;
+            $Security->com_name = $rows->com_name;
         }
 //        var_export($Security);
 
@@ -199,6 +200,7 @@ class Securities_Controller extends CI_Controller {
         //collect and prepare update data
         $secid = $this->input->post('secid');
         $maxqty = $this->input->post('maxqty');
+        $comid = $this->input->post('comid');
         echo '---------max QTY:' . $maxqty;
         $qtybal = $maxqty - $data_form['qty'];
         //update array for user_sec
@@ -215,27 +217,28 @@ class Securities_Controller extends CI_Controller {
         
        
         
-        /*
-           //set data into "summary_bought_sold_funds"
+        
+        //set data into "summary_bought_sold_funds"
             $tax_amount = $data_form['netamount'] - $data_form['total'];
             //broker balance update
             $broker_balance = 1500;
             //clollect data 
             $data_summ = array('effectdate' => $data_form['effectdate'],
-                'comid' => $data_form['comid'],
+                'comid' => $comid,
                 'description' => 'SELL',
                 'qty' => $data_form['qty'],
                 'trade_price' => $data_form['amount'],
                 'gross_value' => $data_form['total'],
                 'tax' => 1.12,
                 'tax_value' => $tax_amount,
-                'sel' => $data_form['netamount'],
+                'sell' => $data_form['netamount'],
                 'balance' => $broker_balance,
                 'cost_per_share' => 18.33,
                 'userid' => $userbean->userid
             );
             $this->Security_Model->setSummary_bought_sold_funds($data_summ);
-        */
+        
+        
         
         $data['msg'] = '<p class="bg-success">Transaction completed Successfully</p>';
         $this->load->view('securites_view/message_page', $data);

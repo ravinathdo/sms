@@ -86,8 +86,9 @@
             <a href="#">List of my Securities (Portfolio)</a>
         </li>
         <li>
-            <a href="#">Funds (Deposit / Withdraw) </a>
+            <a href="<?= base_url('Fund_Conntroller/depositFunds/'.$userbean->userid);?>">Funds (Deposit / Withdraw) </a>
         </li>
+        
       
         <li>
             <a href="<?= base_url('Securities_Controller/listSummaryView/'.$userbean->userid); ?>">Summary View </a>
