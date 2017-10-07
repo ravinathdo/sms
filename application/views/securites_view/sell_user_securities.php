@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Effect Date</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
+                                                <input type="text" class="form-control datepick" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
