@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Effect Date</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
+                                                <input type="text" required="" class="form-control datepick" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
@@ -113,11 +113,11 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">qty</label>
-                                        <input type="text" name="qty" ng-model="qty" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()" >
+                                        <input type="text" name="qty" ng-model="qty" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()"  ng-keyup="getMilionValues()" >
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Amount</label>
-                                        <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()" >
+                                        <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()" ng-keyup="getMilionValues()" >
                                     </div>
 
 
@@ -198,6 +198,7 @@
                         var calDataArr = []; // cal data holding array with calculated values
 
                         $scope.getCompSecSubtype = function () {
+                          $scope.msg='';  
                         console.log('kk');
                         console.log($scope.comid);
                         //clear data

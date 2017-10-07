@@ -137,4 +137,13 @@
                     <?php $this->load->view('basejs'); ?>
                     </body>
 
+                    
+                    
+                    <script>
+                    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+                    </script>
+                    
                     </html>
