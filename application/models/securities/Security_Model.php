@@ -158,15 +158,50 @@ class Security_Model extends CI_Model {
         }
     }
 
-    public function getUserCompanySecuritiesList($userid, $compid) {
+    public function getUserCompanySecuritiesList($userid, $compid,$brokercomid) {
+        
+        /*
+           SELECT DISTINCT user_securities.comid,company.com_name
+          FROM user_securities
+          INNER JOIN company
+          ON user_securities.comid = company.comid
+          INNER JOIN cdsaccount
+          ON user_securities.cdsaccid = cdsaccount.cdsaccid
+          INNER JOIN brokercompany
+          ON cdsaccount.brokercomid = brokercompany.brokercomid
+          WHERE user_securities.userid = 10 AND brokercompany.brokercomid = 2 AND company.comid = 1
+          AND user_securities.status = 'BOUGHT'
+         */
+        
+        
         $this->db->select('user_securities.*, cdsaccount.cdsaccno,company.com_name');
         $this->db->from('user_securities');
-        $this->db->join('cdsaccount', 'cdsaccount.cdsaccid=user_securities.cdsaccid');
-        $this->db->join('company', 'company.comid=user_securities.comid');
-        $where = " user_securities.comid = " . $compid . " AND user_securities.userid = " . $userid;
+        $this->db->join('company', 'user_securities.comid = company.comid');
+        $this->db->join('cdsaccount', 'user_securities.cdsaccid = cdsaccount.cdsaccid');
+        $this->db->join('brokercompany', 'cdsaccount.brokercomid = brokercompany.brokercomid');
+        
+        $where = "user_securities.userid = " . $userid ;
+        if($brokercomid != ''){
+            $where = $where . "  AND brokercompany.brokercomid = " . $brokercomid ; 
+        }
+        if($compid != ''){
+             $where = $where . "  AND company.comid = " . $compid;
+        }
+        
+        echo $where;
+        //$where = "user_securities.userid = " . $userid . "  AND brokercompany.brokercomid = " . $brokercomid . "  AND company.comid = " . $compid . " ";
         $this->db->where($where);
         $this->db->order_by("user_securities.id", "desc");
         $query = $this->db->get();
+        
+//        $this->db->select('user_securities.*, cdsaccount.cdsaccno,company.com_name');
+//        $this->db->from('user_securities');
+//        $this->db->join('cdsaccount', 'cdsaccount.cdsaccid=user_securities.cdsaccid');
+//        $this->db->join('company', 'company.comid=user_securities.comid');
+//        $where = " user_securities.comid = " . $compid . " AND user_securities.userid = " . $userid;
+//        $this->db->where($where);
+//        $this->db->order_by("user_securities.id", "desc");
+//        $query = $this->db->get();
 
         $result = $query->result();
         if ($result) {
@@ -199,6 +234,16 @@ class Security_Model extends CI_Model {
           INNER JOIN company
           ON user_securities.comid = company.comid
           WHERE user_securities.userid = 10 AND user_securities.status = 'BOUGHT'
+         */
+        
+        
+        
+        /*
+  
+          
+          
+          
+          
          */
         $this->db->distinct();
         $this->db->select('user_securities.comid,company.com_name');

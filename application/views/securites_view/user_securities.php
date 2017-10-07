@@ -42,13 +42,12 @@
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
+
+
                             <div class="row">
-                                <div class="col-lg-12">
-
-                                   
-
-                                    <!--company filter-->
-                                    <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity') ?>">
+                                <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity') ?>">
+                                    <div class="col-lg-6">
+                                        <!--company filter-->
                                         <div class="form-group">
                                             <?php echo validation_errors(); ?>
                                             <label for="exampleInputName2">Company Name </label>
@@ -65,9 +64,38 @@
                                                 ?>
                                             </select>
                                         </div>
+                                        
+                                        <!--//company filter-->
+
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <!--CDS acc filter-->
+                                        <div class="form-group">
+                                            <?php echo validation_errors(); ?>
+                                            <label for="exampleInputName2">Broker CDS </label>
+                                            <select name="brokercomid"  class="form-control" >
+                                                <option  value="" >--select--</option>
+                                                <?php foreach ($CDSAccList as $row) { ?>
+                                                    <option  value="<?= $row->brokercomid; ?>"><?= $row->name; ?> - <?= $row->cdsaccno; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
                                         <button type="submit" class="btn btn-success">Filter </button>
-                                    </form>
-                                    <!--//company filter-->
+
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!--//CDS acc filter-->
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+
+
+
 
 
 

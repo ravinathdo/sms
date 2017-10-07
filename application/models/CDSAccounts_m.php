@@ -227,8 +227,6 @@ class CDSAccounts_m extends CI_Model {
     }
 
     public function getUserCDSAccounts($userid) {
-
-
 //        $this->db->select('*');
 //        $this->db->from('cdsaccount');
 //        $where = " userid = '".$userid."'";
@@ -246,6 +244,29 @@ class CDSAccounts_m extends CI_Model {
         $this->db->join('stockbroker', 'cdsaccount.stockbrokerid = stockbroker.stockbrokerid'); // joint with brokercompany table
         $this->db->join('brokercompany', 'brokercompany.brokercomid = cdsaccount.brokercomid'); // joint with brokercompany table
         $where = " userid = '" . $userid . "'";
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+    
+    
+    public function getUserBrokerCompanyList($userid) {
+    /*
+     SELECT brokercompany.*,cdsaccount.cdsaccno FROM brokercompany
+INNER JOIN cdsaccount
+ON brokercompany.brokercomid = cdsaccount.brokercomid
+WHERE cdsaccount.userid = 10
+     */
+
+
+        $this->db->select('brokercompany.*,cdsaccount.cdsaccno');
+        $this->db->from('brokercompany');
+        $this->db->join('cdsaccount', 'brokercompany.brokercomid = cdsaccount.brokercomid'); // joint with brokercompany table
+        $where = " cdsaccount.userid = '" . $userid . "'";
         $this->db->where($where);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {

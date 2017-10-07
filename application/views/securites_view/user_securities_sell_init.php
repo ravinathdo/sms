@@ -42,13 +42,13 @@
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
-                            <div class="row">
-                                <div class="col-lg-12">
-
-
-
-                                    <!--company filter-->
-                                    <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity')?>">
+                            
+                            
+                            
+                             <div class="row">
+                                <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity') ?>">
+                                    <div class="col-lg-6">
+                                        <!--company filter-->
                                         <div class="form-group">
                                             <?php echo validation_errors(); ?>
                                             <label for="exampleInputName2">Company Name </label>
@@ -65,9 +65,34 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Filter </button>
-                                    </form>
-                                    <!--//company filter-->
+                                        <button type="submit" class="btn btn-success">Filter </button>
+                                        <!--//company filter-->
+
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <!--CDS acc filter-->
+                                        <div class="form-group">
+                                            <?php echo validation_errors(); ?>
+                                            <label for="exampleInputName2">Broker CDS </label>
+                                            <select name="brokercomid"  class="form-control" >
+                                                <option  value="" >--select--</option>
+                                                <?php foreach ($CDSAccList as $row) { ?>
+                                                    <option  value="<?= $row->brokercomid; ?>"><?= $row->name; ?> - <?= $row->cdsaccno; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Filter </button>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    
 
 
 
@@ -96,7 +121,7 @@
                                                     <tr <?php if ($rows->status == 'BOUGHT') { ?>
 
                                                         <?php } else { ?>
-                                                            style="background-color: #ff9693"
+                                                            style="background-color: #f2dede"
 
                                                         <?php } ?>  >
                                                         <td><?= $rows->effectdate; ?></td>
@@ -108,7 +133,7 @@
 
                                                         </td>
                                                         <td><?= $rows->cdsaccno; ?></td>
-                                                        <td><?= $rows->qty; ?> from <?= $rows->qty_init; ?></td>
+                                                        <td><?= $rows->qty; ?> / <?= $rows->qty_init; ?></td>
                                                         <td><?= $rows->amount; ?></td>
                                                         <td><?= $rows->total; ?></td>
                                                         <td><?= $rows->netamount - $rows->total; ?>

@@ -46,29 +46,41 @@
                                 <div class="col-lg-6">
 
 
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" method="post" action="<?php echo site_url('Fund_Conntroller/setBrokerTransaction') ?>">
                                         <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-4 control-label">Company</label>
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Broker Company</label>
                                             <div class="col-sm-8">
-                                                <select name="comid"  class="form-control" >
-                                                    <option  value="" >--select--</option>
-                                                    <?php foreach ($companyList as $row) { ?>
-                                                        <option  value="<?= $row->comid; ?>"><?= $row->com_name; ?></option>
-                                                    <?php }
-                                                    ?>
+                                                
+                                                
+                                                <select name="brokercomid"  class="form-control" >
+                                                <option  value="" >--select--</option>
+                                                <?php foreach ($CDSAccList as $row) { ?>
+                                                    <option  value="<?= $row->brokercomid; ?>"><?= $row->name; ?> - <?= $row->cdsaccno; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Transaction</label>
+                                            <div class="col-sm-8">
+                                                <select name="txn" class="form-control">
+                                                    <option value="">--select--</option>
+                                                    <option value="D">Deposit</option>
+                                                    <option value="W">Withdraw</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-4 control-label">Amount</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="inputPassword3" placeholder="Amount">
+                                                <input type="text" name="amount" class="form-control" id="inputPassword3" placeholder="Amount">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Deposit</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
                                     </form>
@@ -86,8 +98,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Company</th>
+                                                <th>Deposit</th>
+                                                <th>Withdraw</th>
                                                 <th>Balance</th>
-                                                <th>Update Date</th>
+                                                <th>Txn Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,9 +110,11 @@
                                                 foreach ($compFundList as $rows) {
                                                     ?>
                                                     <tr>
-                                                        <td><?= $rows->com_name; ?></td>
+                                                        <td><?= $rows->name; ?></td>
+                                                        <td><?= $rows->deposit; ?></td>
+                                                        <td><?= $rows->withdraw; ?></td>
                                                         <td><?= $rows->balance; ?></td>
-                                                        <td><?= $rows->lastupdated; ?></td>
+                                                        <td><?= $rows->txntime; ?></td>
                                                     </tr>
 
                                                     <?php

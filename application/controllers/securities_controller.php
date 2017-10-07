@@ -137,8 +137,14 @@ class Securities_Controller extends CI_Controller {
 
     public function listUserSecurities($param) {
         $this->load->model('securities/Security_Model');
+         $this->load->model('CDSAccounts_m');
+
+        $userbean = $this->session->userdata('userbean');
         //get company list for user 
         $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($param);
+        //user broker CDS lisr
+         $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
+        
 //        echo var_export($data['userSecComList']);
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesList($param);
         $this->load->view('securites_view/user_securities', $data);
@@ -147,10 +153,13 @@ class Securities_Controller extends CI_Controller {
     public function listUserCompanySecurity() {
         $this->load->model('securities/Security_Model');
         $userbean = $this->session->userdata('userbean');
+                 $this->load->model('CDSAccounts_m');
+
         //get post value
 
 
-        $data_form = $this->Security_Model->array_from_post(array('comid'));
+        $data_form = $this->Security_Model->array_from_post(array('comid','brokercomid'));
+        echo var_export($data_form);
 //        echo '<br> form data:'. var_export($data_form);
 //        $data['security'] = $this->Security_Model->get_new(); //create empty fields
 //        $rules = $this->Security_Model->rules;
@@ -160,9 +169,16 @@ class Securities_Controller extends CI_Controller {
 //        }else{
 //            
 //        }
+//        
+//        
+//        
         //get company list for user 
         $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($userbean->userid);
-        $data['userSecList'] = $this->Security_Model->getUserCompanySecuritiesList($userbean->userid, $data_form['comid']);
+        
+        //user broker CDS lisr
+         $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
+        
+        $data['userSecList'] = $this->Security_Model->getUserCompanySecuritiesList($userbean->userid, $data_form['comid'],$data_form['brokercomid']);
 //        echo var_export($data['userSecList']);
         $this->load->view('securites_view/user_securities_sell_init', $data);
     }
