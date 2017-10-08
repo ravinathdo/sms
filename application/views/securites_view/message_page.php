@@ -37,15 +37,13 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">Security Sales</h1>
+                                    <h1 class="page-header">User Security</h1>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
                             <div class="row">
                                 <div class="col-lg-6">
-
-
 
                                     <div class="well center-block" style="max-width:400px">
                                         <?= $msg ?>
@@ -60,7 +58,7 @@
 
 
 
-                            <!-- list sold securities -->
+                            <!-- list sold securities 
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3>Sold Security List </h3>
@@ -94,7 +92,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- /.container-fluid -->
+                             /.container-fluid -->
                         </div>
                         <!-- /#page-wrapper -->
 

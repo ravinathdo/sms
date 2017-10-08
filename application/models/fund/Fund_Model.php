@@ -111,7 +111,7 @@ class Fund_Model extends CI_Model {
 
         $result = $query->result();
         if ($result) {
-            return;
+            return TRUE;
         } else {
             $this->db->insert('broker_fund', $data);
         }

@@ -100,6 +100,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Amount</label>
                                         <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= $security->amount ?>" ng-blur="getMilionValues()" ng-keyup="getMilionValues()" >
+                                        <input type="hidden" name="cost_per_share" value="<?= $security->cost_per_share?>" />
+                                        <input type="hidden" name="cdsaccid" value="<?= $security->cdsaccid?>" />
+                                               
                                     </div>
                                 </div>
 

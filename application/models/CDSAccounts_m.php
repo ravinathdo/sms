@@ -252,15 +252,14 @@ class CDSAccounts_m extends CI_Model {
             return FALSE;
         }
     }
-    
-    
+
     public function getUserBrokerCompanyList($userid) {
-    /*
-     SELECT brokercompany.*,cdsaccount.cdsaccno FROM brokercompany
-INNER JOIN cdsaccount
-ON brokercompany.brokercomid = cdsaccount.brokercomid
-WHERE cdsaccount.userid = 10
-     */
+        /*
+          SELECT brokercompany.*,cdsaccount.cdsaccno FROM brokercompany
+          INNER JOIN cdsaccount
+          ON brokercompany.brokercomid = cdsaccount.brokercomid
+          WHERE cdsaccount.userid = 10
+         */
 
 
         $this->db->select('brokercompany.*,cdsaccount.cdsaccno');
@@ -332,10 +331,47 @@ WHERE cdsaccount.userid = 10
         $id = $this->db->insert_id();
     }
 
-    
     public function removeBrokerAdditional($param) {
         $this->db->delete('user_stockbroker_details', array('id' => $param));
     }
+
+    /**
+     * 
+     * @param type $cdsaccid
+     * @return boolean FASLE-no broker company deposit found
+     */
+    public function getBrokerBalanceFromCDS($cdsaccid) {
+        /*
+          SELECT broker_fund.* FROM broker_fund
+          INNER JOIN brokercompany
+          ON broker_fund.brokercomid = brokercompany.brokercomid
+          INNER JOIN cdsaccount
+          ON cdsaccount.brokercomid = brokercompany.brokercomid
+          WHERE cdsaccount.cdsaccid = 7
+         */
+
+        $this->db->select('broker_fund.*');
+        $this->db->from('broker_fund');
+        $this->db->join('brokercompany', 'broker_fund.brokercomid = brokercompany.brokercomid');
+        $this->db->join('cdsaccount', 'cdsaccount.brokercomid = brokercompany.brokercomid');
+        $where = ' cdsaccount.cdsaccid = ' . $cdsaccid;
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        $result = $query->result();
+        if ($result) {
+            
+            foreach ($result as $rows) {
+                $arr = array('brokercomid'=>$rows->brokercomid , 'balance'=> $rows->balance);
+                return $arr;
+            }
+            
+        } else {
+            return array('brokercomid'=> FALSE , 'balance'=> FALSE );
+             
+        }
+    }
+
 }
 
 ?>

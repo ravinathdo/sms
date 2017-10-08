@@ -54,6 +54,7 @@ class Security_Model extends CI_Model {
         $Security->qty = '';
         $Security->amount = '';
         $Security->total = '';
+        $Security->cost_per_share = '';
         return $Security;
     }
 
