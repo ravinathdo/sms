@@ -48,7 +48,7 @@
                                 <?php echo form_open('Securities_Controller/add') ?>
 
                                 <div class="col-lg-6">
-
+ 
 
                                     <?php echo validation_errors(); ?>
 
