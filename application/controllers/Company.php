@@ -76,7 +76,8 @@ public function directors($companyid, $tab = 'list',  $boardofdirid = NULL){
 	$this->load->model('Directors_m');
 	$this->db->join('prefix','prefix.preid=directors.title'); //get title from prefix table
 	$data['directors'] = $this->Directors_m->get(); //to view dropdown menu
-	$data['companyid']= $companyid;
+	$data['companyid'] = $companyid;
+        //echo '<tt><pre>'. var_export($data['directors'],TRUE).'</pre></tt>';
 
 	//get data from "directordesignation" table to dropdwon list
 	$data['desigtype'] = $this->Directors_m->getDesignation();
@@ -240,8 +241,12 @@ public function delete($companyid,$id){ //1st parameter to redirect, 2nd to dele
 			$this->form_validation->set_rules($rules);
 
 			if($this->form_validation->run() == TRUE){
+			
 					$formdata = $this->eqsecurities_m->array_from_post(array('subtypename','qty')); //form inputs
-					$formdata['comid'] = $companyid;
+					
+                                        echo '<tt><pre>'. var_export($formdata, TRUE).'</pre></tt>';
+                                        echo 'boardofdirid->'.$boardofdirid;
+                                        $formdata['comid'] = $companyid;
 					//$this->Directors_m->boardofdirsave($formdata, $boardofdirid);
 					//var_dump($this->db->last_query());
 					if ($this->eqsecurities_m->boardofdirsave($formdata, $boardofdirid)==FALSE) {

@@ -80,10 +80,13 @@
                                       <div class="form-group">
                                         <label>Director's Designation</label>
                                         <div class="">
-                                          <select class="form-control" name="designation">
+                                            
+                                            <?php //echo '<tt><pre>'. var_export($desigtype, TRUE).'</pre></tt>';  ?>
+                                            <select class="form-control" name="designation" required="">
                                             <option value="">Select</option>
                                             <?php foreach ($desigtype as $desig){ ?>
-                                            <option value="<?=$desig->dirdesigid;?>"  <?=set_select('designation',$desig->dirdesigid, $desig->dirdesigid == $directors->dirdesigid ? TRUE : FALSE  ); ?>><?=$bro->name;?></option>
+                                            
+                                            <option value="<?=$desig->dirdesigid;?>"  ><?=$desig->dirdesignation;?></option>
                                               <?php  } ?>
                                           </select>
                                         </div>

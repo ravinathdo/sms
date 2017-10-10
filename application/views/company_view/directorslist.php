@@ -64,6 +64,9 @@
                                             <?=$this->session->flashdata('success_msg');?>
                                        </div>
                                    <?php } ?>
+                                    
+                                    
+                                    
                                     <div class="table-responsive dataTable_wrapper">
                                     <table class="table table-striped table-bordered table-hover" id="dataTables">
                                     <thead>
@@ -93,12 +96,8 @@
                                               <tr>
                                                     <td><?=$rows->dirid;?></td>
                                                   <!--  <td><?=$rows->comid;?></td> -->
-                                                    <td><?=$rows->prefix;?>
-                                                    <?=$rows->initial;?>
-                                                    <?=$rows->fname;?>
-                                                    <?=$rows->mname;?>
-                                                    <?=$rows->lname;?></td>
-                                                    <td><?=$rows->designation;?></td>
+                                                    <td><?=$rows->fullname;?></td>
+                                                    <td><?=$rows->dirdesignation;?></td>
                                                     <td><?=$rows->appointeddate;?></td>
 
                                                     <td><div class="btn-group">
