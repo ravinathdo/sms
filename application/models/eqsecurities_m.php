@@ -169,6 +169,7 @@ class eqsecurities_m extends CI_Model {
       if($id === NULL){ //new insert to table
 
         //check exists
+      
          $this->db->where('comid',$data['comid'] );
          $this->db->where('dirid', $data['dirid'] );
          $result = $this->db->get('boardofdirectors')->result();
@@ -188,6 +189,23 @@ class eqsecurities_m extends CI_Model {
    			$this->db->update('boardofdirectors');
   		}
         return $id;
+      }
+      
+      
+      
+      
+      public function equitysecuritySave($data) {
+          //check exists
+         $this->db->where('comid',$data['comid'] );
+         $this->db->where('subtypeid', $data['subtypename'] );
+         $result = $this->db->get('equitysecurity')->result();
+         if ($result) {
+           return false;
+         }else{
+           $this->db->set($data);
+           $this->db->insert('equitysecurity');
+           $id = $this->db->insert_id();
+         }  
       }
 
       public function getcomdir($boardofdirid){

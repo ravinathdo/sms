@@ -104,13 +104,38 @@
 
 
                                                                     <td>
-
-                                                                        <?php
+                                                                       
+                                                                        
+                                                                  
+                                                                            
+                                                                            <?php
                                                                         if ($this->session->userdata('userbean')) {
                                                                             $userbean = $this->session->userdata('userbean');
                                                                         }
                                                                         if ($userbean->role != 'user') {
                                                                             ?>
+                                                                        
+                                                                              
+                                                                        <!-- Button trigger modal -->
+                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal_<?= $rows->comid; ?>">
+                                                                More 
+                                                            </button>
+                                                                        
+                                                                         <!-- Modal -->
+                                                            <div class="modal fade" id="myModal_<?= $rows->comid; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            <h4 class="modal-title" id="myModalLabel">More Action</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<!--action button-->
                                                                             <div class="btn-group">
                                                                                 <a class="btn btn-primary" href="<?= base_url('company/edit/' . $rows->comid . ''); ?>" title="Edit">Edit <i class="fa fa-pencil-square-o"></i></a>
                                                                             </div>
@@ -126,7 +151,30 @@
                                                                             <div class="btn-group">
                                                                                 <a class="btn btn-primary" href="<?= base_url('company/#/' . $rows->comid . ''); ?>" title="Edit">Add/Edit Financials<i class="fa fa-pencil-square-o"></i></a>
                                                                             </div>
+<!--//action button-->
+
+                                                                            
+                                                                            
+                                                                            
+                                                                                                                                                    </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Modal -->
+                                                                            
+                                                                            
+                                                                            
                                                                         <?php } ?>
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+
+                                                                        
                                                                     </td>
                                                                 </tr>
 
@@ -135,8 +183,7 @@
                                                         }
                                                         ?>
 
-<?php // echo 'hello';  ?>
-                                                        <!--  <?= 'hello'; ?> -->
+                                                       
                                                     </tbody>
                                                 </table>
                                             </div>

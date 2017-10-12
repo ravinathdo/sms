@@ -46,7 +46,7 @@
                                         <div class="panel-body">
 
                                             <ul class="nav nav-pills">
-                                                <li ><a aria-expanded="true" href="<?= base_url('company/eqsecurites/' . $companyid . '/list'); ?>">List</a>
+                                                <li ><a aria-expanded="true" href="<?= base_url('company/eqsecurities/' . $companyid . '/list'); ?>">List</a>
                                                 </li>
                                                 <li class="active"><a aria-expanded="false" href="#add-pills" data-toggle="tab">Add</a>
                                                 </li>
@@ -70,14 +70,19 @@
                                                                 <select class="form-control" name="subtypename" required="">
                                                                     <option value="">Select</option>
                                                                     <?php foreach ($sectype as $type) { ?>
-                                                                        <option value="<?= $type->subtypeid; ?>">
-                                                                                <?= $type->subtypename; ?></option>
+                                                                        <option value="<?= $type->subtype;?>|<?= $type->subtypeid; ?>">
+                                                                                <?= $type->subtypename; ?> [<?= $type->subtype;?>]</option>
                                                                         <?php } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
 
 
+                                                        <div class="form-group">
+                                                            <label>Type</label>
+                                                            <input name="type" type="text" class="form-control" value="" required="" />
+                                                        </div>
+                                                        
                                                         <div class="form-group">
                                                             <label>Quantity</label>
                                                             <input name="qty" type="text" class="form-control" value="" required="" />

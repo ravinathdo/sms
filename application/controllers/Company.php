@@ -236,20 +236,38 @@ public function delete($companyid,$id){ //1st parameter to redirect, 2nd to dele
 					'label' => 'Quantity',
 					'rules' => 'trim|required'
 				),
+				'type' => array(
+					'field' => 'type',
+					'label' => 'Type',
+					'rules' => 'trim|required'
+				),
 
 			);
 			$this->form_validation->set_rules($rules);
 
 			if($this->form_validation->run() == TRUE){
 			
-					$formdata = $this->eqsecurities_m->array_from_post(array('subtypename','qty')); //form inputs
+					$formdata = $this->eqsecurities_m->array_from_post(array('subtypename','qty','type')); //form inputs
 					
-                                        echo '<tt><pre>'. var_export($formdata, TRUE).'</pre></tt>';
                                         echo 'boardofdirid->'.$boardofdirid;
                                         $formdata['comid'] = $companyid;
 					//$this->Directors_m->boardofdirsave($formdata, $boardofdirid);
 					//var_dump($this->db->last_query());
-					if ($this->eqsecurities_m->boardofdirsave($formdata, $boardofdirid)==FALSE) {
+                                        echo '<tt><pre>'. var_export($formdata, TRUE).'</pre></tt>';
+                                        
+                                        
+                                        $arrSubtype = explode("|", $formdata['subtypename']);
+                                        
+                                        $db_data = array('comid'=>$companyid,
+                                            'subtypeid'=>$arrSubtype[1],
+                                            'type'=>$arrSubtype[0].$formdata['type'],
+                                            'issuedqty'=>$formdata['qty'],
+                                            'listedqty'=>$formdata['qty']);
+                                        
+                                        echo '<tt><pre>'. var_export($db_data, TRUE).'</pre></tt>';
+                                        
+                                        
+					if ($this->eqsecurities_m->equitysecuritySave($db_data)==FALSE) {
 						$this->session->set_flashdata('status', 'Already assign');
 					}else {
 						$this->session->set_flashdata('status', 'Directer assign');
