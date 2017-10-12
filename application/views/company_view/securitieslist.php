@@ -77,7 +77,7 @@
                                                             <tbody>
 
                                                                 <?php
-                                                                                                                    echo '<tt><pre>'. var_export($eqsecurities_list, TRUE).'</pre></tt>';
+                                                                                                                  //  echo '<tt><pre>'. var_export($eqsecurities_list, TRUE).'</pre></tt>';
                                                                 
                                                                 
                                                                 if ($eqsecurities_list != FALSE) {
@@ -91,9 +91,9 @@
                                                                                 -    <td>
                                                                                 <?php /*  */ ?>
                                                                                 <div class="btn-group">
-                                                                                    <a class="btn btn-danger del" href="<?= base_url('company/delete/' . $rows->comid . '/' . $rows->boardofdirid . ''); ?>" title="Remove"><i class="fa fa-times"></i></a>
-                                                                                    <a class="btn btn-primary" href="<?= base_url('maineditor/edit/' . $rows->preid . ''); ?>" title="Edit">Edit <i class="fa fa-pencil-square-o"></i></a>
-                                                                                    <a class="btn btn-primary" href="#add-pills" data-toggle="tab<?= base_url('company/directors/edit/' . $rows->dirid . ''); ?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                                                                    <a class="btn btn-danger del" href="<?= base_url('company/delete/' . $rows->comid . '/'); ?>" title="Remove"><i class="fa fa-times"></i></a>
+                                                                                    <a class="btn btn-primary" href="<?= base_url('maineditor/edit/' . $rows->subtypeid . ''); ?>" title="Edit">Edit <i class="fa fa-pencil-square-o"></i></a>
+                                                                                    <a class="btn btn-primary" href="#add-pills" data-toggle="tab<?= base_url('company/directors/edit/' ); ?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
                                                                                 </div>
 
                                                                             </td>
