@@ -60,7 +60,7 @@
                                     <form class="" action="" method="post">
 <?php
 
-echo '<tt><pre>'. var_export($directors, TRUE).'</pre></tt>';
+//echo '<tt><pre>'. var_export($directors, TRUE).'</pre></tt>';
 ?>
                                         
                                         
