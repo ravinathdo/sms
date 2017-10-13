@@ -72,6 +72,13 @@ class Directors_m extends CI_Model {
 
         return $this->db->get($this->_table_name)->$method();
     }
+    
+    
+    
+    
+    
+    
+    
 
     public function get_by($where, $single = FALSE) {
 

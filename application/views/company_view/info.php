@@ -74,7 +74,7 @@
                                           <dd>: <?php echo $company->quoteddate; ?></dd>
                                       <dt>Listed Board</dt>
                                         <dd>: <?php echo $board->boardname; ?></dd>
-                                      <dt>Compnay Secretary</dt>
+                                      <dt>Company Secretary</dt>
                                           <dd>: <?php echo $sect->secretaryname; ?></dd>
 
 
@@ -97,7 +97,13 @@
 
                                       <dt>Board of Directors</dt>
                                         <dd>
+                                            
+                                            
                                             <?php
+                                            
+                                            //echo '<tt><pre>'. var_export($dirinfo,TRUE).'</pre></tt>';
+                                            
+                                            
                                             if ($dirinfo != FALSE){
                                               foreach ($dirinfo as $rows) { ?>
                                                     <tr>
@@ -117,11 +123,11 @@
                                   </dl>
   <hr />
                                   <div class="btn-group">
-                                      <a class="btn btn-primary" href="<?=base_url('company/#/'.$rows->comid.'');?>" title="Edit">Dividend Details</a>
+                                      <a class="btn btn-primary" href="<?=base_url('company/#/'.$company_id.'');?>" title="Edit">Dividend Details</a>
                                   </div>
 
                                   <div class="btn-group">
-                                      <a class="btn btn-primary" href="<?=base_url('company/#/'.$rows->comid.'');?>" title="Edit">Financial Detials</a>
+                                      <a class="btn btn-primary" href="<?=base_url('company/#/'.$company_id.'');?>" title="Edit">Financial Details</a>
                                   </div>
 
                                 </div>

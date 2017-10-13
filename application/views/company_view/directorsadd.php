@@ -58,7 +58,12 @@
                                     <h4>Assign a director</h4>
                                     <?=validation_errors();?>
                                     <form class="" action="" method="post">
+<?php
 
+echo '<tt><pre>'. var_export($directors, TRUE).'</pre></tt>';
+?>
+                                        
+                                        
                                       <div class="form-group">
                                         <label>Director's Name</label>
                                         <div class="">

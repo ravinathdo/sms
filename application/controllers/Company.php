@@ -65,7 +65,7 @@ class Company extends CI_Controller {
 		$data['ceoinfo'] = 	$this->Directors_m->getCEOByID($id); //get CEO details
 		$data['dirinfo'] = 	$this->eqsecurities_m->getDirectorsByID($id); //get directors detials according to company
 		$data['ceoinfo'] = 	$this->eqsecurities_m->getCEOByID($id); //get CEO details
-
+                $data['company_id'] = $id;
 		$this->load->view('company_view/info', $data);
 	}
 //-------------------------
@@ -76,6 +76,10 @@ public function directors($companyid, $tab = 'list',  $boardofdirid = NULL){
 	$this->load->model('Directors_m');
 	$this->db->join('prefix','prefix.preid=directors.title'); //get title from prefix table
 	$data['directors'] = $this->Directors_m->get(); //to view dropdown menu
+        //get filtered list
+        
+        
+        
 	$data['companyid'] = $companyid;
         //echo '<tt><pre>'. var_export($data['directors'],TRUE).'</pre></tt>';
 
@@ -91,6 +95,10 @@ public function directors($companyid, $tab = 'list',  $boardofdirid = NULL){
 		$view = 'directorslist';
 			}elseif ($tab = 'add' ) { //}|| $tab = 'edit') {
 
+                            
+                            echo '<tt><pre>'. var_export($boardofdirid, TRUE).'</pre></tt>';
+                            
+                            
 		if ($boardofdirid) {
 			$data['director'] = $this->Directors_m->getcomdir($boardofdirid);
 		}
@@ -99,6 +107,7 @@ public function directors($companyid, $tab = 'list',  $boardofdirid = NULL){
 
 			//var_dump($this->db->last_query());
 		}
+                
 		//var_dump($data['director']);
 
 		 $rules  = array(
