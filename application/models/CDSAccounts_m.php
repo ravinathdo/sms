@@ -308,7 +308,7 @@ class CDSAccounts_m extends CI_Model {
     }
 
     /**
-     * 
+     *
      * @param type $param
      */
     public function getBrokerAdditional($cdsaccid) {
@@ -327,7 +327,7 @@ class CDSAccounts_m extends CI_Model {
     }
 
     /**
-     * 
+     *
      * @param type $param
      */
     public function setBrokerAdditional($data) {
@@ -341,7 +341,7 @@ class CDSAccounts_m extends CI_Model {
     }
 
     /**
-     * 
+     *
      * @param type $cdsaccid
      * @return boolean FASLE-no broker company deposit found
      */
@@ -365,17 +365,33 @@ class CDSAccounts_m extends CI_Model {
 
         $result = $query->result();
         if ($result) {
-            
+
             foreach ($result as $rows) {
                 $arr = array('brokercomid'=>$rows->brokercomid , 'balance'=> $rows->balance);
                 return $arr;
             }
-            
+
         } else {
             return array('brokercomid'=> FALSE , 'balance'=> FALSE );
-             
+
         }
     }
+
+
+    public function getBrokerBkAccDetail($id) {
+        $this->db->select('*');
+        $this->db->where('brokerbankacc.brobankid', $id);
+      //  $this->db->join('stockbroker', 'stockbroker.stockbrokerid=cdsaccount.stockbrokerid');
+        $query = $this->db->get('brokerbankacc')->row();
+        // $this->get();
+        // var_dump($this->db->last_query());
+        if ($query) {
+            return $query;
+        } else {
+            return FALSE;
+        }
+    }
+
 
 }
 
