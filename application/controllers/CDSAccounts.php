@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CDSAccounts extends CI_Controller {
 
     public function index() {
-
         $this->load->model('CDSAccounts_m');
         $data['cdsac'] = $this->CDSAccounts_m->getAll();
         $this->load->view('CDSAccounts_view/index', $data);
