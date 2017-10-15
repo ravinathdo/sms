@@ -13,7 +13,7 @@ class Users extends CI_Controller {
     public function userProfile() {
         //get session user_id;
         $userbean = $this->session->userdata('userbean');
-        echo $userbean->userid;
+       // echo $userbean->userid;
         //get user basic information
         $this->load->model('Users_m');
         $profileInfo = $this->Users_m->get($userbean->userid);
@@ -22,7 +22,7 @@ class Users extends CI_Controller {
         $this->load->model('CDSAccounts_m');
         $data['cdsAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
         
-        echo '<tt><pre>'. var_export($data['cdsAccList'], TRUE).'</pre></tt>';
+        //echo '<tt><pre>'. var_export($data['cdsAccList'], TRUE).'</pre></tt>';
         
         $this->load->view('users_view/profile', $data);
     }

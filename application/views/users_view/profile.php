@@ -92,11 +92,59 @@
                                                         foreach ($cdsAccList as $cds) {
                                                             ?>
                                                             <tr>
-                                                                <td><a href=""><?= $cds->name ?></a></td>
+                                                                <td>
+
+
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal_<?= $cds->cdsaccid; ?>">
+                                                                        <?= $cds->name ?> 
+                                                                    </button>
+
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="myModal_<?= $cds->cdsaccid; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">More Details</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+
+
+                                                                                    <dl class="dl-horizontal text-left">
+                                                                                        <dt>Adviser First Name</dt>
+                                                                                        <dd>: <?= $cds->adviserfname ?> </dd>
+                                                                                        <dt>Adviser Last Name</dt>
+                                                                                        <dd>: <?= $cds->adviserlname ?></dd>
+                                                                                        <dt>Mobile</dt>
+                                                                                        <dd>: <?= $cds->tel_mob ?></dd>
+                                                                                        <dt>Direct</dt>
+                                                                                        <dd>: <?= $cds->tel_direct ?></dd>
+                                                                                        <dt>Email</dt>
+                                                                                        <dd>: <?= $cds->email ?></dd>
+                                                                                      
+                                                                                    </dl>   
+
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Modal -->
+
+
+                                                                </td>
                                                                 <td><?= $cds->cdsaccno ?></td>
                                                                 <td><?= $cds->opendate ?></td>
                                                             </tr>
-    <?php } ?>
+
+
+
+
+                                                        <?php } ?>
                                                 </tbody>
                                             </table>
 
@@ -114,7 +162,7 @@
                         </div>
                         <!-- /#wrapper -->
 
-<?php $this->load->view('basejs'); ?>
+                        <?php $this->load->view('basejs'); ?>
                         </body>
 
                         </html>
