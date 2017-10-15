@@ -75,6 +75,7 @@
                                           <td><div class="btn-group">
                                               <a class="btn btn-primary" href="<?=base_url('CDSAccounts/edit/'.$rows->cdsaccid.'');?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
                                               <a class="btn btn-warning" href="<?=base_url('CDSAccounts/showBrokerAdditional/'.$rows->cdsaccid.'');?>" title="Detail"><i class="fa fa-pencil-square-o"></i></a>
+                                              <a class="btn btn-primary" href="<?=base_url('CDSAccounts/bankAccount/'.$rows->cdsaccid.'');?>" title="Bank Detail"><i class="fa fa-pencil-square-o"></i></a>
                                               </div>
                                          </td>
                                       </tr>

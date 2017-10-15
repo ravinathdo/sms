@@ -45,7 +45,7 @@ class CDSAccounts extends CI_Controller {
         $this->form_validation->set_rules($rules);
 
         if ($this->form_validation->run() == TRUE) {
-    
+
             $formadv = $this->CDSAccounts_m->array_from_post(array('adviserfname', 'adviserlname', 'tel_mob', 'tel_direct', 'email'));
             $adviserid = $this->CDSAccounts_m->advisersave($formadv, $id);
 
@@ -76,7 +76,7 @@ class CDSAccounts extends CI_Controller {
     public function getUserCDSAccounts() {
         $this->load->model('CDSAccounts_m');
 
-        //get session user 
+        //get session user
 //        $this->session->set_userdata($newdata);
         $userbean = $this->session->userdata('userbean');
         $data['cdsAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
@@ -87,7 +87,7 @@ class CDSAccounts extends CI_Controller {
 
     public function myBrokerCompanies() {
         $this->load->model('CDSAccounts_m');
-        //get session user 
+        //get session user
         //$this->session->set_userdata($newdata);
         $userbean = $this->session->userdata('userbean');
         $data['myBrokerList'] = $this->CDSAccounts_m->getMyBrokerCompanies($userbean->userid);
@@ -100,14 +100,14 @@ class CDSAccounts extends CI_Controller {
      */
     public function myCDSAccount() {
         $this->load->model('CDSAccounts_m');
-        //get session user 
+        //get session user
         $userbean = $this->session->userdata('userbean');
         $data['cdsAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
         $this->load->view('CDSAccounts_view/userCDS', $data);
     }
 
     /**
-     * USER 
+     * USER
      * @param type $cdsaccid
      */
     public function showBrokerAdditional($id) {
@@ -119,7 +119,7 @@ class CDSAccounts extends CI_Controller {
     }
 
     /**
-     * USER 
+     * USER
      */
     public function setBrokerAdditional() {
 //        echo 'setBrokerAdditional';
@@ -128,7 +128,7 @@ class CDSAccounts extends CI_Controller {
 
         $this->input->post('detaillabel');
         $this->input->post('value');
-        
+
        $arrInput =  $this->CDSAccounts_m->array_from_post(array('lable', 'value','cdsaccid'));
        $arrInput['userid'] = $userbean->userid;
        $cdsaccid = $arrInput['cdsaccid'];  //cdsaccount.cdsaccid
@@ -139,9 +139,9 @@ class CDSAccounts extends CI_Controller {
 //            'lable' => $lable,
 //            'value' => $lable
 //        );
-//        
 //
-       
+//
+
 //       var_export($arrInput);
        $this->CDSAccounts_m->setBrokerAdditional($arrInput);
 
@@ -152,7 +152,7 @@ class CDSAccounts extends CI_Controller {
     }
 
     /**
-     * USER 
+     * USER
      * @param type $cdsaccid
      */
     public function removeBrokerAdditional($id,$cdsaccid) {
@@ -163,6 +163,28 @@ class CDSAccounts extends CI_Controller {
         $data['cdsaccid'] = $cdsaccid;
         $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($cdsaccid);
         $this->load->view('CDSAccounts_view/additional', $data);
+    }
+
+    /**
+      View Bank Details
+     */
+    public function bankAccount($id) {
+        $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+        $data['brBkDetail'] = $this->CDSAccounts_m->getBrokerBkAccDetail($id);
+        $data['cdsaccid'] = $id;
+        $this->load->view('CDSAccounts_view/bankAccount', $data);
+    }
+
+    /**
+      Add Bank Details
+     */
+    public function addBankAccount($id) {
+        $this->load->model('CDSAccounts_m');
+        $userbean = $this->session->userdata('userbean');
+        $data['detailsList'] = $this->CDSAccounts_m->getBrokerAdditional($id);
+        $data['cdsaccid'] = $id;
+        $this->load->view('CDSAccounts_view/addBankDetail', $data);
     }
 
 }
