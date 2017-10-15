@@ -33,6 +33,9 @@
         <li>
             <a href="<?= base_url('Users'); ?>">User Profile</a>
         </li>
+        <li>
+            <a href="<?= base_url('Users/userProfile'); ?>">Profile</a>
+        </li>
     </ul>
     <!-- /.nav-second-level -->
 </li>
