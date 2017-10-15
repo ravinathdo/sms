@@ -35,6 +35,11 @@
 
 
 
+<!--fullcalander-->
+<link href="<?=base_url('css/fullcalendar.min.css');?>" rel='stylesheet' />
+<link href="<?=base_url('css/fullcalendar.print.min.css');?>" rel='stylesheet' media='print' />
+
+
 
 <style media="screen">
 .currency {

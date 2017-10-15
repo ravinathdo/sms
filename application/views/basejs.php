@@ -35,6 +35,18 @@
 <!--slider-->
 <script src="<?=base_url('js/bootstrap-slider.js');?>"></script>
 
+
+
+<!--fullcalander-->
+<script src="<?=base_url('lib/moment.min.js');?>"></script>
+<!--<script src='lib/jquery.min.js'></script>-->
+<script src="<?=base_url('js/fullcalendar.min.js');?>"></script>
+
+
+<!--highchart-->
+<script src="<?=base_url('js/highcharts.js');?>"></script>
+
+
     <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker({
