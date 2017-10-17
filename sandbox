@@ -57,5 +57,8 @@ user             - ttt - a [86f7e437faa5a7fce15d1ddcb9eaeaea377667b8]
 business_analyst - ba  - a [86f7e437faa5a7fce15d1ddcb9eaeaea377667b8]
 
 
+//calender
+<input type="text" required="" class="form-control datepick" name="effectdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
+
 
 

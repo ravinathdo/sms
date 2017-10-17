@@ -44,10 +44,46 @@ Class Login_Controller extends CI_Controller {
             $this->session->set_userdata($newdata);
             //echo '<tt><pre>'. var_export($newdata, TRUE).'</pre></tt>';
             //echo '<tt><pre>'. var_export($newdata['userbean']->role, TRUE).'</pre></tt>';
-            if($newdata['userbean']->role == 'user') {
+            if ($newdata['userbean']->role == 'user') {
+
+
+                //get event list 
+                $this->load->model('Event_Model');
+                $data['eventList'] = $this->Event_Model->getEventList();
+
+
+                //market open or close
+                //saturday || sunday || 9-to-4
+                date_default_timezone_set("Asia/Colombo");
+                $nowDate = date("Y-m-d h:i:sa");
+                //echo '<br>' . $nowDate;
+                $start = '9:00:00';
+                $end   = '17:00:00';
+                $time = date("H:i:s", strtotime($nowDate));
+                $this->isWithInTime($start, $end, $time); 
+                
+
+
+                $newdata['logintime'] = $nowDate;
+                $isweekend = FALSE;
+                $isclosetime = FALSE;
+                if ($this->isWeekend($nowDate)) {
+                    $isweekend = TRUE;
+                }
+                
+                if(!$this->isWithInTime($start, $end, $time)){
+                $isclosetime = TRUE;
+                }
                 
                 
-                $this->load->view('users_view/home');
+                if($isweekend ||  $isclosetime ){
+                    $newdata['marketclose'] = TRUE;
+                }
+                
+                $this->session->set_userdata($newdata);
+
+
+                $this->load->view('users_view/home', $data);
             } else {
                 $this->load->view('users_view/loginsucess');
             }
@@ -61,6 +97,25 @@ Class Login_Controller extends CI_Controller {
         }
     }
 
+    function isWeekend($date) {
+        $weekDay = date('w', strtotime($date));
+        return ($weekDay == 0 || $weekDay == 6);
+    }
+
+    
+    function isWithInTime($start,$end,$time) {
+        
+                if (($time >= $start )&& ($time <= $end)) {
+                   // echo 'OK';
+                    return TRUE;
+                } else {
+                    //echo 'Not OK';
+                    return FALSE;
+                }
+
+    }
+    
+    
     public function logout() {
         $this->session->unset_userdata('userbean');
         $this->session->unset_userdata('logged_in');

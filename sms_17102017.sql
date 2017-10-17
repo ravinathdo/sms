@@ -76,11 +76,11 @@ CREATE TABLE `boardofdirectors` (
   `designation` varchar(100) NOT NULL,
   `appointeddate` date NOT NULL,
   PRIMARY KEY (`boardofdirid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 /*Data for the table `boardofdirectors` */
 
-insert  into `boardofdirectors`(`boardofdirid`,`comid`,`dirid`,`designation`,`appointeddate`) values (5,1,1,'3','2016-12-11'),(7,1,2,'erer','2016-08-01'),(10,1,3,'ee','2016-08-26'),(11,1,8,'ee','2016-08-28'),(12,1,7,'123','2016-08-28'),(13,1,12,'df','2016-09-01'),(14,2,3,'hh','2016-09-03'),(15,2,1,'3','2016-09-04'),(16,2,4,'hh','2016-09-04'),(17,2,6,'df','2016-09-04');
+insert  into `boardofdirectors`(`boardofdirid`,`comid`,`dirid`,`designation`,`appointeddate`) values (5,1,1,'3','2016-12-11'),(7,1,2,'erer','2016-08-01'),(10,1,3,'ee','2016-08-26'),(11,1,8,'ee','2016-08-28'),(12,1,7,'123','2016-08-28'),(13,1,12,'df','2016-09-01'),(14,2,3,'hh','2016-09-03'),(15,2,1,'3','2016-09-04'),(16,2,4,'hh','2016-09-04'),(17,2,6,'df','2016-09-04'),(18,3,3,'6','2017-10-10');
 
 /*Table structure for table `branchgrade` */
 
@@ -226,6 +226,22 @@ CREATE TABLE `cal_history` (
 /*Data for the table `cal_history` */
 
 insert  into `cal_history`(`calid`,`effectdate`,`transactionname`,`transcostupto50`,`transcostover50`,`units`) values (1,'2017-09-17','Brrokerage Fee',0.74,0.3,0.02),(2,'2017-09-17','CSE Fee',0.094,0.0625,0.01),(3,'2017-09-17','CDS Fee',0.034,0.025,0.02),(4,'2017-09-17','SEC Cess',0.082,0.055,0.02),(5,'2017-09-17','SLT',0.4,0.4,0),(6,'2017-09-10','Brrokerage Fee',0.84,0.4,0.02),(7,'2017-09-10','CSE Fee',0.104,0.0725,0.01),(8,'2017-09-10','CDS Fee',0.044,0.035,0.02),(9,'2017-09-10','SEC Cess',0.092,0.065,0.02),(10,'2017-09-10','SLT',0.5,0.4,0),(13,'2017-09-12','Brrokerage Fee',0.84,0.4,0.02),(14,'2017-09-12','CSE Fee',0.104,0.0725,0.01),(15,'2017-09-12','CDS Fee',0.044,0.035,0.02),(16,'2017-09-12','SEC Cess',0.092,0.065,0.02),(17,'2017-09-12','SLT',0.5,0.4,0);
+
+/*Table structure for table `calender_event` */
+
+DROP TABLE IF EXISTS `calender_event`;
+
+CREATE TABLE `calender_event` (
+  `eventid` int(5) NOT NULL AUTO_INCREMENT,
+  `eventdate` varchar(20) DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `marketclose` varchar(50) DEFAULT 'NO',
+  PRIMARY KEY (`eventid`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `calender_event` */
+
+insert  into `calender_event`(`eventid`,`eventdate`,`description`,`marketclose`) values (14,'2017-10-20','Market close for sale','YES');
 
 /*Table structure for table `cdsaccount` */
 
@@ -452,11 +468,11 @@ CREATE TABLE `equitysecurity` (
   `issuedqty` int(11) NOT NULL,
   `listedqty` int(11) NOT NULL,
   PRIMARY KEY (`equityid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `equitysecurity` */
 
-insert  into `equitysecurity`(`equityid`,`comid`,`subtypeid`,`type`,`issuedqty`,`listedqty`) values (1,1,1,0,125000,125000),(2,1,5,22,50000,50000);
+insert  into `equitysecurity`(`equityid`,`comid`,`subtypeid`,`type`,`issuedqty`,`listedqty`) values (1,1,1,0,125000,125000),(2,1,5,22,50000,50000),(3,5,1,0,1500,1500);
 
 /*Table structure for table `financialdetails` */
 
@@ -744,7 +760,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`userid`,`email`,`fname`,`mname`,`lname`,`mobile`,`password`,`reqdate`,`status`,`approvedate`,`role`) values (1,'admin@sms.lk','Ruwanx','Sangeewa','Fernando','0778878784','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','0000-00-00 00:00:00',1,'2017-08-31','admin'),(2,'janaka@mail.com','Janaka','Sampath','Jayaweera','0714896425','123','0000-00-00 00:00:00',1,'2017-02-15','user'),(3,'dfjk@dfjl.com','Samanatha','Suresh','Gunasekara','0774448962','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','0000-00-00 00:00:00',1,'2017-02-15','business_analyst'),(4,'data@sms.lk','user','user','user','0787877878','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','2017-02-20 00:00:00',1,'2017-02-27','data_entry_operator'),(5,'w','wwwwwwwww','wwwwwwwwwww','wwww','1111111','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','2017-03-02 00:00:00',0,'2017-03-04','user'),(6,'sadasd','sdasd','asd','weqwe','213123','40bd001563085fc35165329ea1ff5c5ecbdbbeef','2017-03-02 00:00:00',0,'0000-00-00',NULL),(7,'sagara@gmail.com','Sagara','Praneeth','Jayasundara','077','40bd001563085fc35165329ea1ff5c5ecbdbbeef','2017-03-15 00:00:00',1,'2017-03-16',NULL),(8,'rr','f','m','l','m','516b9783fca517eecbd1d064da2d165310b19759','2017-08-31 11:40:23',0,NULL,NULL),(9,'adm@gmail.com','Administrator','Admin','Nimda','0715833470','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 11:51:46',1,NULL,'admin'),(10,'ttt','tt','t','t','3','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 11:59:40',1,'2017-08-31','user'),(11,'xx','xx','xx','xx','444','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 12:00:06',1,'2017-08-31','user');
+insert  into `user`(`userid`,`email`,`fname`,`mname`,`lname`,`mobile`,`password`,`reqdate`,`status`,`approvedate`,`role`) values (1,'admin','Ruwanx','Sangeewa','Fernando','0778878784','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','0000-00-00 00:00:00',1,'2017-08-31','admin'),(2,'janaka@mail.com','Janaka','Sampath','Jayaweera','0714896425','123','0000-00-00 00:00:00',1,'2017-02-15','user'),(3,'ba','Samanatha','Suresh','Gunasekara','0774448962','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','0000-00-00 00:00:00',1,'2017-02-15','business_analyst'),(4,'data@sms.lk','user','user','user','0787877878','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','2017-02-20 00:00:00',1,'2017-02-27','data_entry_operator'),(5,'w','wwwwwwwww','wwwwwwwwwww','wwww','1111111','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','2017-03-02 00:00:00',0,'2017-03-04','user'),(6,'sadasd','sdasd','asd','weqwe','213123','40bd001563085fc35165329ea1ff5c5ecbdbbeef','2017-03-02 00:00:00',0,'0000-00-00',NULL),(7,'sagara@gmail.com','Sagara','Praneeth','Jayasundara','077','40bd001563085fc35165329ea1ff5c5ecbdbbeef','2017-03-15 00:00:00',1,'2017-03-16',NULL),(8,'rr','f','m','l','m','516b9783fca517eecbd1d064da2d165310b19759','2017-08-31 11:40:23',0,NULL,NULL),(9,'adm@gmail.com','Administrator','Admin','Nimda','0715833470','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 11:51:46',1,NULL,'admin'),(10,'ttt','tt','t','t','3','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 11:59:40',1,'2017-08-31','user'),(11,'xx','xx','xx','xx','444','86f7e437faa5a7fce15d1ddcb9eaeaea377667b8','2017-08-31 12:00:06',1,'2017-08-31','user');
 
 /*Table structure for table `user_modules` */
 

@@ -31,6 +31,15 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-user"></i>Calender Event<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">                
+                        <li>
+                            <a href="<?= base_url('Event_Controller/loadEvent'); ?>">Manage Event</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Main Editor (Admin) <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>

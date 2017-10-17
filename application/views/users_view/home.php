@@ -44,16 +44,18 @@
 
             <!-- Navigation -->
             <div>
-<?php $this->load->view('main_header'); ?>
+                <?php $this->load->view('main_header'); ?>
                 <div>
                     <!--/Navigation-->
 
+
+                   
                     <!-- Page Content -->
                     <div id="page-wrapper">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">CDS Broker Additional</h1>
+                                    Login time : <?php echo $this->session->userdata('logintime'); ?>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
@@ -66,8 +68,8 @@
                                             CDS Accounts
                                         </div>
                                         <div class="panel-body">
-                                            <?php 
-                                                //echo '<tt><pre>'. var_export($cdsAccList, TRUE).'</pre></tt>';
+                                            <?php
+                                            //echo '<tt><pre>'. var_export($cdsAccList, TRUE).'</pre></tt>';
                                             ?>
                                         </div>
                                     </div>
@@ -75,15 +77,27 @@
 
                                     <!--chart-->
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                                    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
-                                    
+
 
 
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="row">
-                                        Today
+                                        <center>
+                                            Market Open [weekdays 9:00am to 5:00pm]<br>
+                                            <?php 
+                                           $marketclose =  $this->session->userdata('marketclose');
+                                            if($marketclose){
+                                                echo '<button type="button" class="btn btn-lg btn-danger" >Market Close</button>
+';
+                                            }else{
+                                                echo '<button type="button" class="btn btn-lg btn-success" >Market Open</button>';
+                                            }
+                                            ?>
+                                            
+                                        </center><br>
                                     </div>
 
                                     <div id='calendar'></div>
@@ -98,7 +112,7 @@
                     </div>
                     <!-- /#wrapper -->
 
-<?php $this->load->view('basejs'); ?>
+                    <?php $this->load->view('basejs'); ?>
 
 
                     <script>
@@ -116,60 +130,19 @@
                                 editable: true,
                                 eventLimit: true, // allow "more" link when too many events
                                 events: [
-                                    {
-                                        title: 'All Day Event',
-                                        start: '2017-10-01'
-                                    },
-                                    {
-                                        title: 'Long Event',
-                                        start: '2017-10-07',
-                                        end: '2017-10-10'
-                                    },
-                                    {
-                                        id: 999,
-                                        title: 'Repeating Event',
-                                        start: '2017-10-09T16:00:00'
-                                    },
-                                    {
-                                        id: 999,
-                                        title: 'Repeating Event',
-                                        start: '2017-10-16T16:00:00'
-                                    },
-                                    {
-                                        title: 'Conference',
-                                        start: '2017-10-11',
-                                        end: '2017-10-13'
-                                    },
-                                    {
-                                        title: 'Meeting',
-                                        start: '2017-10-12T10:30:00',
-                                        end: '2017-10-12T12:30:00'
-                                    },
-                                    {
-                                        title: 'Lunch',
-                                        start: '2017-10-12T12:00:00'
-                                    },
-                                    {
-                                        title: 'Meeting',
-                                        start: '2017-10-12T14:30:00'
-                                    },
-                                    {
-                                        title: 'Happy Hour',
-                                        start: '2017-10-12T17:30:00'
-                                    },
-                                    {
-                                        title: 'Dinner',
-                                        start: '2017-10-12T20:00:00'
-                                    },
-                                    {
-                                        title: 'Birthday Party',
-                                        start: '2017-10-13T07:00:00'
-                                    },
-                                    {
-                                        title: 'Click for Google',
-                                        url: 'http://google.com/',
-                                        start: '2017-10-28'
-                                    }
+<?php
+if ($eventList != FALSE) {
+    foreach ($eventList as $rows) {
+        ?>
+
+                                            {
+                                                title: '<?php echo $rows->description; ?>',
+                                                start: '<?php echo $rows->eventdate; ?>'
+                                            },
+        <?php
+    }
+}
+?>
                                 ]
                             });
 
