@@ -140,9 +140,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Subtype</th>
-                                                <th> &lt;=Million</th>
+                                                <th> &lt;=<?= $MARGIN_VALUE; ?></th>
                                                 <th></th>
-                                                <th>&gt;=Million</th>
+                                                <th>&gt;=<?= $MARGIN_VALUE; ?></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -192,7 +192,7 @@
                         $scope.amount = 0;
                         $scope.totalcal = 0;
                         $scope.totalamount = 0;
-                        $scope.marginValue = 100;
+                        $scope.marginValue = <?= $MARGIN_VALUE; ?>;
                         $scope.subMinMilion = 0;
                         $scope.subMaxMilion = 0;
                         var calDataArr = []; // cal data holding array with calculated values

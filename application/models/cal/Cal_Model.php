@@ -30,6 +30,12 @@ class Cal_Model extends CI_Model {
         }
     }
 
+    public function updateParam($updatedata, $lable) {
+        
+        $this->db->set('value', $updatedata);
+$this->db->where('lable',$lable);
+$this->db->update('param');
+    }
     public function updateCalData($updatedata, $calid) {
         $this->db->where('calid', $calid);
         $this->db->update('cal', $updatedata);

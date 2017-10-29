@@ -361,38 +361,41 @@ class maineditor extends CI_Controller {
         $resultData = $this->Security_Model->getCal();
         //echo '<tt><pre>' . var_export($resultData, TRUE) . '</pre></tt>';
         $data = array('calval' => $resultData);
-        
+
         //get MARGIN_VALUE
         $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
         //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
-        $data['MARGIN_VALUE'] = 0;
-        
+        foreach ($param as $rows) {
+            $data['MARGIN_VALUE'] = $rows->value;
+        }
+
+
         $this->load->view('maineditor_view/CalValueEdit', $data);
         // 
     }
 
-    function updateCalValue() { 
+    function updateCalValue() {
         //collect the input from page
         $this->load->model('securities/Security_Model');
         $this->load->model('cal/Cal_Model');
-        $data1 = $this->Security_Model->array_from_post(array('UP_50_1','OV_50_1'));
-        $this->Cal_Model->updateCalData(array('transcostupto50'=>$data1['UP_50_1'],'transcostover50'=>$data1['OV_50_1']),1);
-        $data2 = $this->Security_Model->array_from_post(array('UP_50_2','OV_50_2'));
-        $this->Cal_Model->updateCalData(array('transcostupto50'=>$data2['UP_50_2'],'transcostover50'=>$data2['OV_50_2']),2);
-        $data3 = $this->Security_Model->array_from_post(array('UP_50_3','OV_50_3'));
-        $this->Cal_Model->updateCalData(array('transcostupto50'=>$data3['UP_50_3'],'transcostover50'=>$data3['OV_50_3']),3);
-        $data4 = $this->Security_Model->array_from_post(array('UP_50_4','OV_50_4'));
-        $this->Cal_Model->updateCalData(array('transcostupto50'=>$data4['UP_50_4'],'transcostover50'=>$data4['OV_50_4']),4);
-        $data5 = $this->Security_Model->array_from_post(array('UP_50_5','OV_50_5'));
-        $this->Cal_Model->updateCalData(array('transcostupto50'=>$data5['UP_50_5'],'transcostover50'=>$data5['OV_50_5']),5);
-        
-        
+        $data1 = $this->Security_Model->array_from_post(array('UP_50_1', 'OV_50_1'));
+        $this->Cal_Model->updateCalData(array('transcostupto50' => $data1['UP_50_1'], 'transcostover50' => $data1['OV_50_1']), 1);
+        $data2 = $this->Security_Model->array_from_post(array('UP_50_2', 'OV_50_2'));
+        $this->Cal_Model->updateCalData(array('transcostupto50' => $data2['UP_50_2'], 'transcostover50' => $data2['OV_50_2']), 2);
+        $data3 = $this->Security_Model->array_from_post(array('UP_50_3', 'OV_50_3'));
+        $this->Cal_Model->updateCalData(array('transcostupto50' => $data3['UP_50_3'], 'transcostover50' => $data3['OV_50_3']), 3);
+        $data4 = $this->Security_Model->array_from_post(array('UP_50_4', 'OV_50_4'));
+        $this->Cal_Model->updateCalData(array('transcostupto50' => $data4['UP_50_4'], 'transcostover50' => $data4['OV_50_4']), 4);
+        $data5 = $this->Security_Model->array_from_post(array('UP_50_5', 'OV_50_5'));
+        $this->Cal_Model->updateCalData(array('transcostupto50' => $data5['UP_50_5'], 'transcostover50' => $data5['OV_50_5']), 5);
+
+
         $resultData = $this->Security_Model->getCal();
         //echo '<tt><pre>' . var_export($resultData, TRUE) . '</pre></tt>';
         $data = array('calval' => $resultData);
         $data['msg'] = "Records Updated";
         $this->load->view('maineditor_view/CalValueEdit', $data);
-        
+
 //        $json = '{"string":"Hello World"}';
 //        
 //         $obj = new stdClass();
@@ -404,15 +407,28 @@ class maineditor extends CI_Controller {
 //                        //->set_output(json_encode($resultData));
 //                        ->set_output($json);
     }
-    
-    
-    
+
     public function updateLimit() {
+        $this->load->model('securities/Security_Model');
+        $this->load->model('cal/Cal_Model');
+
+        //get the form data and update
+        $paramData = $this->Security_Model->array_from_post(array('MARGIN_VALUE'));
+        $this->Cal_Model->updateParam($paramData['MARGIN_VALUE'],'MARGIN_VALUE');
         
+        $resultData = $this->Security_Model->getCal();
+        //echo '<tt><pre>' . var_export($resultData, TRUE) . '</pre></tt>';
+        $data = array('calval' => $resultData);
+        $data['msg_val'] = "Margine value Updated";
         
+        //get MARGIN_VALUE
+        $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
+        //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
+        foreach ($param as $rows) {
+            $data['MARGIN_VALUE'] = $rows->value;
+        }
+        
+        $this->load->view('maineditor_view/CalValueEdit', $data);
     }
-    
-    
-    
 
 }

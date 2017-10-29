@@ -27,6 +27,14 @@ class Securities_Controller extends CI_Controller {
         //get CDS Accounts 
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
         $data['companyList'] = $this->Company_m->getAll();
+        
+        //get MARGIN_VALUE       
+        $this->load->model('cal/Cal_Model');
+        $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
+        //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
+        foreach ($param as $rows) {
+          $data['MARGIN_VALUE'] =   $rows->value;
+        }
 
         $this->load->view('securites_view/index', $data);
     }

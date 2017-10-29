@@ -84,19 +84,23 @@
 
                                     </table>
                                     <button type="submit" class="btn btn-danger" >Update</button>
-                                    <?php form_close(); ?>
+                                    <?php echo form_close(); ?>
                                 </div>
                                 <div class="col-lg-4">
 
 
-
+                                    <?php
+                                    if (isset($msg_val)) {
+                                        echo $msg_val;
+                                    }
+                                    ?>
                                     <?php echo form_open('maineditor/updateLimit') ?>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $MARGIN_VALUE?>">
-                                        </div>
-                                       <button type="submit" class="btn btn-warning">Update</button>
-                                        <?php echo form_close(); ?>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MARGIN_VALUE</label>
+                                        <input type="text" name="MARGIN_VALUE" class="form-control" id="exampleInputEmail1" value="<?= $MARGIN_VALUE ?>">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">Update</button>
+                                    <?php echo form_close(); ?>
 
 
                                 </div>
