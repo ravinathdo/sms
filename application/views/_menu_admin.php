@@ -72,6 +72,9 @@
                         <li>
                             <a href="<?= base_url('maineditor/addBankBrGrade'); ?>">New Bank Branch Grade</a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('maineditor/loadCalValueEditor'); ?>">Update Cal values</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

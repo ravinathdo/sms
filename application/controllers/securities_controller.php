@@ -329,5 +329,9 @@ class Securities_Controller extends CI_Controller {
         $data['userSummaryList'] = $this->Security_Model->listUserSummaryView($userid);
         $this->load->view('securites_view/summury_view', $data);
     }
+    
+    
+    
+   
 
 }
