@@ -245,8 +245,23 @@ class Securities_Controller extends CI_Controller {
         }
 //        var_export($Security);
 
+        
+        //load parameter
+        //get MARGIN_VALUE       
+        $this->load->model('cal/Cal_Model');
+        $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
+        //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
+        foreach ($param as $rows) {
+          $data['MARGIN_VALUE'] =   $rows->value;
+        }
+        
         $data['security'] = $Security;
         $this->load->view('securites_view/sell_user_securities', $data);
+    }
+    
+    
+    public function getPortfolio($param) {
+        
     }
 
     public function sellUserSecurities() {
