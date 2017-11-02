@@ -27,13 +27,13 @@ class Securities_Controller extends CI_Controller {
         //get CDS Accounts 
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
         $data['companyList'] = $this->Company_m->getAll();
-        
+
         //get MARGIN_VALUE       
         $this->load->model('cal/Cal_Model');
         $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
         //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
         foreach ($param as $rows) {
-          $data['MARGIN_VALUE'] =   $rows->value;
+            $data['MARGIN_VALUE'] = $rows->value;
         }
 
         $this->load->view('securites_view/index', $data);
@@ -244,24 +244,47 @@ class Securities_Controller extends CI_Controller {
             $Security->cost_per_share = $rows->netamount / $rows->qty_init;
         }
 //        var_export($Security);
-
-        
         //load parameter
         //get MARGIN_VALUE       
         $this->load->model('cal/Cal_Model');
         $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
         //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
         foreach ($param as $rows) {
-          $data['MARGIN_VALUE'] =   $rows->value;
+            $data['MARGIN_VALUE'] = $rows->value;
         }
-        
+
         $data['security'] = $Security;
         $this->load->view('securites_view/sell_user_securities', $data);
     }
-    
-    
-    public function getPortfolio($param) {
+
+    public function getPortfolio() {
+        //group the securities list and display .
+        //when clicking the title it segrigate 
+
+        $this->load->model('securities/Security_Model');
+        $this->load->model('CDSAccounts_m');
+
+        $userbean = $this->session->userdata('userbean');
+        //get company list for user 
+        // $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($param);
+        //user broker CDS lisr
+        $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
+
+
+        $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
+        echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+        $this->load->view('securites_view/user_portfolio', $data);
+    }
+
+    public function getPortfolioBrokers($param) {
+        $this->load->model('securities/Security_Model');
+        $this->load->model('CDSAccounts_m');
+        //get the brokers contribution 
         
+        //get company group
+        $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
+        echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+        $this->load->view('securites_view/user_portfolio', $data);
     }
 
     public function sellUserSecurities() {
@@ -337,10 +360,9 @@ class Securities_Controller extends CI_Controller {
             $broker_bal_update = array('balance' => $broker_balance_new, 'lastupdated' => $txntime);
             //brokercomid , userid
             $this->Fund_Model->updateBrokerFund($broker_detail['brokercomid'], $userbean->userid, $broker_bal_update);
-        $data['msg'] = '<p class="bg-success">Transaction completed Successfully</p>';
-            
+            $data['msg'] = '<p class="bg-success">Transaction completed Successfully</p>';
         } else {
-        $data['msg'] = '<p class="bg-danger">No Broker company balance amount Found</p>';
+            $data['msg'] = '<p class="bg-danger">No Broker company balance amount Found</p>';
         }
 
 
@@ -352,9 +374,5 @@ class Securities_Controller extends CI_Controller {
         $data['userSummaryList'] = $this->Security_Model->listUserSummaryView($userid);
         $this->load->view('securites_view/summury_view', $data);
     }
-    
-    
-    
-   
 
 }

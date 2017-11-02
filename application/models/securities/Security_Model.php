@@ -158,7 +158,39 @@ class Security_Model extends CI_Model {
             return FALSE;
         }
     }
+    
+    
+    
+    public function getUserSecuritiesGroupList($param) {
+        $this->db->select('user_securities.comid,SUM(user_securities.netamount) AS sumnetamount,company.com_name');
+        $this->db->from('user_securities');
+        $this->db->join('company', 'company.comid=user_securities.comid');
+        $where = " user_securities.userid = " . $param ."  AND user_securities.status = 'BOUGHT'";
+        $this->db->where($where);
+        $this->db->group_by("user_securities.comid");
+        $query = $this->db->get();
 
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+    }
+
+    
+    public function getPortfolioBrokersForcompany($comid) {
+        $this->db->select('user_securities.*, cdsaccount.cdsaccno,company.com_name');
+        $this->db->from('user_securities');
+        $this->db->join('cdsaccount', 'cdsaccount.cdsaccid=user_securities.cdsaccid');
+        $this->db->join('company', 'company.comid=user_securities.comid');
+        $where = ' user_securities.userid = ' . $param;
+        $this->db->where($where);
+        $this->db->order_by("user_securities.id", "desc");
+        $query = $this->db->get();
+    }
+    
+    
     public function getUserCompanySecuritiesList($userid, $compid,$brokercomid) {
         
         /*

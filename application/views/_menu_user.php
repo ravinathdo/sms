@@ -86,7 +86,7 @@
             <a href="<?= base_url('Securities_Controller/listUserSecurities/'.$userbean->userid); ?>">Sell Securities</a>
         </li>
         <li>
-            <a href="#">List of my Securities (Portfolio)</a>
+            <a href="<?= base_url('Securities_Controller/getPortfolio'); ?>">List of my Securities (Portfolio)</a>
         </li>
         <li>
             <a href="<?= base_url('Fund_Conntroller/depositFunds/'.$userbean->userid);?>">Funds (Deposit / Withdraw) </a>
