@@ -178,16 +178,24 @@ class Security_Model extends CI_Model {
         }
     }
 
-    
+    //to do
     public function getPortfolioBrokersForcompany($comid) {
-        $this->db->select('user_securities.*, cdsaccount.cdsaccno,company.com_name');
+        $this->db->select('user_securities.*, cdsaccount.cdsaccno,company.com_name,brokercompany.name');
         $this->db->from('user_securities');
         $this->db->join('cdsaccount', 'cdsaccount.cdsaccid=user_securities.cdsaccid');
         $this->db->join('company', 'company.comid=user_securities.comid');
-        $where = ' user_securities.userid = ' . $param;
+        $this->db->join('brokercompany', 'brokercompany.brokercomid=cdsaccount.brokercomid');
+        $where = ' user_securities.comid = ' . $comid . ' AND user_securities.status = \'BOUGHT\'';
         $this->db->where($where);
-        $this->db->order_by("user_securities.id", "desc");
+        //$this->db->order_by("user_securities.id", "desc");
         $query = $this->db->get();
+        
+         $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
     }
     
     

@@ -28,7 +28,7 @@
 
             <!-- Navigation -->
             <div>
-<?php $this->load->view('main_header'); ?>
+                <?php $this->load->view('main_header'); ?>
                 <div>
                     <!--/Navigation-->
 
@@ -51,48 +51,80 @@
 
                                         <thead>
                                             <tr>
-                                                <th>company</th>
+                                                <th>Company</th>
                                                 <th>Total Amount</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        
-                                        
+
+
                                         <tbody>
-                <?php
-                if ($userSecList != FALSE) {
-                    foreach ($userSecList as $rows) {
-                        ?>
-                        <tr>
-                            <td><?= $rows->com_name; ?></td>
-                            <td><?= $rows->sumnetamount; ?></td>
-                            <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/'.$rows->comid);?><?= $rows->comid; ?>">View Brokers</a></td>
-                        </tr>
+                                            <?php
+                                            if ($userSecList != FALSE) {
+                                                foreach ($userSecList as $rows) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $rows->com_name; ?></td>
+                                                        <td><?= $rows->sumnetamount; ?></td>
+                                                        <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/' . $rows->comid); ?>">View Brokers</a></td>
+                                                    </tr>
 
-                    <?php
-                    }
-                }
-                ?>
-        </tbody>
-                                        </table>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
 
-
-
-                                    </div>
-                                    <div class="col-lg-6">
-                                        6
-                                    </div>
 
 
                                 </div>
-                                <!-- /.container-fluid -->
+                                <div class="col-lg-6">
+                                    <table class="table">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Broker</th>
+                                                <th>CDS</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+
+                                        <?php if (isset($brokerDetailsList)) { ?>
+
+                                            <tbody>
+                                                <?php
+                                                if ($brokerDetailsList != FALSE) {
+                                                    foreach ($brokerDetailsList as $rows) {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?= $rows->name; ?></td>
+                                                            <td><?= $rows->cdsaccno; ?></td>
+                                                            <td><?= $rows->netamount; ?></td>
+                                                        </tr>
+
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+
+
+                                        <?php }
+                                        ?>
+
+                                </div>
+
+
                             </div>
-                            <!-- /#page-wrapper -->
-
+                            <!-- /.container-fluid -->
                         </div>
-                        <!-- /#wrapper -->
+                        <!-- /#page-wrapper -->
 
-<?php $this->load->view('basejs'); ?>
-                        </body>
+                    </div>
+                    <!-- /#wrapper -->
 
-                        </html>
+                    <?php $this->load->view('basejs'); ?>
+                    </body>
+
+                    </html>

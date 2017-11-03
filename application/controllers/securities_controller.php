@@ -272,7 +272,7 @@ class Securities_Controller extends CI_Controller {
 
 
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
-        echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+        //echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
         $this->load->view('securites_view/user_portfolio', $data);
     }
 
@@ -281,9 +281,15 @@ class Securities_Controller extends CI_Controller {
         $this->load->model('CDSAccounts_m');
         //get the brokers contribution 
         
+        $data['brokerDetailsList'] = $this->Security_Model->getPortfolioBrokersForcompany($param);
+        ////echo '<tt><pre>'.var_export($data['brokerDetailsList'], TRUE).'</pre></tt>';
+        
+                $userbean = $this->session->userdata('userbean');
+
+        
         //get company group
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
-        echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+        //echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
         $this->load->view('securites_view/user_portfolio', $data);
     }
 
