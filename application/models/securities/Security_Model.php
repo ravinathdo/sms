@@ -188,7 +188,7 @@ class Security_Model extends CI_Model {
     
     
     public function getUserSecuritiesGroupList($param) {
-        $this->db->select('user_securities.comid,SUM(user_securities.netamount) AS sumnetamount,company.com_name');
+        $this->db->select('user_securities.comid,SUM(user_securities.netamount) AS sumnetamount,SUM(user_securities.qty) AS qty,company.com_name');
         $this->db->from('user_securities');
         $this->db->join('company', 'company.comid=user_securities.comid');
         $where = " user_securities.userid = " . $param ."  AND user_securities.status = 'BOUGHT'";

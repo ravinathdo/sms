@@ -53,6 +53,8 @@
                                             <tr>
                                                 <th>Company</th>
                                                 <th>Total Amount</th>
+                                                <th>Qty</th>
+                                                <th>Avg</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -66,6 +68,12 @@
                                                     <tr>
                                                         <td><?= $rows->com_name; ?></td>
                                                         <td><?= $rows->sumnetamount; ?></td>
+                                                        <td><?= $rows->qty; ?></td>
+                                                        <td><?php
+                                                       $sumnetamount = $rows->sumnetamount;
+                                                       $qty =  $rows->qty;
+                                                      echo  $sumnetamount / $qty;
+                                                       ?></td>
                                                         <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/' . $rows->comid); ?>">View Brokers</a></td>
                                                     </tr>
 
@@ -85,8 +93,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Broker</th>
-                                                <th>CDS</th>
+                                                <th>Qty</th>
                                                 <th>Amount</th>
+                                                <th>CDS</th>
+                                                <th>Total Amount</th>
                                             </tr>
                                         </thead>
 
@@ -99,6 +109,8 @@
                                                         ?>
                                                         <tr>
                                                             <td><?= $rows->name; ?></td>
+                                                            <td><?= $rows->qty; ?></td>
+                                                            <td>Rs.<?= $rows->amount; ?></td>
                                                             <td><?= $rows->cdsaccno; ?></td>
                                                             <td><?= $rows->netamount; ?></td>
                                                         </tr>
