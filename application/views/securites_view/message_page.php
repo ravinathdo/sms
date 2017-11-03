@@ -47,7 +47,9 @@
 
                                     <div class="well center-block" style="max-width:400px">
                                         <?= $msg ?>
-                                        <a href="" btn btn-primary  btn-lg btn-block>View Securities</a>
+                                        <a href="<?php 
+                                        $userbean = $_SESSION['userbean'];
+                                        echo site_url('Securities_Controller/listUserSecurities/'.$userbean->userid);?>" btn btn-primary  btn-lg btn-block>View Securities</a>
                                     </div>
 
                                 </div>

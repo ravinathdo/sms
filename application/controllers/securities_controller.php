@@ -76,10 +76,10 @@ class Securities_Controller extends CI_Controller {
 
             if ($broker_detail['balance']) {
 
-                echo 'Broker Balance:' . $broker_detail['balance'];
+              //  echo 'Broker Balance:' . $broker_detail['balance'];
 
                 $this->Security_Model->setUserSecurities($data_form);
-                echo '<br>Data inserted';
+              //  echo '<br>Data inserted';
 
 
 
@@ -113,7 +113,7 @@ class Securities_Controller extends CI_Controller {
 
                 $data['msg'] = "New Security created successfully";
             } else {
-                echo 'Broker balance empty';
+               // echo 'Broker balance empty';
                 $data['msg'] = "Insufficient Balance ";
             }
 
@@ -190,7 +190,7 @@ class Securities_Controller extends CI_Controller {
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
 
 //        echo var_export($data['userSecComList']);
-        $data['userSecList'] = $this->Security_Model->getUserSecuritiesList($param);
+        $data['userSecList'] = $this->Security_Model->getUserSecuritiesListBought($param);
         $this->load->view('securites_view/user_securities', $data);
     }
 

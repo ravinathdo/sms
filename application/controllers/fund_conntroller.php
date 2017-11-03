@@ -26,6 +26,11 @@ class Fund_Conntroller extends CI_Controller {
 
         //funds list for user_company
         $data['compFundList'] = $this->Fund_Model->getUserCompanyFundList($userbean->userid);
+        
+        //vailable funds
+        $this->load->model('Brokers_m'); // get chart data for user
+        $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
+
         //load the UI
         $this->load->view('fund_view/deposit', $data);
     }
@@ -47,19 +52,19 @@ class Fund_Conntroller extends CI_Controller {
             'balance' => $data_from['amount'], 'userid' => $userbean->userid,
             'lastupdated' => $txntime);
 
+        // echo '<tt><pre>'.var_export($data_brokerfund, TRUE).'</pre></tt>';
         $flag = $this->Fund_Model->setBrokerFund($data_brokerfund);
 
         if ($flag) {
             //get broker current balance
             $result = $this->Fund_Model->getUserBrokerCompanyBalance($data_from['brokercomid'], $userbean->userid);
-            echo '<br>';
-            echo var_export($result);
+            //echo var_export($result);
             $balance = 0;
             foreach ($result as $rows) {
                 $balance = $rows->balance;
             }
 
-            echo 'Balance:' . $balance;
+            //echo 'Balance:' . $balance;
 
             $data_fund_history = array('brokercomid' => $data_from['brokercomid'],
                 'userid' => $userbean->userid,
@@ -81,12 +86,13 @@ class Fund_Conntroller extends CI_Controller {
                     break;
             }
             //update balance
+            $data['msg'] ='<p class="bg-success">Broker funds updated.</p>';
             $updatedata = array('balance' => $balance);
             $this->Fund_Model->updateBrokerFund($data_from['brokercomid'], $userbean->userid, $updatedata);
         } else {
             //new broker init done
-            
-              $data_fund_history = array('brokercomid' => $data_from['brokercomid'],
+
+            $data_fund_history = array('brokercomid' => $data_from['brokercomid'],
                 'userid' => $userbean->userid,
                 'txntime' => $txntime
             );
@@ -103,11 +109,15 @@ class Fund_Conntroller extends CI_Controller {
                     $data_fund_history ['txntype'] = "WITHDRAW";
                     break;
             }
-            
         }
 
         //insert into broker_fund_history
         $this->Fund_Model->setBrokerFundHistory($data_fund_history);
+
+
+        //vailable funds
+        $this->load->model('Brokers_m'); // get chart data for user
+        $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
 
 
 

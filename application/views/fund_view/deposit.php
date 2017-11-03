@@ -45,7 +45,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
 
-
+<?php 
+if(isset($msg)){
+    echo $msg;
+}
+?>
                                     <form class="form-horizontal" method="post" action="<?php echo site_url('Fund_Conntroller/setBrokerTransaction') ?>">
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-4 control-label">Broker Company</label>
@@ -88,7 +92,23 @@
 
                                 </div>
                                 <div class="col-lg-6">
-                                    6
+                                    <table class="table table-bordered">
+
+                                                <tbody>
+                                                    <?php
+                                                    if ($bokerBalanceList != FALSE) {
+                                                        foreach ($bokerBalanceList as $rows) {
+                                                            ?>
+                                                            <tr>
+                                                                <td><?= $rows->name ?></td>
+                                                                <td><?= $rows->balance ?></td>
+                                                                <td><?= $rows->lastupdated ?></td>
+                                                            </tr>
+                                                        <?php }
+                                                    } ?>
+                                                </tbody>
+
+                                            </table>
                                 </div>
                             </div>
                             <div class="row">

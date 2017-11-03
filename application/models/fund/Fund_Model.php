@@ -107,12 +107,22 @@ class Fund_Model extends CI_Model {
         $this->db->select('broker_fund.*');
         $this->db->from('broker_fund');
         $where = " brokercomid = ".$data['brokercomid']." AND userid = ".$data['userid'];
+        $this->db->where($where);
         $query = $this->db->get();
 
+        /*
+         select * from broker_fund where 
+         brokercomid = 3 and userid = 10
+         */
         $result = $query->result();
+        //echo '<tt><pre>'.var_export($result, TRUE).'</pre></tt>';
+        
+        $count = count($result);
+           // echo 'result count:'.$count;
         if ($result) {
             return TRUE;
         } else {
+            echo 'ready to insert';
             $this->db->insert('broker_fund', $data);
         }
         
