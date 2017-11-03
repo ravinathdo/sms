@@ -49,7 +49,7 @@
                     <!--/Navigation-->
 
 
-                   
+
                     <!-- Page Content -->
                     <div id="page-wrapper">
                         <div class="container-fluid">
@@ -63,16 +63,7 @@
                             <div class="row">
                                 <div class="col-lg-7">
 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            CDS Accounts
-                                        </div>
-                                        <div class="panel-body">
-                                            <?php
-                                            //echo '<tt><pre>'. var_export($cdsAccList, TRUE).'</pre></tt>';
-                                            ?>
-                                        </div>
-                                    </div>
+                                    
 
 
                                     <!--chart-->
@@ -80,23 +71,46 @@
                                     <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 
+<div class="panel panel-default">
+                                        <div class="panel-heading">
+                                           Broker Funds
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table table-bordered">
 
+                                                <tbody>
+                                                    <?php
+                                                    if ($bokerBalanceList != FALSE) {
+                                                        foreach ($bokerBalanceList as $rows) {
+                                                            ?>
+                                                            <tr>
+                                                                <td><?= $rows->name ?></td>
+                                                                <td><?= $rows->balance ?></td>
+                                                                <td><?= $rows->lastupdated ?></td>
+                                                            </tr>
+                                                        <?php }
+                                                    } ?>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="row">
                                         <center>
                                             Market Open [weekdays 9:00am to 5:00pm]<br>
-                                            <?php 
-                                           $marketclose =  $this->session->userdata('marketclose');
-                                            if($marketclose){
+                                            <?php
+                                            $marketclose = $this->session->userdata('marketclose');
+                                            if ($marketclose) {
                                                 echo '<button type="button" class="btn btn-lg btn-danger" >Market Close</button>
 ';
-                                            }else{
+                                            } else {
                                                 echo '<button type="button" class="btn btn-lg btn-success" >Market Open</button>';
                                             }
                                             ?>
-                                            
+
                                         </center><br>
                                     </div>
 
@@ -112,20 +126,20 @@
                     </div>
                     <!-- /#wrapper -->
 
-                    <?php $this->load->view('basejs'); ?>
+<?php $this->load->view('basejs'); ?>
 
 
                     <script>
 
                         $(document).ready(function () {
 
-                            $('#calendar').fullCalendar({
-                                header: {
-                                    left: 'prev,next today',
-                                    center: 'title',
-                                    right: 'month,basicWeek,basicDay'
-                                },
-                                defaultDate: '2017-10-12',
+                        $('#calendar').fullCalendar({
+                        header: {
+                        left: 'prev,next today',
+                                center: 'title',
+                                right: 'month,basicWeek,basicDay'
+                        },
+                                //defaultDate: '2017-10-12',
                                 navLinks: true, // can click day/week names to navigate views
                                 editable: true,
                                 eventLimit: true, // allow "more" link when too many events
@@ -135,70 +149,65 @@ if ($eventList != FALSE) {
     foreach ($eventList as $rows) {
         ?>
 
-                                            {
-                                                title: '<?php echo $rows->description; ?>',
+                                        {
+                                        title: '<?php echo $rows->description; ?>',
                                                 start: '<?php echo $rows->eventdate; ?>'
-                                            },
+                                        },
         <?php
     }
 }
 ?>
                                 ]
-                            });
-
                         });
-
+                        });
                     </script>
 
 
                     <script>
                         Highcharts.chart('container', {
-                            chart: {
-                                plotBackgroundColor: null,
+                        chart: {
+                        plotBackgroundColor: null,
                                 plotBorderWidth: null,
                                 plotShadow: false,
                                 type: 'pie'
-                            },
-                            title: {
-                                text: 'Browser market shares January, 2015 to May, 2015'
-                            },
-                            tooltip: {
+                        },
+                                title: {
+                                text: 'User market shares as at today '
+                                },
+                                tooltip: {
                                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                            },
-                            plotOptions: {
+                                },
+                                plotOptions: {
                                 pie: {
-                                    allowPointSelect: true,
-                                    cursor: 'pointer',
-                                    dataLabels: {
+                                allowPointSelect: true,
+                                        cursor: 'pointer',
+                                        dataLabels: {
                                         enabled: true,
-                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                        style: {
-                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                                style: {
+                                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                                }
                                         }
-                                    }
                                 }
-                            },
-                            series: [{
-                                    name: 'Brands',
-                                    colorByPoint: true,
-                                    data: [{
-                                            name: 'Lanka Securities',
-                                            y: 56.33
-                                        }, {
-                                            name: 'Asia Securities',
-                                            y: 24.03,
-                                            sliced: true,
-                                            selected: true
-                                        }, {
-                                            name: 'Equity Stock Brokers',
-                                            y: 10.38
-                                        }, {
-                                            name: 'Sampath Stock Brokers',
-                                            y: 4.77
-                                        }, {
-                                            name: 'NDB Stock Broker',
-                                            y: 0.91
-                                        }]
+                                },
+                                series: [{
+                                name: 'Companies',
+                                        colorByPoint: true,
+                                        data: [
+<?php
+if ($userSecList != FALSE) {
+    foreach ($userSecList as $rows) {
+        ?>
+
+                                                {
+                                                name: '<?php echo $rows->com_name; ?>',
+                                                        y: <?php echo $rows->sumnetamount; ?>
+                                                },
+        <?php
+    }
+}
+?>
+                                        ]
                                 }]
                         });
                     </script>

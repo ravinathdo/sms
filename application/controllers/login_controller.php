@@ -16,6 +16,8 @@ Class Login_Controller extends CI_Controller {
         $this->load->helper('form');
         $this->load->model('Login_Model');
         $this->load->model('CDSAccounts_m'); // get CDS account list for user
+        $this->load->model('securities/Security_Model'); // get chart data for user
+        $this->load->model('Brokers_m'); // get chart data for user
 
 
 
@@ -58,10 +60,10 @@ Class Login_Controller extends CI_Controller {
                 $nowDate = date("Y-m-d h:i:sa");
                 //echo '<br>' . $nowDate;
                 $start = '9:00:00';
-                $end   = '17:00:00';
+                $end = '17:00:00';
                 $time = date("H:i:s", strtotime($nowDate));
-                $this->isWithInTime($start, $end, $time); 
-                
+                $this->isWithInTime($start, $end, $time);
+
 
 
                 $newdata['logintime'] = $nowDate;
@@ -70,17 +72,27 @@ Class Login_Controller extends CI_Controller {
                 if ($this->isWeekend($nowDate)) {
                     $isweekend = TRUE;
                 }
-                
-                if(!$this->isWithInTime($start, $end, $time)){
-                $isclosetime = TRUE;
+
+                if (!$this->isWithInTime($start, $end, $time)) {
+                    $isclosetime = TRUE;
                 }
-                
-                
-                if($isweekend ||  $isclosetime ){
+
+
+                if ($isweekend || $isclosetime) {
                     $newdata['marketclose'] = TRUE;
                 }
-                
+
                 $this->session->set_userdata($newdata);
+
+
+
+                //chart data
+                $userbean = $this->session->userdata('userbean');
+                $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
+
+                //broker balance
+                $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
+                //echo '<tt><pre>' . var_export($data['bokerBalanceList'], TRUE) . '</pre></tt>';
 
 
                 $this->load->view('users_view/home', $data);
@@ -97,25 +109,44 @@ Class Login_Controller extends CI_Controller {
         }
     }
 
+    public function loadhome() {
+        echo 'loadhome working';
+        //get event list 
+        $this->load->model('Login_Model');
+        $this->load->model('CDSAccounts_m'); // get CDS account list for user
+        $this->load->model('securities/Security_Model'); // get chart data for user
+        $this->load->model('Event_Model');
+        $this->load->model('Brokers_m'); // get chart data for user
+
+        $data['eventList'] = $this->Event_Model->getEventList();
+
+        //chart data
+        $userbean = $this->session->userdata('userbean');
+        $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
+        //echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+
+
+        $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
+
+        $this->load->view('users_view/home', $data);
+    }
+
     function isWeekend($date) {
         $weekDay = date('w', strtotime($date));
         return ($weekDay == 0 || $weekDay == 6);
     }
 
-    
-    function isWithInTime($start,$end,$time) {
-        
-                if (($time >= $start )&& ($time <= $end)) {
-                   // echo 'OK';
-                    return TRUE;
-                } else {
-                    //echo 'Not OK';
-                    return FALSE;
-                }
+    function isWithInTime($start, $end, $time) {
 
+        if (($time >= $start ) && ($time <= $end)) {
+            // echo 'OK';
+            return TRUE;
+        } else {
+            //echo 'Not OK';
+            return FALSE;
+        }
     }
-    
-    
+
     public function logout() {
         $this->session->unset_userdata('userbean');
         $this->session->unset_userdata('logged_in');
