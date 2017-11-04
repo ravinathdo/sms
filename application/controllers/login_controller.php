@@ -46,58 +46,75 @@ Class Login_Controller extends CI_Controller {
             $this->session->set_userdata($newdata);
             //echo '<tt><pre>'. var_export($newdata, TRUE).'</pre></tt>';
             //echo '<tt><pre>'. var_export($newdata['userbean']->role, TRUE).'</pre></tt>';
-            if ($newdata['userbean']->role == 'user') {
-
-
+            //=======================
+            //
                 //get event list 
-                $this->load->model('Event_Model');
-                $data['eventList'] = $this->Event_Model->getEventList();
+            $this->load->model('Event_Model');
+            $data['eventList'] = $this->Event_Model->getEventList();
 
 
-                //market open or close
-                //saturday || sunday || 9-to-4
-                date_default_timezone_set("Asia/Colombo");
-                $nowDate = date("Y-m-d h:i:sa");
-                //echo '<br>' . $nowDate;
-                $start = '9:00:00';
-                $end = '17:00:00';
-                $time = date("H:i:s", strtotime($nowDate));
-                $this->isWithInTime($start, $end, $time);
-
-
-
-                $newdata['logintime'] = $nowDate;
-                $isweekend = FALSE;
-                $isclosetime = FALSE;
-                if ($this->isWeekend($nowDate)) {
-                    $isweekend = TRUE;
-                }
-
-                if (!$this->isWithInTime($start, $end, $time)) {
-                    $isclosetime = TRUE;
-                }
-
-
-                if ($isweekend || $isclosetime) {
-                    $newdata['marketclose'] = TRUE;
-                }
-
-                $this->session->set_userdata($newdata);
+            //market open or close
+            //saturday || sunday || 9-to-4
+            date_default_timezone_set("Asia/Colombo");
+            $nowDate = date("Y-m-d h:i:sa");
+            //echo '<br>' . $nowDate;
+            $start = '9:00:00';
+            $end = '17:00:00';
+            $time = date("H:i:s", strtotime($nowDate));
+            $this->isWithInTime($start, $end, $time);
 
 
 
-                //chart data
-                $userbean = $this->session->userdata('userbean');
+            $newdata['logintime'] = $nowDate;
+            $isweekend = FALSE;
+            $isclosetime = FALSE;
+            if ($this->isWeekend($nowDate)) {
+                $isweekend = TRUE;
+            }
+
+            if (!$this->isWithInTime($start, $end, $time)) {
+                $isclosetime = TRUE;
+            }
+
+
+            if ($isweekend || $isclosetime) {
+                $newdata['marketclose'] = TRUE;
+            }
+
+            $this->session->set_userdata($newdata);
+            //chart data
+            $userbean = $this->session->userdata('userbean');
+
+            //login trace
+            $ip = $this->input->ip_address();
+            //echo $ip;
+            $trace = array('username' => $userbean->email, 'IP' => $ip);
+            $this->Login_Model->setLogTrace($trace);
+            //=======================
+
+
+
+
+            if ($newdata['userbean']->role == 'user') {
                 $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
-
                 //broker balance
                 $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
                 //echo '<tt><pre>' . var_export($data['bokerBalanceList'], TRUE) . '</pre></tt>';
+                $this->load->view('users_view/home', $data);
+            } if ($newdata['userbean']->role == 'admin') {
 
+                //get login list 
+                $data['loginList'] = $this->Login_Model->getLogTrace(20);
 
                 $this->load->view('users_view/home', $data);
-            } else {
-                $this->load->view('users_view/loginsucess');
+            }if ($newdata['userbean']->role == 'business_analyst') {
+
+                //get reminder list 
+                $this->load->model('Reminder_Model');
+                $userbean = $this->session->userdata('userbean');
+                $data['remindList'] = $this->Reminder_Model->getReminderList("ACTIVE", $userbean->userid);
+               // echo '<tt><pre>' . var_export($data['remindList'], TRUE) . '</pre></tt>';
+                $this->load->view('users_view/home', $data);
             }
         } else {
             $data = array(
@@ -110,7 +127,7 @@ Class Login_Controller extends CI_Controller {
     }
 
     public function loadhome() {
-        echo 'loadhome working';
+        //echo 'loadhome working';
         //get event list 
         $this->load->model('Login_Model');
         $this->load->model('CDSAccounts_m'); // get CDS account list for user
@@ -127,6 +144,25 @@ Class Login_Controller extends CI_Controller {
 
 
         $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
+
+
+
+        if ($userbean->role == 'business_analyst') {
+
+            //get reminder list 
+            $this->load->model('Reminder_Model');
+            $userbean = $this->session->userdata('userbean');
+            $data['remindList'] = $this->Reminder_Model->getReminderList("ACTIVE", $userbean->userid);
+            //echo '<tt><pre>' . var_export($data['remindList'], TRUE) . '</pre></tt>';
+            $this->load->view('users_view/home', $data);
+        }
+
+
+        if ($userbean->role == 'admin') {
+
+            //get login list 
+            $data['loginList'] = $this->Login_Model->getLogTrace(20);
+        }
 
         $this->load->view('users_view/home', $data);
     }

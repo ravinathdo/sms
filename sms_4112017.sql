@@ -110,7 +110,7 @@ CREATE TABLE `broker_fund` (
 
 /*Data for the table `broker_fund` */
 
-insert  into `broker_fund`(`brokercomid`,`balance`,`userid`,`lastupdated`) values (2,'1493.65',10,'2017-10-08 09:33');
+insert  into `broker_fund`(`brokercomid`,`balance`,`userid`,`lastupdated`) values (2,'1493.65',10,'2017-10-08 09:33'),(3,'1090.08',10,'2017-11-03 02:04');
 
 /*Table structure for table `broker_fund_history` */
 
@@ -126,11 +126,11 @@ CREATE TABLE `broker_fund_history` (
   `balance` decimal(10,2) DEFAULT NULL,
   `txntime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `broker_fund_history` */
 
-insert  into `broker_fund_history`(`id`,`brokercomid`,`userid`,`txntype`,`deposit`,`withdraw`,`balance`,`txntime`) values (1,2,10,'DEPOSIT','2000.00',NULL,'2000.00','2017-10-08 19:24:00'),(2,2,10,'WITHDRAW',NULL,'1000.00','1000.00','2017-10-08 19:24:00'),(3,2,10,'DEPOSIT','500.00',NULL,'1500.00','2017-10-08 19:24:00'),(4,2,10,'WITHDRAW',NULL,'1700.00','-200.00','2017-10-08 19:25:00'),(5,2,10,'DEPOSIT','500.00',NULL,'300.00','2017-10-08 19:25:00');
+insert  into `broker_fund_history`(`id`,`brokercomid`,`userid`,`txntype`,`deposit`,`withdraw`,`balance`,`txntime`) values (1,2,10,'DEPOSIT','2000.00',NULL,'2000.00','2017-10-08 19:24:00'),(2,2,10,'WITHDRAW',NULL,'1000.00','1000.00','2017-10-08 19:24:00'),(3,2,10,'DEPOSIT','500.00',NULL,'1500.00','2017-10-08 19:24:00'),(4,2,10,'WITHDRAW',NULL,'1700.00','-200.00','2017-10-08 19:25:00'),(5,2,10,'DEPOSIT','500.00',NULL,'300.00','2017-10-08 19:25:00'),(6,3,10,'DEPOSIT','1500.00',NULL,'1500.00','2017-11-03 11:33:00'),(7,3,10,'DEPOSIT','122.00',NULL,'122.00','2017-11-03 11:42:00'),(8,3,10,'DEPOSIT','100.00',NULL,'100.00','2017-11-03 11:45:00'),(9,3,10,'DEPOSIT','100.00',NULL,'100.00','2017-11-03 11:45:00'),(10,3,10,'DEPOSIT','120.00',NULL,'120.00','2017-11-03 11:50:00'),(11,3,10,'DEPOSIT','120.00',NULL,'120.00','2017-11-03 11:52:00'),(12,3,10,'DEPOSIT','1500.00',NULL,'1500.00','2017-11-03 12:59:00'),(13,3,10,'WITHDRAW',NULL,'150.00','1350.00','2017-11-03 01:13:00'),(14,3,10,'WITHDRAW',NULL,'50.00','1300.00','2017-11-03 01:13:00'),(15,3,10,'DEPOSIT','100.00',NULL,'1400.00','2017-11-03 01:13:00'),(16,3,10,'WITHDRAW',NULL,'50.00','1350.00','2017-11-03 01:17:00');
 
 /*Table structure for table `brokerbankacc` */
 
@@ -513,6 +513,22 @@ CREATE TABLE `listedboard` (
 
 insert  into `listedboard`(`boardid`,`boardname`) values (1,'Main Board'),(2,'Diri Savi Board'),(3,'Default Board'),(4,'Deling Suspended'),(5,'Trading Suspended'),(6,'Trading Halt');
 
+/*Table structure for table `log_trace` */
+
+DROP TABLE IF EXISTS `log_trace`;
+
+CREATE TABLE `log_trace` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `IP` varchar(100) DEFAULT NULL,
+  `logtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+/*Data for the table `log_trace` */
+
+insert  into `log_trace`(`id`,`username`,`IP`,`logtime`) values (1,NULL,'::1','2017-11-04 19:09:56'),(2,NULL,'::1','2017-11-04 19:29:24'),(3,'admin','::1','2017-11-04 19:30:39'),(4,'admin','::1','2017-11-04 19:40:54'),(5,'admin','::1','2017-11-04 19:41:35'),(6,'admin','::1','2017-11-04 19:44:09'),(7,'admin','::1','2017-11-04 19:44:25'),(8,'admin','::1','2017-11-04 19:44:43'),(9,'ba','::1','2017-11-04 19:49:09'),(10,'ba','::1','2017-11-04 19:58:09'),(11,'ba','::1','2017-11-04 20:22:51'),(12,'ba','::1','2017-11-04 20:23:58'),(13,'ba','::1','2017-11-04 20:30:31'),(14,'ba','::1','2017-11-04 20:58:12'),(15,'ba','::1','2017-11-04 21:00:22'),(16,'ba','::1','2017-11-04 21:02:39'),(17,'ba','::1','2017-11-04 21:03:01');
+
 /*Table structure for table `modules` */
 
 DROP TABLE IF EXISTS `modules`;
@@ -573,7 +589,7 @@ CREATE TABLE `param` (
 
 /*Data for the table `param` */
 
-insert  into `param`(`lable`,`value`) values ('MARGIN_VALUE','1500');
+insert  into `param`(`lable`,`value`) values ('MARGIN_VALUE','1506');
 
 /*Table structure for table `preferenceshare` */
 
@@ -603,6 +619,25 @@ CREATE TABLE `prefix` (
 /*Data for the table `prefix` */
 
 insert  into `prefix`(`preid`,`prefix`) values (5,'Dr.'),(6,'Prof.'),(7,'Atty.'),(8,'Maj.'),(9,'Capt.'),(11,'hh......'),(16,'g1');
+
+/*Table structure for table `reminder` */
+
+DROP TABLE IF EXISTS `reminder`;
+
+CREATE TABLE `reminder` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `reminder` varchar(50) DEFAULT NULL,
+  `rdate` varchar(25) DEFAULT NULL,
+  `rtime` varchar(10) DEFAULT NULL,
+  `datecreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(10) DEFAULT 'ACTIVE',
+  `userid` int(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `reminder` */
+
+insert  into `reminder`(`id`,`reminder`,`rdate`,`rtime`,`datecreate`,`status`,`userid`) values (1,'sdsadd','2017-11-04','14:32','2017-11-04 20:51:00','ACTIVE',NULL),(2,'sdsaddddd','2017-11-06','14:32','2017-11-04 20:51:51','ACTIVE',NULL),(3,'This is test','2017-11-04','08:07','2017-11-04 21:04:00','ACTIVE',NULL),(4,'sample reminder','2017-11-04','12:02','2017-11-04 21:23:04','ACTIVE',3);
 
 /*Table structure for table `rightshare` */
 
@@ -717,11 +752,11 @@ CREATE TABLE `summary_bought_sold_funds` (
   `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `userid` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `summary_bought_sold_funds` */
 
-insert  into `summary_bought_sold_funds`(`id`,`effectdate`,`comid`,`description`,`qty`,`trade_price`,`gross_value`,`tax`,`tax_value`,`deposit_withdraw`,`buy`,`sell`,`balance`,`cost_per_share`,`profit_loss_per_share`,`profit_loss_amount`,`profit_loss`,`holding_period`,`datecreated`,`userid`) values (1,'2017-10-07',1,'BUY',23,'10.00','230.00','1.12','1.92',NULL,'231.92',NULL,'1197.38','10.08',NULL,NULL,NULL,NULL,'2017-10-08 11:53:21',10),(2,'2017-10-08',1,'SELL',5,'17.00','85.00','1.12','-0.95',NULL,NULL,'84.05','1281.43','16.81','-0.3804','-1.902','-2.2129144',NULL,'2017-10-08 12:53:02',10),(3,'2017-10-08',1,'SELL',22,'10.00','220.00','1.12','-1.86',NULL,NULL,'218.14','1415.53','9.92','-0.1677964','-3.6915217','-1.6640730',NULL,'2017-10-08 13:00:07',10),(4,'2017-10-08',1,'SELL',1,'10.00','10.00','1.12','-0.11',NULL,NULL,'9.89','1425.42','9.89','-0.1954782','-0.1954782','-1.9385995',NULL,'2017-10-08 13:02:51',10),(5,'',1,'SELL',23,'3.00','69.00','1.12','-0.77',NULL,NULL,'68.23','1493.65','2.97','-0.1075130','-2.4728000','-3.4975954',NULL,'2017-10-08 13:03:25',10);
+insert  into `summary_bought_sold_funds`(`id`,`effectdate`,`comid`,`description`,`qty`,`trade_price`,`gross_value`,`tax`,`tax_value`,`deposit_withdraw`,`buy`,`sell`,`balance`,`cost_per_share`,`profit_loss_per_share`,`profit_loss_amount`,`profit_loss`,`holding_period`,`datecreated`,`userid`) values (1,'2017-10-07',1,'BUY',23,'10.00','230.00','1.12','1.92',NULL,'231.92',NULL,'1197.38','10.08',NULL,NULL,NULL,NULL,'2017-10-08 11:53:21',10),(2,'2017-10-08',1,'SELL',5,'17.00','85.00','1.12','-0.95',NULL,NULL,'84.05','1281.43','16.81','-0.3804','-1.902','-2.2129144',NULL,'2017-10-08 12:53:02',10),(3,'2017-10-08',1,'SELL',22,'10.00','220.00','1.12','-1.86',NULL,NULL,'218.14','1415.53','9.92','-0.1677964','-3.6915217','-1.6640730',NULL,'2017-10-08 13:00:07',10),(4,'2017-10-08',1,'SELL',1,'10.00','10.00','1.12','-0.11',NULL,NULL,'9.89','1425.42','9.89','-0.1954782','-0.1954782','-1.9385995',NULL,'2017-10-08 13:02:51',10),(5,'',1,'SELL',23,'3.00','69.00','1.12','-0.77',NULL,NULL,'68.23','1493.65','2.97','-0.1075130','-2.4728000','-3.4975954',NULL,'2017-10-08 13:03:25',10),(6,'2017-11-03',1,'BUY',5,'19.00','95.00','1.12','4.97',NULL,'99.97',NULL,'1250.03','19.99',NULL,NULL,NULL,NULL,'2017-11-03 18:10:21',10),(7,'2017-11-03',1,'BUY',12,'13.00','156.00','1.12','3.95',NULL,'159.95',NULL,'1090.08','13.33',NULL,NULL,NULL,NULL,'2017-11-03 18:34:21',10);
 
 /*Table structure for table `transaction` */
 
@@ -821,11 +856,11 @@ CREATE TABLE `user_securities` (
   `status` varchar(10) DEFAULT 'BOUGHT' COMMENT 'BOUGHT|SOLD',
   `lastupdated` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_securities` */
 
-insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`qty_init`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`,`lastupdated`) values (8,'',7,2,1,0,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 12:34:18','SOLD','2017-10-01'),(10,'2017-09-15',7,1,1,0,5,1500,'7500.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'7546.45',10,'2017-10-02 00:21:26','SOLD','2017-10-01'),(11,'2017-01-01',7,1,1,0,5,18,'90.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'91.01',10,'2017-10-05 21:41:55','SOLD','2017-10-06'),(12,'2017-05-23',7,1,1,0,5,17,'85.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'85.95',10,'2017-10-05 22:04:53','SOLD','2017-10-08'),(13,'2017-10-07',7,1,1,10,10,200,'2000.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'2012.76',10,'2017-10-07 20:42:36','BOUGHT',NULL),(14,'2017-10-07',7,1,1,500,500,18,'9000.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'9055.63',10,'2017-10-08 11:32:34','BOUGHT',NULL),(15,'2017-10-07',7,1,1,2,2,24,'48.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'48.54',10,'2017-10-08 11:43:05','BOUGHT',NULL),(16,'2017-10-07',7,1,1,0,23,3,'69.00',0.74,0.094,0.034,0.082,0.4,0.3,0.0625,0.025,0.055,0.4,'70.70',10,'2017-10-08 11:48:26','SOLD','2017-10-08'),(17,'2017-10-07',7,1,1,0,23,10,'230.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'231.92',10,'2017-10-08 11:53:21','SOLD','2017-10-08');
+insert  into `user_securities`(`id`,`effectdate`,`cdsaccid`,`comid`,`subtypeid`,`qty`,`qty_init`,`amount`,`total`,`UPTO_1`,`UPTO_2`,`UPTO_3`,`UPTO_4`,`UPTO_5`,`OVER_1`,`OVER_2`,`OVER_3`,`OVER_4`,`OVER_5`,`netamount`,`userid`,`datecreated`,`status`,`lastupdated`) values (8,'',7,2,1,0,5,12,'60.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'60.67',10,'2017-09-30 12:34:18','SOLD','2017-10-01'),(10,'2017-09-15',7,1,1,0,5,1500,'7500.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'7546.45',10,'2017-10-02 00:21:26','SOLD','2017-10-01'),(11,'2017-01-01',7,1,1,0,5,18,'90.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'91.01',10,'2017-10-05 21:41:55','SOLD','2017-10-06'),(12,'2017-05-23',7,1,1,0,5,17,'85.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'85.95',10,'2017-10-05 22:04:53','SOLD','2017-10-08'),(13,'2017-10-07',7,1,1,10,10,200,'2000.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'2012.76',10,'2017-10-07 20:42:36','BOUGHT',NULL),(14,'2017-10-07',7,1,1,500,500,18,'9000.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'9055.63',10,'2017-10-08 11:32:34','BOUGHT',NULL),(15,'2017-10-07',7,2,1,2,2,24,'48.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'48.54',10,'2017-10-08 11:43:05','BOUGHT',NULL),(16,'2017-10-07',7,1,1,0,23,3,'69.00',0.74,0.094,0.034,0.082,0.4,0.3,0.0625,0.025,0.055,0.4,'70.70',10,'2017-10-08 11:48:26','SOLD','2017-10-08'),(17,'2017-10-07',7,1,1,0,23,10,'230.00',0.64,0.084,0.024,0.072,0.3,0.2,0.0525,0.015,0.045,0.3,'231.92',10,'2017-10-08 11:53:21','SOLD','2017-10-08'),(18,'2017-11-03',8,1,1,5,5,19,'95.00',0.74,0.094,0.034,0.082,0.4,0.3,0.0625,0.025,0.055,0.4,'99.97',10,'2017-11-03 18:10:21','BOUGHT',NULL),(19,'2017-11-03',8,1,5,12,12,13,'156.00',0.74,0.094,0.034,0.082,0.4,0.3,0.0625,0.025,0.055,0.4,'159.95',10,'2017-11-03 18:34:21','BOUGHT',NULL);
 
 /*Table structure for table `user_securities_sold` */
 
