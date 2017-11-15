@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user"></i> User<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">                
+                    <ul class="nav nav-second-level">
                         <li>
                             <a href="<?= base_url('Users'); ?>">List of Users</a>
                             <a href="<?= base_url('Users'); ?>">New User Creation</a>
@@ -31,8 +31,8 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-user"></i>Calender Event<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">                
+                    <a href="#"><i class="fa fa-user"></i> Calender Event<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
                         <li>
                             <a href="<?= base_url('Event_Controller/loadEvent'); ?>">Manage Event</a>
                         </li>
@@ -73,7 +73,7 @@
                             <a href="<?= base_url('maineditor/addBankBrGrade'); ?>">New Bank Branch Grade</a>
                         </li>
                         <li>
-                            <a href="<?= base_url('maineditor/loadCalValueEditor'); ?>">Update Cal values</a>
+                            <a href="<?= base_url('maineditor/loadCalValueEditor'); ?>">Update Tax Values</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

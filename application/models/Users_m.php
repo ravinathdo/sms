@@ -132,7 +132,7 @@ class Users_m extends CI_Model {
     {
 
         $this->db->order_by($this->_primary_key, 'ASC');
-        $query = $this->db->get('user')->result();      
+        $query = $this->db->get('user')->result();
         if($query){
             return $query;
         }else{

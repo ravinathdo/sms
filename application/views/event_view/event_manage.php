@@ -48,7 +48,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">Manage Calender Event</h1>
+                                    <h1 class="page-header">Manage Calendar Event</h1>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
@@ -67,7 +67,7 @@
 
                                     <?php echo form_open('Event_Controller/add', 'class="form-horizontal"'); ?>
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Date</label>
                                         <div class="col-sm-10">
                                             <input type="text"  required="" class="form-control datepick" name="eventdate" id="effectdate" ng-model="calHisDate" placeholder="YYYY-MM-DD"/>
                                         </div>
@@ -81,7 +81,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">Market Close</label>
                                         <div class="col-sm-10">
-                                            
+
                                             <input type="checkbox" name="marketclose"  id="inputPassword3">
                                         </div>
                                     </div>

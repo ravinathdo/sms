@@ -71,9 +71,14 @@
                                     <input name="mobile" type="text" class="form-control" value="<?=set_value('mobile', $userreq->mobile)?>" >
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input name="mobile" type="password" class="form-control" value="<?=set_value('mobile', $userreq->mobile)?>" >
+                                </div>
+
 
                                 <p>
-                                <button type="submit" class="btn btn-primary">Send Request</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                                 </p>
 
 

@@ -37,7 +37,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">Deposit</h1>
+                                    <h1 class="page-header">Funds (Deposit/Withdraw)</h1>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
 
-<?php 
+<?php
 if(isset($msg)){
     echo $msg;
 }
@@ -54,8 +54,8 @@ if(isset($msg)){
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-4 control-label">Broker Company</label>
                                             <div class="col-sm-8">
-                                                
-                                                
+
+
                                                 <select name="brokercomid"  class="form-control" >
                                                 <option  value="" >--select--</option>
                                                 <?php foreach ($CDSAccList as $row) { ?>
@@ -142,7 +142,7 @@ if(isset($msg)){
                                             }
                                             ?>
                                         </tbody>
-                                    </table> 
+                                    </table>
 
 
                                 </div>
@@ -157,13 +157,13 @@ if(isset($msg)){
                     <?php $this->load->view('basejs'); ?>
                     </body>
 
-                    
-                    
+
+
                     <script>
                     $('.datepicker').datepicker({
     format: 'mm/dd/yyyy',
     startDate: '-3d'
 });
                     </script>
-                    
+
                     </html>

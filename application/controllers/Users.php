@@ -21,9 +21,9 @@ class Users extends CI_Controller {
         $data['profile'] = $profileInfo;
         $this->load->model('CDSAccounts_m');
         $data['cdsAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
-        
+
         //echo '<tt><pre>'. var_export($data['cdsAccList'], TRUE).'</pre></tt>';
-        
+
         $this->load->view('users_view/profile', $data);
     }
 
