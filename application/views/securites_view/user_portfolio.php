@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -72,7 +72,7 @@
                                                         <td><?php
                                                        $sumnetamount = $rows->sumnetamount;
                                                        $qty =  $rows->qty;
-                                                      echo  $sumnetamount / $qty;
+                                                      echo  number_format ($sumnetamount / $qty, 2);
                                                        ?></td>
                                                         <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/' . $rows->comid); ?>">View Brokers</a></td>
                                                     </tr>
@@ -83,13 +83,15 @@
                                             ?>
                                         </tbody>
                                     </table>
-
-
-
                                 </div>
-                                <div class="col-lg-6">
-                                    <table class="table">
 
+                                <!-- secuties list of Stockbroker -->
+
+
+
+                                <div class="col-lg-6">
+                                  <?= $rows->com_name = "JOHN KEELS HOLDINGS PLC"; ?>
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>Broker</th>

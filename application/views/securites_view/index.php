@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -48,7 +48,7 @@
                                 <?php echo form_open('Securities_Controller/add') ?>
 
                                 <div class="col-lg-6">
- 
+
 
                                     <?php echo validation_errors(); ?>
 
@@ -60,10 +60,12 @@
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
-                                    </div>  
+                                    </div>
+
+                                    <br/>
 
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">CDS Acc</label>
+                                        <label for="exampleInputEmail1">CDS Account No</label>
                                         <select name="cdsaccid"  class="form-control" ng-model="cdsacc" >
                                             <option  value="" >--select--</option>
                                             <?php foreach ($CDSAccList as $row) { ?>
@@ -74,7 +76,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Company</label>
+                                        <label for="exampleInputPassword1">Company Name</label>
                                         <select name="comid"  class="form-control" ng-model="comid" ng-change="getCompSecSubtype()">
                                             <option  value="" >--select--</option>
                                             <?php foreach ($companyList as $row) { ?>
@@ -85,7 +87,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Sub Type</label>
+                                        <label for="exampleInputPassword1">Type of Securitis</label>
                                         <select name="subtypeid"  class="form-control">
                                             <option>--select--</option>
                                             <option ng-repeat="x in compsubtype" value="{{x.subtypeid}}">{{x.subtype}} -  {{x.subtypename}} </option>
@@ -112,7 +114,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">qty</label>
+                                        <label for="exampleInputPassword1">Quantity</label>
                                         <input type="text" name="qty" ng-model="qty" class="form-control"  value="<?= set_value('qty', $security->qty); ?>" ng-blur="getMilionValues()"  ng-keyup="getMilionValues()" >
                                     </div>
                                     <div class="form-group">
@@ -135,14 +137,16 @@
                                             </div>
                                         </div>
                                     </div>
-
+<br/>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Subtype</th>
-                                                <th> &lt;=<?= $MARGIN_VALUE; ?></th>
+                                                <th>Tax & Charges</th>
+                                              <!--  <th> &lt;=<?= $MARGIN_VALUE; ?></th> -->
+                                                <th> Upto <?= $MARGIN_VALUE; ?></th>
                                                 <th></th>
-                                                <th>&gt;=<?= $MARGIN_VALUE; ?></th>
+                                                <!-- <th>&gt;<?= $MARGIN_VALUE; ?></th> -->
+                                                <th> Over <?= $MARGIN_VALUE; ?></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -163,7 +167,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    
+
                                     <input type="hidden" value="{{totalamount + subMinMilion + subMaxMilion}}" name="netamount"/>
 
                                     <h2>Net Amount : {{totalamount + subMinMilion + subMaxMilion| currency :"Rs ": 2}}</h2>
@@ -198,7 +202,7 @@
                         var calDataArr = []; // cal data holding array with calculated values
 
                         $scope.getCompSecSubtype = function () {
-                          $scope.msg='';  
+                          $scope.msg='';
                         console.log('kk');
                         console.log($scope.comid);
                         //clear data
@@ -229,7 +233,7 @@
                         console.log('res');
                         console.log(response.data);
                         $scope.calData = response.data;
-                        //data filling into object 
+                        //data filling into object
                         angular.forEach($scope.calData, function (item) {
                         calDataArr.push({
                         "calid": item.calid,
@@ -256,7 +260,7 @@
                         console.log('res');
                         console.log(response.data);
                         $scope.calData = response.data;
-                        //data filling into object 
+                        //data filling into object
                         angular.forEach($scope.calData, function (item) {
                         calDataArr.push({
                         "calid": item.calid,

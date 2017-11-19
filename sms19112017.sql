@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2017 at 06:13 PM
+-- Generation Time: Nov 19, 2017 at 05:42 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -1451,8 +1451,10 @@ CREATE TABLE `calender_event` (
 --
 
 INSERT INTO `calender_event` (`eventid`, `eventdate`, `description`, `marketclose`) VALUES
-(14, '2017-10-20', 'Market close for sale', 'YES'),
-(15, '2017-11-11', 'Saturday', 'YES');
+(1, '2017-10-20', 'Market close for sale', 'YES'),
+(2, '2017-11-11', 'Bank Holiday', 'YES'),
+(3, '2017-11-10', 'Poya Day', 'YES'),
+(4, '2017-10-03', 'Poya Daya', 'YES');
 
 -- --------------------------------------------------------
 
@@ -1556,7 +1558,7 @@ INSERT INTO `company` (`comid`, `symbol`, `com_name`, `address1`, `address2`, `a
 (2, 'SAMP', 'SAMPATH BANK PLC', 'Nawam Nawatha', 'Colombo2', 'o', 'o', '011556486', '0', 'info@sampath.lk', 'www.sampath.lk', 1, '2', '0000-00-00', 1, '0', 'o', 'o', 0),
 (3, 'NDB', 'NATIONAL DEVELOPMENT BANK PLC', 'GDGdd', 'DDFG', 'DFGDFG', 'DFGG', '464564564', '56657567', 'gdfgdf', 'gdfgfg', 1, '1', '0000-00-00', 1, 'fdgdf', 'fdgdfg', 'ddfgdfgd', 0),
 (4, 'GLAS', 'PIRAMAL GLASS', 'No 113/5', 'Borupana', 'Rathmalana', 'DFD', '343232', '34', 'DFD', 'EDF', 2, '3', '0000-00-00', 2, 'FER', 'DF', 'Silva', 0),
-(5, 'BIL', 'Brouwns Invetment', 'xxxxxxxxxx', 'xxxxxxxx', 'xxxxxxxx', 'xxxxxxxx', '212121212', '423424', 'mpsarathw@gmail.com', 'qwqwqw', 2, '2', '0000-00-00', 2, 'wwwwwwww', 'sdsdsd', 'fsdfdsfdsf', 0);
+(5, 'BIL', 'BROWNS INVESTMENT', 'xxxxxxxxxx', 'xxxxxxxx', 'xxxxxxxx', 'xxxxxxxx', '212121212', '423424', 'mpsarathw@gmail.com', 'qwqwqw', 2, '2', '0000-00-00', 2, 'wwwwwwww', 'sdsdsd', 'fsdfdsfdsf', 0);
 
 -- --------------------------------------------------------
 
@@ -1958,7 +1960,32 @@ INSERT INTO `log_trace` (`id`, `username`, `IP`, `logtime`) VALUES
 (79, 'ttt', '::1', '2017-11-15 15:45:50'),
 (80, 'adm@gmail.com', '::1', '2017-11-15 17:04:13'),
 (81, 'ttt', '::1', '2017-11-15 17:06:17'),
-(82, 'ba@sms.lk', '::1', '2017-11-15 17:06:58');
+(82, 'ba@sms.lk', '::1', '2017-11-15 17:06:58'),
+(83, 'ttt', '::1', '2017-11-16 13:36:21'),
+(84, 'adm@gmail.com', '::1', '2017-11-16 13:52:37'),
+(85, 'ttt', '::1', '2017-11-16 14:14:09'),
+(86, 'ttt', '::1', '2017-11-17 14:04:28'),
+(87, 'ttt', '::1', '2017-11-18 17:21:28'),
+(88, 'adm@gmail.com', '::1', '2017-11-18 17:57:16'),
+(89, 'adm@gmail.com', '::1', '2017-11-19 02:13:50'),
+(90, 'ba', '::1', '2017-11-19 02:23:37'),
+(91, 'ttt', '::1', '2017-11-19 02:38:08'),
+(92, 'adm@gmail.com', '::1', '2017-11-19 03:02:41'),
+(93, 'ttt', '::1', '2017-11-19 03:03:10'),
+(94, 'adm@gmail.com', '::1', '2017-11-19 04:12:21'),
+(95, 'ba', '::1', '2017-11-19 04:12:28'),
+(96, 'ttt', '::1', '2017-11-19 04:13:32'),
+(97, 'adm@gmail.com', '::1', '2017-11-19 05:07:39'),
+(98, 'ttt', '::1', '2017-11-19 05:10:13'),
+(99, 'adm@gmail.com', '::1', '2017-11-19 06:22:49'),
+(100, 'ttt', '::1', '2017-11-19 06:25:50'),
+(101, 'ba@sms.lk', '::1', '2017-11-19 07:08:01'),
+(102, 'adm@gmail.com', '::1', '2017-11-19 07:08:13'),
+(103, 'ba@sms.lk', '::1', '2017-11-19 07:15:32'),
+(104, 'adm@gmail.com', '::1', '2017-11-19 08:06:44'),
+(105, 'ttt', '::1', '2017-11-19 08:07:18'),
+(106, 'adm@gmail.com', '::1', '2017-11-19 08:07:34'),
+(107, 'ba@sms.lk', '::1', '2017-11-19 08:07:49');
 
 -- --------------------------------------------------------
 
@@ -2035,7 +2062,7 @@ CREATE TABLE `param` (
 --
 
 INSERT INTO `param` (`lable`, `value`) VALUES
-('MARGIN_VALUE', '1506');
+('MARGIN_VALUE', '10000000');
 
 -- --------------------------------------------------------
 
@@ -2103,7 +2130,7 @@ INSERT INTO `reminder` (`id`, `reminder`, `rdate`, `rtime`, `datecreate`, `statu
 (5, 'pay for BIL shares', '2017-11-06', '11.00', '2017-11-05 04:52:23', 'ACTIVE', 3),
 (6, 'test', '2017-11-05', '19:55', '2017-11-05 14:23:53', 'ACTIVE', 3),
 (7, 'Buy', '2017-11-11', '11:13', '2017-11-11 05:42:27', 'ACTIVE', 3),
-(8, '', '', '', '2017-11-12 02:05:21', 'ACTIVE', 6),
+(8, 'Payment.', '2017-11-13', '10:30', '2017-11-12 02:05:21', 'ACTIVE', 6),
 (9, 'Add new director to JKH', '2017-11-13', '10:00', '2017-11-12 02:05:56', 'ACTIVE', 6),
 (10, 'Add new company', '2017-11-21', '08:30', '2017-11-12 02:06:35', 'ACTIVE', 6),
 (11, 'Dividend details BIL', '2017-11-13', '08:00', '2017-11-12 02:07:31', 'ACTIVE', 6);
@@ -2358,7 +2385,7 @@ INSERT INTO `user` (`userid`, `email`, `fname`, `mname`, `lname`, `mobile`, `pas
 (3, 'ba', 'Samanatha', 'Suresh', 'Gunasekara', '0774448962', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '0000-00-00 00:00:00', 1, '2017-02-15', 'business_analyst'),
 (4, 'data@sms.lk', 'Kalum', 'Lakmal', 'Perera', '0787877878', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257', '2017-02-20 08:00:00', 1, '2017-02-27', 'data_entry_operator'),
 (5, 'w', 'wwwwwwwww', 'wwwwwwwwwww', 'wwww', '1111111', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257', '2017-03-02 08:00:00', 0, '2017-03-04', 'user'),
-(6, 'ba@sms.lk', 'sdasd', 'asd', 'weqwe', '213123', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-03-02 08:00:00', 1, '2017-11-12', 'business_analyst'),
+(6, 'ba@sms.lk', 'Prasad', 'Saman', 'Kumara', '213123', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-03-02 08:00:00', 1, '2017-11-12', 'business_analyst'),
 (7, 'sagara@gmail.com', 'Sagara', 'Praneeth', 'Jayasundara', '077', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-03-15 07:00:00', 1, '2017-03-16', 'user'),
 (8, 'rr', 'f', 'm', 'l', 'm', '516b9783fca517eecbd1d064da2d165310b19759', '2017-08-31 18:40:23', 0, NULL, NULL),
 (9, 'adm@gmail.com', 'Administrator', 'Admin', 'Nimda', '0715833470', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-08-31 18:51:46', 1, NULL, 'admin'),
@@ -2956,7 +2983,7 @@ ALTER TABLE `cal`
 -- AUTO_INCREMENT for table `calender_event`
 --
 ALTER TABLE `calender_event`
-  MODIFY `eventid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `eventid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `cal_history`
 --
@@ -3041,7 +3068,7 @@ ALTER TABLE `listedboard`
 -- AUTO_INCREMENT for table `log_trace`
 --
 ALTER TABLE `log_trace`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
 -- AUTO_INCREMENT for table `modules`
 --

@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
 
@@ -72,9 +72,9 @@
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-primary"  ng-click="loadCalHistory()" >GET</button>
-                                    </div>  
+                                    </div>
 
-                                   
+
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Company Name</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $security->com_name ?>">
@@ -85,7 +85,7 @@
                                                                 <label for="exampleInputPassword1">Company</label>
                                                                 Company
                                                             </div>
-                        
+
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1">Sub Type</label>
                                                                 Sub Type
@@ -102,7 +102,7 @@
                                         <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= $security->amount ?>" ng-blur="getMilionValues()" ng-keyup="getMilionValues()" >
                                         <input type="hidden" name="cost_per_share" value="<?= $security->cost_per_share?>" />
                                         <input type="hidden" name="cdsaccid" value="<?= $security->cdsaccid?>" />
-                                               
+
                                     </div>
                                 </div>
 
@@ -214,7 +214,7 @@
                         console.log('res');
                         console.log(response.data);
                         $scope.calData = response.data;
-                        //data filling into object 
+                        //data filling into object
                         angular.forEach($scope.calData, function (item) {
                         calDataArr.push({
                         "calid": item.calid,
@@ -243,7 +243,7 @@
                         console.log('res');
                         console.log(response.data);
                         $scope.calData = response.data;
-                        //data filling into object 
+                        //data filling into object
                         angular.forEach($scope.calData, function (item) {
                         calDataArr.push({
                         "calid": item.calid,

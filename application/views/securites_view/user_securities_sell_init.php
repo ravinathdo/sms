@@ -42,9 +42,9 @@
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
-                            
-                            
-                            
+
+
+
                              <div class="row">
                                 <form class="form-inline" method="post" action="<?php echo site_url('Securities_Controller/listUserCompanySecurity') ?>">
                                     <div class="col-lg-6">
@@ -89,10 +89,10 @@
                                     </div>
                                 </form>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-lg-12">
-                                    
+
 
 
 
@@ -200,7 +200,7 @@
                                                                 <a href="#" class="btn btn-warning btn-xs"> SOLD </a>
 
                                                             <?php } ?></td>
-                                                    </tr> 
+                                                    </tr>
                                                     <?php
                                                 }
                                             }

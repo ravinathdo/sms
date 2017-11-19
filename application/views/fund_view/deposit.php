@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -121,7 +121,7 @@ if(isset($msg)){
                                                 <th>Deposit</th>
                                                 <th>Withdraw</th>
                                                 <th>Balance</th>
-                                                <th>Txn Date</th>
+                                                <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>

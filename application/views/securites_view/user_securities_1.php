@@ -44,10 +44,10 @@
                             <!-- /.row -->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    
-                                    <?php 
-                                    
-                                    
+
+                                    <?php
+
+
                                     ?>
 
                                     <!--<div class="table-responsive dataTable_wrapper">-->
@@ -112,7 +112,7 @@
                                                         <td><?php if($rows->status == 'BOUGHT'){ ?>
                                                             <a href="<?php echo site_url('Securities_Controller/loadGelUserSecurity/'.$rows->id)?> "> SELL </a>
                                                                  <?php } ?></td>
-                                                    </tr> 
+                                                    </tr>
                                                     <?php
                                                 }
                                             }

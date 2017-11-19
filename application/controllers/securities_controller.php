@@ -24,11 +24,11 @@ class Securities_Controller extends CI_Controller {
         $userbean = $this->session->userdata('userbean');
 
         $data['security'] = $this->Security_Model->get_new();
-        //get CDS Accounts 
+        //get CDS Accounts
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
         $data['companyList'] = $this->Company_m->getAll();
 
-        //get MARGIN_VALUE       
+        //get MARGIN_VALUE
         $this->load->model('cal/Cal_Model');
         $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
         //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
@@ -87,7 +87,7 @@ class Securities_Controller extends CI_Controller {
                 $tax_amount = $data_form['netamount'] - $data_form['total'];
                 //broker balance update
                 $broker_new_bal = $broker_detail['balance'] - $data_form['netamount'];
-                //clollect data 
+                //clollect data
                 $cost_per_share = $data_form['netamount'] / $data_form['qty_init'];
 
                 $data_summ = array('effectdate' => $data_form['effectdate'],
@@ -184,7 +184,7 @@ class Securities_Controller extends CI_Controller {
         $this->load->model('CDSAccounts_m');
 
         $userbean = $this->session->userdata('userbean');
-        //get company list for user 
+        //get company list for user
         $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($param);
         //user broker CDS lisr
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
@@ -211,12 +211,12 @@ class Securities_Controller extends CI_Controller {
 //        if ($this->form_validation->run() == TRUE) {
 //           //data oky
 //        }else{
-//            
+//
 //        }
-//        
-//        
-//        
-        //get company list for user 
+//
+//
+//
+        //get company list for user
         $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($userbean->userid);
 
         //user broker CDS lisr
@@ -229,7 +229,7 @@ class Securities_Controller extends CI_Controller {
 
     public function loadGetUserSecurity($secid) {
         $this->load->model('securities/Security_Model');
-        //get data from post 
+        //get data from post
         $Security = $this->Security_Model->get_new();
         $dataLst = $this->Security_Model->getUserSecurity($secid);
         foreach ($dataLst as $rows) {
@@ -245,7 +245,7 @@ class Securities_Controller extends CI_Controller {
         }
 //        var_export($Security);
         //load parameter
-        //get MARGIN_VALUE       
+        //get MARGIN_VALUE
         $this->load->model('cal/Cal_Model');
         $param = $this->Cal_Model->getParamValue('MARGIN_VALUE');
         //echo '<tt><pre>'.var_export($param, TRUE).'</pre></tt>';
@@ -259,13 +259,13 @@ class Securities_Controller extends CI_Controller {
 
     public function getPortfolio() {
         //group the securities list and display .
-        //when clicking the title it segrigate 
+        //when clicking the title it segrigate
 
         $this->load->model('securities/Security_Model');
         $this->load->model('CDSAccounts_m');
 
         $userbean = $this->session->userdata('userbean');
-        //get company list for user 
+        //get company list for user
         // $data['userSecComList'] = $this->Security_Model->getUserSecCompanyList($param);
         //user broker CDS lisr
         $data['CDSAccList'] = $this->CDSAccounts_m->getUserBrokerCompanyList($userbean->userid);
@@ -279,14 +279,14 @@ class Securities_Controller extends CI_Controller {
     public function getPortfolioBrokers($param) {
         $this->load->model('securities/Security_Model');
         $this->load->model('CDSAccounts_m');
-        //get the brokers contribution 
-        
+        //get the brokers contribution
+
         $data['brokerDetailsList'] = $this->Security_Model->getPortfolioBrokersForcompany($param);
         ////echo '<tt><pre>'.var_export($data['brokerDetailsList'], TRUE).'</pre></tt>';
-        
+
                 $userbean = $this->session->userdata('userbean');
 
-        
+
         //get company group
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
         //echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
@@ -298,7 +298,7 @@ class Securities_Controller extends CI_Controller {
         $this->load->model('CDSAccounts_m');
         $this->load->model('fund/Fund_Model');
         $userbean = $this->session->userdata('userbean');
-        //get data from post 
+        //get data from post
         $data_form = $this->Security_Model->array_from_post(array('effectdate', 'secid', 'qty', 'amount', 'total',
             'UPTO_1', 'UPTO_2', 'UPTO_3', 'UPTO_4', 'UPTO_5',
             'OVER_1', 'OVER_2', 'OVER_3', 'OVER_4', 'OVER_5', 'netamount'));
@@ -327,7 +327,7 @@ class Securities_Controller extends CI_Controller {
             $data_form['userid'] = $userbean->userid;
 //        echo var_export($data_form);
             $this->Security_Model->setUserCompSelling($data_form, $secid, $data_form_2);
-            //update original security 
+            //update original security
             //set data into "summary_bought_sold_funds"
             $tax_amount = $data_form['netamount'] - $data_form['total'];
 
@@ -335,7 +335,7 @@ class Securities_Controller extends CI_Controller {
 
             //broker balance update
             $broker_balance_new = $broker_detail['balance'] + $data_form['netamount'];
-            //clollect data 
+            //clollect data
 
             $cost_per_share = $data_form['netamount'] / $data_form['qty'];
             $profit_loss_per_share = ($data_form['netamount'] / $data_form['qty']) - $cost_per_share_buy;
