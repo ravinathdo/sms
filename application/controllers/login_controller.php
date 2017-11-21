@@ -12,6 +12,31 @@ Class Login_Controller extends CI_Controller {
         $this->load->view('users_view/login');
     }
 
+    public function loadChangePassword() {
+        $this->load->view('users_view/change_password');
+    }
+
+    public function changePassword() {
+        $this->load->model('Login_Model');
+        //get input data
+        $inputData = $this->Login_Model->array_from_post(array('currentpass', 'newpass', 'retypepass'));
+        $data = array();
+
+        if ($inputData['newpass'] == $inputData['retypepass']) {
+            $result = $this->Login_Model->setPasswordChange($inputData);
+            if ($result) {
+                $this->Login_Model->updatePassword($inputData['newpass']);
+                $data['msg'] = '<p class="bg-success">Password Changed Please Login</p>';
+            } else {
+                //  echo 'Data Not Found';
+            }
+        } else {
+            $data['msg'] = '<p class="bg-danger">Invalid Data</p>';
+        }
+        //echo '<tt><pre>' . var_export($data, TRUE) . '</pre></tt>';
+        $this->load->view('users_view/change_password', $data);
+    }
+
     public function login() {
         $this->load->helper('form');
         $this->load->model('Login_Model');
@@ -113,7 +138,7 @@ Class Login_Controller extends CI_Controller {
                 $this->load->model('Reminder_Model');
                 $userbean = $this->session->userdata('userbean');
                 $data['remindList'] = $this->Reminder_Model->getReminderList("ACTIVE", $userbean->userid);
-               // echo '<tt><pre>' . var_export($data['remindList'], TRUE) . '</pre></tt>';
+                // echo '<tt><pre>' . var_export($data['remindList'], TRUE) . '</pre></tt>';
                 $this->load->view('users_view/home', $data);
             }
         } else {

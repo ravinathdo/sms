@@ -13,6 +13,13 @@ class Cost extends CI_Controller {
 		$this->edit();
 	}
 
+        
+        
+        public function calBasic() {
+            $this->load->view('cal_view/cal_trading');
+        }
+        
+        
 	public function edit($id = NULL){
 		$this->load->model('Cost_m');
 		$data['cost'] = 	$this->Cost_m->getAll();

@@ -83,7 +83,16 @@
                                         </tbody>
 
                                     </table>
-                                    <button type="submit" class="btn btn-danger" >Update</button>
+                                    <?php
+                                    $userbean = $this->session->userdata('userbean');
+                                    if ($userbean->role != 'user') {
+                                        ?>         
+                                        <button type="submit" class="btn btn-danger" >Update</button>
+
+                                        <?php
+                                    }
+                                    //echo '<tt><pre>'.var_export($userbean, TRUE).'</pre></tt>';
+                                    ?>
                                     <?php echo form_close(); ?>
                                 </div>
                                 <div class="col-lg-4">
@@ -99,7 +108,14 @@
                                         <label for="exampleInputEmail1">MARGIN_VALUE</label>
                                         <input type="text" name="MARGIN_VALUE" class="form-control" id="exampleInputEmail1" value="<?= $MARGIN_VALUE ?>">
                                     </div>
-                                    <button type="submit" class="btn btn-warning">Update</button>
+                                    <?php
+                                    $userbean = $this->session->userdata('userbean');
+                                    if ($userbean->role != 'user') {
+                                        ?>                                     <button type="submit" class="btn btn-warning">Update</button>
+                                        <?php
+                                    }
+                                    //echo '<tt><pre>'.var_export($userbean, TRUE).'</pre></tt>';
+                                    ?>
                                     <?php echo form_close(); ?>
 
 
