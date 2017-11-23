@@ -34,6 +34,26 @@ class Fund_Conntroller extends CI_Controller {
         //load the UI
         $this->load->view('fund_view/deposit', $data);
     }
+    //list available funds for company 
+    public function depositFundsReport($userid) {
+        $this->load->model('fund/Fund_Model');
+        $this->load->model('CDSAccounts_m');
+
+
+        $userbean = $this->session->userdata('userbean');
+        //get CDS Accounts 
+        $data['CDSAccList'] = $this->CDSAccounts_m->getUserCDSAccounts($userbean->userid);
+
+        //funds list for user_company
+        $data['compFundList'] = $this->Fund_Model->getUserCompanyFundList($userbean->userid);
+        
+        //vailable funds
+        $this->load->model('Brokers_m'); // get chart data for user
+        $data['bokerBalanceList'] = $this->Brokers_m->getBrokerFunndsForUser($userbean->userid);
+
+        //load the UI
+        $this->load->view('fund_view/deposit_report', $data);
+    }
 
     public function setBrokerTransaction() {
         $this->load->model('fund/Fund_Model');

@@ -276,7 +276,7 @@ class Securities_Controller extends CI_Controller {
         $this->load->view('securites_view/user_portfolio', $data);
     }
 
-    public function getPortfolioBrokers($param) {
+    public function getPortfolioBrokers($param,$nm) {
         $this->load->model('securities/Security_Model');
         $this->load->model('CDSAccounts_m');
         //get the brokers contribution
@@ -290,6 +290,8 @@ class Securities_Controller extends CI_Controller {
         //get company group
         $data['userSecList'] = $this->Security_Model->getUserSecuritiesGroupList($userbean->userid);
         //echo '<tt><pre>' . var_export($data['userSecList'], TRUE) . '</pre></tt>';
+//        echo $nm;
+//        $data['comName'] = $nm;
         $this->load->view('securites_view/user_portfolio', $data);
     }
 
@@ -379,6 +381,11 @@ class Securities_Controller extends CI_Controller {
         $this->load->model('securities/Security_Model');
         $data['userSummaryList'] = $this->Security_Model->listUserSummaryView($userid);
         $this->load->view('securites_view/summury_view', $data);
+    }
+    public function listSummaryViewReport($userid) {
+        $this->load->model('securities/Security_Model');
+        $data['userSummaryList'] = $this->Security_Model->listUserSummaryView($userid);
+        $this->load->view('securites_view/summury_view_report', $data);
     }
 
 }

@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SecuritiesLK</title>
         <?php $this->load->view('basecss'); ?>
 
 

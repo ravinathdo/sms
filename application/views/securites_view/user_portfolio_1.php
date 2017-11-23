@@ -74,7 +74,7 @@
                                                        $qty =  $rows->qty;
                                                       echo  number_format ($sumnetamount / $qty, 2);
                                                        ?></td>
-                                                        <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/' . $rows->comid.'/'. $rows->com_name); ?>">View Brokers</a></td>
+                                                        <td><a href="<?php echo base_url('Securities_Controller/getPortfolioBrokers/' . $rows->comid); ?>">View Brokers</a></td>
                                                     </tr>
 
                                                     <?php
@@ -88,11 +88,8 @@
                                 <!-- secuties list of Stockbroker -->
 
 
-<button onclick="printDiv('PRNT')"  class="btn btn-warning btn-xs">Print</button>
-<div class="col-lg-6" id="PRNT">
-                                    <?php if(isset($comName)){
-     echo $comName;  
-                                    }?>
+
+                                <div class="col-lg-6">
                                   <?= $rows->com_name = "JOHN KEELS HOLDINGS PLC"; ?>
                                     <table class="table">
                                         <thead>

@@ -1,6 +1,6 @@
 <!--user Menu Items-->
 <?php
- $userbean = $this->session->userdata('userbean');
+$userbean = $this->session->userdata('userbean');
 ?>
 <li>
     <a href="#"><i class="fa fa-calculator"></i> Transaction Cost Calculate<span class="fa arrow"></span></a>
@@ -21,20 +21,20 @@
         <!--  <li>
             <a href="<?= base_url('Cost/calculator'); ?>">Average Cost Cal</a>
         </li>
-       -->
+        -->
     </ul>
     <!-- /.nav-second-level -->
 </li>
 <li>
     <a href="#"><i class="fa fa-user"></i> User<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-<!--        <li>
-            <a href="<?= base_url('Users/add'); ?>">Request</a>
-        </li>
-
-        <li>
-            <a href="<?= base_url('Users'); ?>">User Profile</a>
-        </li>-->
+        <!--        <li>
+                    <a href="<?= base_url('Users/add'); ?>">Request</a>
+                </li>
+        
+                <li>
+                    <a href="<?= base_url('Users'); ?>">User Profile</a>
+                </li>-->
         <li>
             <a href="<?= base_url('Users/userProfile'); ?>">Profile</a>
         </li>
@@ -85,19 +85,30 @@
             <a href="<?= base_url('Securities_Controller/'); ?>">Buy Securities</a>
         </li>
         <li>
-            <a href="<?= base_url('Securities_Controller/listUserSecurities/'.$userbean->userid); ?>">Sell Securities</a>
+            <a href="<?= base_url('Securities_Controller/listUserSecurities/' . $userbean->userid); ?>">Sell Securities</a>
         </li>
         <li>
             <a href="<?= base_url('Securities_Controller/getPortfolio'); ?>">List of my Securities (Portfolio)</a>
         </li>
         <li>
-            <a href="<?= base_url('Fund_Conntroller/depositFunds/'.$userbean->userid);?>">Funds (Deposit / Withdraw) </a>
+            <a href="<?= base_url('Fund_Conntroller/depositFunds/' . $userbean->userid); ?>">Funds (Deposit / Withdraw) </a>
         </li>
 
 
         <li>
-            <a href="<?= base_url('Securities_Controller/listSummaryView/'.$userbean->userid); ?>">Summary View </a>
+            <a href="<?= base_url('Securities_Controller/listSummaryView/' . $userbean->userid); ?>">Summary View </a>
         </li>
     </ul>
     <!-- /.nav-second-level -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Reports <span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="<?= base_url('Fund_Conntroller/depositFundsReport/' . $userbean->userid); ?>">Deposit / Withdraw Report</a>
+        </li>
+        <li>
+            <a href="<?= base_url('Securities_Controller/listSummaryViewReport/' . $userbean->userid); ?>">Summary View Report </a>
+        </li>
 </li>

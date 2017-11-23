@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SecuritiesLK</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -39,6 +39,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">My Brokers Company List</h1>
+                            <button onclick="printDiv('PRNT')"  class="btn btn-warning btn-xs">Print</button>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -53,7 +54,7 @@
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
 
-                                    <div class="table-responsive dataTable_wrapper">
+                                    <div class="table-responsive dataTable_wrapper"  id="PRNT">
                                         <table class="table table-striped table-bordered table-hover" id="dataTables">
                                             <thead>
                                                 <tr>
