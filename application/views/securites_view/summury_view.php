@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -37,7 +37,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">Summery list of Bought / Sold / Funds</h1>
+                                    <h1 class="page-header">Summary list of Bought / Sold / Funds</h1>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
@@ -75,13 +75,13 @@
                                                 if ($userSummaryList != FALSE) {
                                                     foreach ($userSummaryList as $rows) {
                                                         ?>
-                                                <tr  
+                                                <tr
                                                             <?php
                                                             if($rows->description == 'BUY'){
-                                                              ?> style="color: green"  <?php  
+                                                              ?> style="color: green"  <?php
                                                             }
                                                             ?>
-                                                            
+
                                                             >
                                                             <td><?= $rows->effectdate; ?></td>
                                                             <td><?= $rows->com_name; ?></td>

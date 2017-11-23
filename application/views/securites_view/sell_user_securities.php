@@ -98,7 +98,7 @@
                                         <input id="ex1" ng-blur="getMilionValues()" ng-change="getMilionValues()" name="qty" ng-model="qty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<?= $security->qty ?>" data-slider-step="1" data-slider-value="0"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Amount</label>
+                                        <label for="exampleInputPassword1">Price</label>
                                         <input type="text" name="amount" ng-model="amount" class="form-control"  value="<?= $security->amount ?>" ng-blur="getMilionValues()" ng-keyup="getMilionValues()" >
                                         <input type="hidden" name="cost_per_share" value="<?= $security->cost_per_share?>" />
                                         <input type="hidden" name="cdsaccid" value="<?= $security->cdsaccid?>" />
@@ -118,6 +118,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <br />
 
                                     <table class="table table-bordered">
                                         <thead>

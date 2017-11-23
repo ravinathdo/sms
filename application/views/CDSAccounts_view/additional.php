@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SMS</title>
         <?php $this->load->view('basecss'); ?>
 
     </head>
@@ -37,7 +37,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header">CDS Broker Additional</h1>
+                                    <h1 class="page-header">Stockbroker Additional Details</h1>
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
@@ -50,7 +50,7 @@
 
                                     <?php echo form_open('CDSAccounts/setBrokerAdditional/'); ?>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Label</label>
+                                        <label for="exampleInputEmail1">Name</label>
                                         <input type="text"  name="lable" class="form-control" id="exampleInputEmail1" >
                                         <input type="hidden"  name="cdsaccid" value="<?= $cdsaccid ?>" >
                                     </div>
@@ -66,9 +66,9 @@
                                 <div class="col-lg-6">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>Lable</th>
+                                            <th>Name</th>
                                             <th>Value</th>
-                                            <th>Value</th>
+                                            <th>Remove</th>
                                         </tr>
                                         <?php
                                         if ($detailsList != FALSE) {
@@ -77,7 +77,7 @@
                                                 <tr>
                                                     <td><?= $row->lable ?></td>
                                                     <td><?= $row->value ?></td>
-                                                    <td><a class="btn btn-warning" href="<?=base_url('CDSAccounts/removeBrokerAdditional/'.$row->id.'/'.$cdsaccid);?>" title="Edit"><i class="fa fa-pencil-square-o"></i></a></td>
+                                                    <td><a class="btn btn-warning" href="<?=base_url('CDSAccounts/removeBrokerAdditional/'.$row->id.'/'.$cdsaccid);?>" title="Delete"><i class="fa fa-times"></i></a></td>
                                                 </tr>
                                                 <?php
                                             }
