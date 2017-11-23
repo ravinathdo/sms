@@ -14,7 +14,7 @@
         <li>
             <a href="<?= base_url('Cost/calBasic'); ?>">Share Trading Cal</a>
         </li>
-      
+
         <li>
             <a href="<?= base_url('Cost/calculator'); ?>">P/L Cal (Advance)</a>
         </li>
@@ -27,7 +27,7 @@
 </li>
 <li>
     <a href="#"><i class="fa fa-user"></i> User<span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level">                
+    <ul class="nav nav-second-level">
 <!--        <li>
             <a href="<?= base_url('Users/add'); ?>">Request</a>
         </li>
@@ -69,10 +69,10 @@
     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> CDS Accounts <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="<?= base_url('CDSAccounts/myCDSAccount'); ?>">CDS List</a>
+            <a href="<?= base_url('CDSAccounts/add'); ?>">Add</a>
         </li>
         <li>
-            <a href="<?= base_url('CDSAccounts/add'); ?>">Add</a>
+            <a href="<?= base_url('CDSAccounts/myCDSAccount'); ?>">CDS List</a>            
         </li>
     </ul>
     <!-- /.nav-second-level -->
@@ -93,8 +93,8 @@
         <li>
             <a href="<?= base_url('Fund_Conntroller/depositFunds/'.$userbean->userid);?>">Funds (Deposit / Withdraw) </a>
         </li>
-        
-      
+
+
         <li>
             <a href="<?= base_url('Securities_Controller/listSummaryView/'.$userbean->userid); ?>">Summary View </a>
         </li>

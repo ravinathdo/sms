@@ -69,8 +69,44 @@
                                                     <button type="reset" class="btn btn-primary">Cancel</button>
                                                 </p>
                                                 <p>
-                                                    <a href="#">Forget Password</a>
-                                                    
+
+                                                    <a href="#bannerformmodal" data-toggle="modal" data-target="#bannerformmodal">Forget Password</a>
+
+                                                    <!-- Modal -->
+                                                      <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="bannerformmodal">
+                                                       <div class="modal-dialog">
+
+                                                         <!-- Modal content-->
+                                                         <div class="modal-content">
+                                                           <div class="modal-header">
+                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                             <h4 class="modal-title">Forget Password</h4>
+                                                           </div>
+                                                           <div class="modal-body">
+
+                                                             <p><h4>Please Contact Administrator.</h4></p>
+
+                                                             <div align="center">
+                                                             <dl >
+                                                                 <dt>Contact Number:</dt>
+                                                                 <dd>011 25500000 </dd>
+
+                                                                 <dt>email:</dt>
+                                                                 <dd>admin@sms.lk </dd>
+
+                                                             </dl>
+                                                           </div>
+
+                                                           </div>
+                                                           <div class="modal-footer">
+                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                           </div>
+                                                         </div>
+
+                                                       </div>
+                                                     </div>
+
+
                                                 </p>
                                                 <p class="bg-danger"><?php if(isset($msg)){
                                                     echo $msg;

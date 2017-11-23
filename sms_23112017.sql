@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2017 at 05:42 PM
+-- Generation Time: Nov 23, 2017 at 02:49 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -1320,10 +1320,10 @@ CREATE TABLE `brokercompany` (
 --
 
 INSERT INTO `brokercompany` (`brokercomid`, `name`, `symbol`, `address1`, `address2`, `address3`, `address4`, `address5`, `tel1`, `tel2`, `tel3`, `fax`, `email`, `website`, `contactperson`, `conpersondesignation`, `brokerid`, `brocomtypeid`) VALUES
-(1, 'Lanka Securities', 'LSL', 'No 35', 'Gall road', 'Colombo 3', '----------', 'Sri Lanka', '', '', '', '', '', '', '', '', 0, 1),
-(2, 'Asia Securities', 'ASL', 'No 1/115', 'Timbirigasyaya Road', 'Narahenpita', 'Colombo 5', '3434', '', '', '', '', '', '', '', '', 0, 2),
-(3, 'Equity Stock Brokers', 'ESB', 'No 335', 'Nawam Nawatha', 'Colombo 2', 'dfkjd', 'dfjmmm', '', '', '', '', '', '', '', '', 0, 2),
-(4, 'Sampath Stock Brokers', 'SSB', 'No 450', 'D. R. Wejewardana Mawatha', 'Colombo 10', 'dkj', 'dfjfff', '', '', '', '', '', '', '', '', 0, 3),
+(1, 'Lanka Securities', 'LSL', 'No 35', 'Gall road', 'Colombo 3', '----------', '-', '', '', '', '', '', '', '', '', 0, 1),
+(2, 'Asia Securities', 'ASL', 'No 1/115', 'Timbirigasyaya Road', 'Narahenpita', 'Colombo 5', '00450', '', '', '', '', '', '', '', '', 0, 2),
+(3, 'Equity Stock Brokers', 'ESB', 'No 335', 'Nawam Nawatha', 'Colombo 2', '-', '-', '', '', '', '', '', '', '', '', 0, 2),
+(4, 'Sampath Stock Brokers', 'SSB', 'No 450', 'D. R. Wejewardana Mawatha', 'Colombo 10', '-', '-', '', '', '', '', '', '', '', '', 0, 3),
 (5, 'NDB Stock Broker', 'NDB', '325/2', 'NDB House', '3rd Floor', 'Nawam Mawatha', 'Colombo 2', '', '', '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
@@ -1367,7 +1367,7 @@ CREATE TABLE `broker_fund` (
 
 INSERT INTO `broker_fund` (`brokercomid`, `balance`, `userid`, `lastupdated`) VALUES
 (2, '1493.65', 10, '2017-10-08 09:33'),
-(3, '-8992.46', 10, '2017-11-05 06:08');
+(3, '-10004.26', 10, '2017-11-22 07:07');
 
 -- --------------------------------------------------------
 
@@ -1985,7 +1985,27 @@ INSERT INTO `log_trace` (`id`, `username`, `IP`, `logtime`) VALUES
 (104, 'adm@gmail.com', '::1', '2017-11-19 08:06:44'),
 (105, 'ttt', '::1', '2017-11-19 08:07:18'),
 (106, 'adm@gmail.com', '::1', '2017-11-19 08:07:34'),
-(107, 'ba@sms.lk', '::1', '2017-11-19 08:07:49');
+(107, 'ba@sms.lk', '::1', '2017-11-19 08:07:49'),
+(108, 'ttt', '::1', '2017-11-20 16:26:31'),
+(109, 'adm@gmail.com', '::1', '2017-11-20 17:17:24'),
+(110, 'ba@sms.lk', '::1', '2017-11-20 17:21:11'),
+(111, 'ttt', '::1', '2017-11-20 17:21:54'),
+(112, 'ba@sms.lk', '::1', '2017-11-20 17:23:29'),
+(113, 'adm@gmail.com', '::1', '2017-11-21 12:02:37'),
+(114, 'ba@sms.lk', '::1', '2017-11-21 13:31:09'),
+(115, 'ba@sms.lk', '::1', '2017-11-21 16:54:21'),
+(116, 'ttt', '::1', '2017-11-21 16:54:37'),
+(117, 'ttt', '::1', '2017-11-21 17:37:03'),
+(118, 'ttt', '::1', '2017-11-22 06:05:49'),
+(119, 'ttt', '::1', '2017-11-22 09:40:53'),
+(120, 'ttt', '::1', '2017-11-22 09:56:56'),
+(121, 'ttt', '::1', '2017-11-22 10:02:38'),
+(122, 'ttt', '::1', '2017-11-22 10:54:29'),
+(123, 'adm@gmail.com', '::1', '2017-11-22 10:54:49'),
+(124, 'ttt', '::1', '2017-11-22 10:58:19'),
+(125, 'ba@sms.lk', '::1', '2017-11-22 10:58:27'),
+(126, 'adm@gmail.com', '::1', '2017-11-22 10:59:12'),
+(127, 'ttt', '::1', '2017-11-22 11:20:26');
 
 -- --------------------------------------------------------
 
@@ -2228,8 +2248,8 @@ INSERT INTO `stockbroker` (`stockbrokerid`, `adviserfname`, `adviserlname`, `tel
 (4, '5. Ruwan', 'Gamage', 33, 34, 'dfjk@dfjl.com'),
 (5, 'Rohan', 'Fonseka', 881, 881, 'dfjlkd#ddfk.com'),
 (6, 'Rasika', 'Madushan', 715, 11715, 'rasika@gmail.com'),
-(7, 'Rasikax', 'Madushan x', 0, 0, 'rasika@gmail.com'),
-(8, 'Samatha', 'Fernando', 0, 3344, 'sama@gmailcom');
+(7, 'Rasika', 'Madushan', 71458758, 12458786, 'rasika@gmail.com'),
+(8, 'Samantha', 'Fernando', 774856125, 115485456, 'sama@gmailcom');
 
 -- --------------------------------------------------------
 
@@ -2302,7 +2322,8 @@ INSERT INTO `summary_bought_sold_funds` (`id`, `effectdate`, `comid`, `descripti
 (5, '', 1, 'SELL', 23, '3.00', '69.00', '1.12', '-0.77', NULL, NULL, '68.23', '1493.65', '2.97', '-0.1075130', '-2.4728000', '-3.4975954', NULL, '2017-10-08 07:33:25', 10),
 (6, '2017-11-03', 1, 'BUY', 5, '19.00', '95.00', '1.12', '4.97', NULL, '99.97', NULL, '1250.03', '19.99', NULL, NULL, NULL, NULL, '2017-11-03 12:40:21', 10),
 (7, '2017-11-03', 1, 'BUY', 12, '13.00', '156.00', '1.12', '3.95', NULL, '159.95', NULL, '1090.08', '13.33', NULL, NULL, NULL, NULL, '2017-11-03 13:04:21', 10),
-(8, '2017-11-01', 5, 'BUY', 1000, '10.00', '10000.00', '1.12', '82.54', NULL, '10082.54', NULL, '-8992.46', '10.08', NULL, NULL, NULL, NULL, '2017-11-05 05:08:23', 10);
+(8, '2017-11-01', 5, 'BUY', 1000, '10.00', '10000.00', '1.12', '82.54', NULL, '10082.54', NULL, '-8992.46', '10.08', NULL, NULL, NULL, NULL, '2017-11-05 05:08:23', 10),
+(9, '2017-11-07', 1, 'BUY', 100, '10.00', '1000.00', '1.12', '11.80', NULL, '1011.80', NULL, '-10004.26', '10.12', NULL, NULL, NULL, NULL, '2017-11-22 06:07:09', 10);
 
 -- --------------------------------------------------------
 
@@ -2389,7 +2410,7 @@ INSERT INTO `user` (`userid`, `email`, `fname`, `mname`, `lname`, `mobile`, `pas
 (7, 'sagara@gmail.com', 'Sagara', 'Praneeth', 'Jayasundara', '077', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-03-15 07:00:00', 1, '2017-03-16', 'user'),
 (8, 'rr', 'f', 'm', 'l', 'm', '516b9783fca517eecbd1d064da2d165310b19759', '2017-08-31 18:40:23', 0, NULL, NULL),
 (9, 'adm@gmail.com', 'Administrator', 'Admin', 'Nimda', '0715833470', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-08-31 18:51:46', 1, NULL, 'admin'),
-(10, 'ttt', 'Sumendra', 't', 't', '3', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-08-31 18:59:40', 1, '2017-08-31', 'user'),
+(10, 'ttt', 'Sumendra', '', 't', '3', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-08-31 18:59:40', 1, '2017-08-31', 'user'),
 (11, 'rusha@ymail.com', 'Rush', 'De', 'Kahn', '.4588778878', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-08-31 19:00:06', 1, '2017-11-05', 'user'),
 (12, 'nuwan@gmail.com', 'Nuwan', 'Sampath', 'Gunasekara', '0775864523', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-11-05 05:51:39', 0, NULL, 'user'),
 (13, 'test', 'test', 'test', 'test', '1', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-11-06 16:00:45', 0, NULL, 'user');
@@ -2490,7 +2511,8 @@ INSERT INTO `user_securities` (`id`, `effectdate`, `cdsaccid`, `comid`, `subtype
 (17, '2017-10-07', 7, 1, 1, 0, 23, 10, '230.00', 0.64, 0.084, 0.024, 0.072, 0.3, 0.2, 0.0525, 0.015, 0.045, 0.3, '231.92', 10, '2017-10-08 06:23:21', 'SOLD', '2017-10-08'),
 (18, '2017-11-03', 8, 1, 1, 5, 5, 19, '95.00', 0.74, 0.094, 0.034, 0.082, 0.4, 0.3, 0.0625, 0.025, 0.055, 0.4, '99.97', 10, '2017-11-03 12:40:21', 'BOUGHT', NULL),
 (19, '2017-11-03', 8, 1, 5, 12, 12, 13, '156.00', 0.74, 0.094, 0.034, 0.082, 0.4, 0.3, 0.0625, 0.025, 0.055, 0.4, '159.95', 10, '2017-11-03 13:04:21', 'BOUGHT', NULL),
-(20, '2017-11-01', 8, 5, 1, 1000, 1000, 10, '10000.00', 0.65, 0.084, 0.024, 0.072, 0.35, 0.3, 0.0525, 0.015, 0.045, 0.35, '10082.54', 10, '2017-11-05 05:08:23', 'BOUGHT', NULL);
+(20, '2017-11-01', 8, 5, 1, 1000, 1000, 10, '10000.00', 0.65, 0.084, 0.024, 0.072, 0.35, 0.3, 0.0525, 0.015, 0.045, 0.35, '10082.54', 10, '2017-11-05 05:08:23', 'BOUGHT', NULL),
+(21, '2017-11-07', 8, 1, 5, 100, 100, 10, '1000.00', 0.65, 0.084, 0.024, 0.072, 0.35, 0.3, 0.0525, 0.015, 0.045, 0.35, '1011.80', 10, '2017-11-22 06:07:09', 'BOUGHT', NULL);
 
 -- --------------------------------------------------------
 
@@ -2586,6 +2608,13 @@ CREATE TABLE `user_stockbroker_details` (
   `lable` varchar(100) DEFAULT NULL,
   `value` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_stockbroker_details`
+--
+
+INSERT INTO `user_stockbroker_details` (`id`, `userid`, `cdsaccid`, `lable`, `value`) VALUES
+(2, 10, 7, 'Account number - HNB', '1-100258-1274-54');
 
 -- --------------------------------------------------------
 
@@ -2983,7 +3012,7 @@ ALTER TABLE `cal`
 -- AUTO_INCREMENT for table `calender_event`
 --
 ALTER TABLE `calender_event`
-  MODIFY `eventid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `eventid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cal_history`
 --
@@ -3068,7 +3097,7 @@ ALTER TABLE `listedboard`
 -- AUTO_INCREMENT for table `log_trace`
 --
 ALTER TABLE `log_trace`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 --
 -- AUTO_INCREMENT for table `modules`
 --
@@ -3128,7 +3157,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `summary_bought_sold_funds`
 --
 ALTER TABLE `summary_bought_sold_funds`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
@@ -3158,7 +3187,7 @@ ALTER TABLE `user_modules`
 -- AUTO_INCREMENT for table `user_securities`
 --
 ALTER TABLE `user_securities`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `user_securities_sold`
 --
@@ -3178,7 +3207,7 @@ ALTER TABLE `user_stockbroker`
 -- AUTO_INCREMENT for table `user_stockbroker_details`
 --
 ALTER TABLE `user_stockbroker_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `warrants`
 --

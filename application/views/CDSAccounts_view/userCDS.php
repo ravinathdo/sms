@@ -52,7 +52,7 @@
                           <table class="table table-striped table-bordered table-hover" id="dataTables">
                           <thead>
                           <tr>
-                              <th>#</th>
+                              <!-- <th>#</th> -->
                               <th>Broker Company Name</th>
                               <th>CDS Account No </th>
                               <th>Adviser Name</th>
@@ -67,7 +67,7 @@
                             if ($cdsAccList != FALSE){
                               foreach ($cdsAccList as $rows) { ?>
                                     <tr>
-                                          <td><?=$rows->cdsaccid;?></td>
+                                          <!-- <td><?=$rows->cdsaccid;?></td> -->
                                           <td><?=$rows->name;?></td>
                                           <td><?=$rows->cdsaccno;?></td>
                                           <td><?=$rows->adviserfname;?></td>

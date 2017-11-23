@@ -32,11 +32,11 @@ class CDSAccounts extends CI_Controller {
 
 
         if ($id) {
-            echo 'y';
+          //  echo 'y';
             $data['CDSAccounts'] = $this->CDSAccounts_m->getcdsdetils($id);
         } else {
             //stdClass Instance
-            echo 'x';
+          //  echo 'x';
             $data['CDSAccounts'] = $this->CDSAccounts_m->get_new(); //create empty fields
         }
 

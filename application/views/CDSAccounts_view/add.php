@@ -18,8 +18,8 @@
             $userbean = $this->session->userdata('userbean');
         }else{
             //if invalid session user get redirect to login
-            header("Location:". site_url('Login_Controller/logout')); 
-        } 
+            header("Location:". site_url('Login_Controller/logout'));
+        }
         ?>
 <body>
 
@@ -52,7 +52,7 @@
                                 <?php echo validation_errors();?>
                                   <input type="hidden" name="userid" value="<?php echo $userbean->userid ;?>" />
                                 <div class="form-group">
-                                  <label>Stock Brocker</label>
+                                  <label>Stockbrocker Company</label>
                                   <div class="">
                                       <select class="form-control" name="brokercomid" required="">
                                       <option value="">Select</option>
@@ -123,7 +123,7 @@
 
 
                                 <p>
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Add CDS</button>
                                 </p>
 
                            </form>
